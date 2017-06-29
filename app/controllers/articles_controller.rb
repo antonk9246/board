@@ -15,11 +15,11 @@ class ArticlesController < ApplicationController
  
   @article.save
   redirect_to @article
-end
+  end
  
-private
+  private
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :image, :text)
   end
   
 end
