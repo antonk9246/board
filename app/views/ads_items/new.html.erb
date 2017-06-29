@@ -1,0 +1,19 @@
+<%= form_for :ads_items, url: ads_items_path do |f| %>
+ <h1>New ad</h1>
+  <div class="row">
+    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+      <div class="card" style="width: 30rem;"> 
+        <div class="card-block">
+          <h4 class="card-title"><%= f.label :title %></h4>
+          <%= f.text_field :title %>
+          <h4 class="card-title"><%= f.label :image %></h4>
+          <%= f.text_field :image %>
+          <h4 class="card-text"><%= f.label :text %></h4>
+          <h4 class="card-text"><%= f.submit %></h4>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<%= link_to 'Back', ads_items_path %>

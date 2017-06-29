@@ -1,6 +1,5 @@
 <h1>На этом месте могла бы быть ваша реклама</h1>
-<%= link_to 'My Blog', controller: 'articles' %>
-<%= link_to 'New article', new_article_path %>
+<a href=/ads_items/new class="btn btn-primary">new ad</a>
 <div class="container">
         <div class="row">
             <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
@@ -23,11 +22,11 @@
             <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
                 <div class="card" style="width: 30rem;"> 
                     <div class="card-block">
-                        <% @articles.each do |article| %>
-                        <img class="card-img-top img-fluid" src="<%= article.image %>" alt="Card image cap">
-                        <h4 class="card-title"><%= article.title %></h4>
-                        <p class="card-text"><%= article.text %></p>
-                        <a href="article_path(article)" class="btn btn-primary">Go somewhere</a>
+                        <% @ads_items.each do |item| %>
+                        <img class="card-img-top img-fluid" src="<%= item.image %>" alt="Card image cap">
+                        <h4 class="card-title"><%= item.title %></h4>
+                        <p class="card-text"><%= item.text %></p>                        
+                        <a href=  /ads_items/<%= item.id %> class="btn btn-primary">show ad</a>
                         <% end %>
                     </div>
                 </div>
