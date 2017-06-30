@@ -1,35 +1,50 @@
 class AdsItemsController < ApplicationController
   def index
-      @ads_items = AdsItem.all
+    @ads_items = AdsItem.all
   end
     
   def show
-    @ads_items = AdsItem.find(params[:id])
+    @ads_item = AdsItem.find(params[:id])
   end
   
   def new
+    @ads_item = AdsItem.new
+  end
+  
+  def edit
+    @ads_item = AdsItem.find(params[:id])
   end
   
   def create
-    @ads_items = AdsItem.new(ads_items_params)
+    @ads_item = AdsItem.new(ads_items_params)
  
-    if @ads_items.save
-      redirect_to @ads_items
+    if @ads_item.save
+      redirect_to @ads_item
     else
       render 'new'
     end
   end
   
-  def destroy
-  @ads_items = AdsItem.find(params[:id])
-  @ads_items.destroy
+  def update
+    @ads_item = AdsItem.find(params[:id])
  
-  redirect_to ads_items_path
-end
+    if @ads_item.update(ads_items_params)
+      redirect_to @ads_item
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @ads_item = AdsItem.find(params[:id])
+    @ads_item.destroy
+ 
+    redirect_to ads_items_path
+  end
   
   private
-  def ads_items_params
-    params.require(:ads_items).permit(:title, :image, :text)
-  end
+    def ads_items_params
+      params.require(:ads_item).permit(:title, :image, :text)
+    end
   
 end

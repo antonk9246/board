@@ -1,14 +1,28 @@
-<%= form_for :ads_items, url: ads_items_path do |f| %>
- <h1>New ad</h1>
+<%= form_for @ads_item, url: ads_items_path do |f| %>
+  <h1>New ad</h1>
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
       <div class="card" style="width: 30rem;"> 
         <div class="card-block">
+          <% if @ads_item.errors.any? %>
+            <div id="error_explanation">
+            <h2>
+              <%= pluralize(@ads_item.errors.count, "error") %> prohibited
+              this ads_items from being saved:
+            </h2>
+            <ul>
+              <% @ads_item.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
           <h4 class="card-title"><%= f.label :title %></h4>
           <%= f.text_field :title %>
           <h4 class="card-title"><%= f.label :image %></h4>
           <%= f.text_field :image %>
-          <h4 class="card-text"><%= f.label :text %></h4>
+          <h4 class="card-text"a<%= f.label :text %></h4>
+          <%= f.text_area :text %>
           <h4 class="card-text"><%= f.submit %></h4>
           <% end %>
         </div>
@@ -16,4 +30,4 @@
     </div>
   </div>
   
-<%= link_to 'Back', ads_items_path %>
+<%= link_to 'Back to index', ads_items_path %>
