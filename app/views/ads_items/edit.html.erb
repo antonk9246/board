@@ -12,24 +12,28 @@
       </ul>
     </div>
   <% end %>
-
 <h1>Edit ad items</h1>
-<a href=/ads_items/new class="btn btn-primary">new ad</a>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-      <div class="card" style="width: 30rem;"> 
-        <div class="card-block">
-          <img class="card-img-top img-fluid" src="<%= @ads_item.image %>" alt="Card image cap">
-          <textarea name="textarea" rows="2" cols="50"><%= @ads_item.image %></textarea>
-          <h4 class="card-title">Title: </h4>
-          <textarea name="textarea" rows="1" cols="50"><%= @ads_item.title %></textarea>
-          <p class="card-title">Text: </p>
-          <textarea name="textarea" rows="2" cols="50"><%= @ads_item.text %></textarea>
-          <%= f.submit %>
+  <a href=/ads_items/new class="btn btn-primary">new ad</a>
+    <div class="row">
+      <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+        <div class="card" style="width: 30rem;"> 
+          <div class="card-block">
+            <div class="form-group">
+              <img class="card-img-top img-fluid" src="<%= @ads_item.image %>" alt="Card image cap">
+              <%= f.text_field :image, :class => 'form-control' %>
+              </div>
+              <div class="form-group">
+              <%= f.label :title %>
+              <%= f.text_field :title, :class => 'form-control' %>
+              </div>
+              <div class="form-group">
+              <%= f.label :text %>
+              <%= f.text_area :text, :class => 'form-control' %>
+              </div>
+            <button type="f.submit" class="btn btn-primary">Submit</button>
           </div>
-         
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+    <% end %>
 <%= link_to 'Back', ads_items_path %>

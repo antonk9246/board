@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
       <div class="card" style="width: 30rem;"> 
-        <div class="card-block">
-          <% if @ads_item.errors.any? %>
+        <% if @ads_item.errors.any? %>
             <div id="error_explanation">
             <h2>
               <%= pluralize(@ads_item.errors.count, "error") %> prohibited
@@ -36,10 +35,8 @@
       </div>
       <button type="f.submit" class="btn btn-primary">Submit</button>
       <% end %>
-      </div>
-      
-      </div>
     </div>
   </div>
-
+</div>
+ 
 <%= link_to 'Back to index', ads_items_path %>

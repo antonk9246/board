@@ -1,18 +1,19 @@
 <h1>Show ads items</h1>
-<a href=/ads_items/new class="btn btn-primary">new ad</a>
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
       <div class="card" style="width: 30rem;"> 
         <div class="card-block">
           <img class="card-img-top img-fluid" src="<%= @ads_item.image %>" alt="Card image cap">
           <h4 class="card-title"><%= @ads_item.title %></h4>
-          <p class="card-text"><%= @ads_item.text %></p> 
-          <center>
-          <a href= /ads_items/<%= @ads_item.id %>/edit class="btn btn-primary">Edit</a>
-          <a data-confirm="Are you sure?" data-method="delete" href=/ads_items/<%= @ads_item.id %> rel="nofollow" class="btn btn-primary">remove ad</a>
-          <a href= /ads_items/index class="btn btn-primary">Back to index</a>
-          </center>
+          <p class="card-text"><%= @ads_item.text %></p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <td><%= link_to 'Edit', edit_ads_item_url, :class => "btn btn-primary" %></td>
+            <td><%= link_to 'Send to admin', ads_items_index_url, :class => "btn btn-primary" %></td>
+            <td><%= link_to 'Back to index', ads_items_index_url, :class => "btn btn-primary" %></td>
+            <td><%= link_to 'Delete', ads_item_url, method: :delete,
+              data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
           </div>
+        </div>
       </div>
     </div>
   </div>
