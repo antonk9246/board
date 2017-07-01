@@ -2,10 +2,10 @@
 
 one:
   title: MyText
-  image_url: MyText
   text: MyText
+  image_file: 
 
 two:
   title: MyText
-  image_url: MyText
   text: MyText
+  image_file: 

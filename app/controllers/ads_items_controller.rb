@@ -45,7 +45,7 @@ class AdsItemsController < ApplicationController
 
   private
     def ads_items_params
-      params.require(:ads_item).permit(:title, :image_url, :text, :image_file)
+      params.require(:ads_item).permit(:title, :text, {images:[]})
     end
 
 end

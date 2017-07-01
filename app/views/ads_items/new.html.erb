@@ -1,4 +1,5 @@
-<%= form_for @ads_item do |f| %>
+# notice 'html: { multipart: true }'
+<%= form_for @ads_item, html: { multipart: true } do |f| %>
   
   <div class="field">
     <%= f.label :title %>
@@ -10,13 +11,11 @@
     <%= f.text_area :text %>
   </div>
 
-<div class="field">
-    <%= f.label :image_url %>
-    <%= f.text_area :image_url %>
-    
+
+  # notice 'multiple: true'
   <div class="field">
-    add an image....
-    <%= f.file_field :image_file %>
+    <%= f.label :image_file %>
+    <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
   </div>
   <button type="f.submit" class="btn btn-primary">Submit</button>
 <% end %>
