@@ -1,7 +1,7 @@
 class AdsItemsController < ApplicationController
   def index
-    @ads_items = AdsItem.all
     @ads_item = AdsItem.new
+    @ads_items = AdsItem.order(approval_date: :desc).page params[:page]
   end
 
   def show
@@ -18,7 +18,7 @@ class AdsItemsController < ApplicationController
 
   def create
     @ads_item = AdsItem.new(ads_items_params)
-    @ads_items = AdsItem.all
+    @ads_items = AdsItem.order(:title).page params[0]
     
     if @ads_item.save
       redirect_to @ads_item
