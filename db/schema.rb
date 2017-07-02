@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701162341) do
+ActiveRecord::Schema.define(version: 20170702100510) do
 
   create_table "ads_items", force: :cascade do |t|
+    t.datetime "approval_date"
     t.text     "title"
+    t.string   "image"
     t.text     "text"
-    t.string   "images"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

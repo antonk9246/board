@@ -1,40 +1,54 @@
-<%= form_for @ads_item, url: {action: :update} do |f| %>
-  <% if @ads_item.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@ads_item.errors.count, "error") %> prohibited
-        this ads_items from being saved:
-      </h2>
-      <ul>
-        <% @ads_item.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3 text-center">
+      <h1 class="display-1">Edit ad items</h1>
     </div>
-  <% end %>
-<h1>Edit ad items</h1>
-  <a href=/ads_items/new class="btn btn-primary">new ad</a>
-    <div class="row">
-      <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-        <div class="card" style="width: 30rem;"> 
-          <div class="card-block">
+  </div>
+  <div class="row">
+    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+      <div class="card"> 
+        <div class="card-block">
+          <%= form_for @ads_item, url: {action: :update} do |f| %>
+            <% if @ads_item.errors.any? %>
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(@ads_item.errors.count, "error") %> prohibited
+                  this ads_items from being saved:
+                </h2>
+                <ul>
+                  <% @ads_item.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
             <div class="form-group">
-              <img class="card-img-top img-fluid" src="<%= @ads_item.image_url %>" alt="Card image cap">
-              <div><%= f.label :image_url %></div>
-              <div><%= f.text_field :image_url, :class => 'form-control' %></div>
-              <%= image_tag(@ads_item.image_file_url.to_s, class: 'card-img-top img-fluid') %>
-              <div class="form-group">
-              <div><%= f.label :title %></div>
-              <%= f.text_field :title, :class => 'form-control' %>
+              <% @ads_item.images.each do |image| %>
+                <%= image_tag(image.url.to_s, class: 'card-img-top img-fluid', style: "width: 540px;") %>
+              <% end %>
+              <div class="field">
+                <%= f.label :images %>
+                <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
               </div>
               <div class="form-group">
-              <div><%= f.label :text %></div>
-              <%= f.text_area :text, :class => 'form-control' %>
+                <div><%= f.label :title %></div>
+                <%= f.text_field :title, :class => 'form-control' %>
               </div>
-            <button type="f.submit" class="btn btn-primary">Submit</button>
-          </div>
+              <div class="form-group">
+                <div><%= f.label :text %></div>
+                <%= f.text_area :text, :class => 'form-control' %>
+              </div>
+              <button type="f.submit" class="btn btn-primary">Submit</button>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
-    <% end %>
-<%= link_to 'Back', ads_items_path %>
+  </div>
+  <div class="row">
+    <nav class="breadcrumb">
+      <%= link_to 'Board', ads_items_path, class: "breadcrumb-item" %>
+      <span class="breadcrumb-item active"><%= @ads_item.title %></span>
+    </nav>
+  </div>
+</div>

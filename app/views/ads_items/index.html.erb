@@ -1,40 +1,45 @@
 <div class="container">
-  <h1>Ads board</h1>
-  <div><%= link_to 'New ad', new_ads_item_url, :class => "btn btn-primary" %></div>
+  <div class="row">
+    <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2 text-center">
+      <h1 class="display-1">Ads board</h1>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-      <form> 
-       <%= form_for @ads_item, html: { multipart: true } do |f| %>
-          <% if @ads_item.errors.any? %>
-            <div id="error_explanation">
-              <h2>
-                <%= pluralize(@ads_item.errors.count, "error") %> prohibited
+      <%= form_for @ads_item, html: { multipart: true } do |f| %>
+        <% if @ads_item.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@ads_item.errors.count, "error") %> prohibited
                             this ads_items from being saved:
-              </h2>
-              <ul>
-                <% @ads_item.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="form-group">
-            <%= f.label :title %><br>
-            <%= f.text_field :title, :class => 'form-control', :placeholder =>"Enter title" %>
+            </h2>
+            <ul>
+              <% @ads_item.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
           </div>
-          <div class="form-group">
-          <div class="field">
-              <%= f.label :images %>
-              <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
-            </div>
-          </div>
-          <div class="form-group">
-            <%= f.label :text %><br>
-            <%= f.text_area :text, :class => 'form-control' %>
-          </div>
-          <button type="f.submit" class="btn btn-primary">Submit</button>
         <% end %>
-      </form>
+        <div class="card"> 
+          <div class="card-block">
+            <div class="form-group">
+              <%= f.label :title %><br>
+              <%= f.text_field :title, :class => 'form-control', :placeholder =>"Enter title"%>
+            </div>
+            <div class="form-group">
+              <div class="field">
+                <%= f.label :images %>
+                <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :text %><br>
+              <%= f.text_area :text, :class => 'form-control' %>
+            </div>
+            <button type="f.submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -55,25 +60,31 @@
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
       <% @ads_items.each do |item| %>
-        <div class="card">
-          <div class="card-block">
-            <div class="card mb-3">
-              <%= image_tag(item.images[0].url.to_s, class: "card-img-top", alt: "Card image cap") %>
-                <div class="card-block">
-                  <h4 class="card-title"><%= item.title %></h4>
-                  <p class="card-text"><%= item.text %></p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
-              <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
-              <%= link_to 'Delete', ads_item_url(item), method: :delete,
-                                 data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
-            </div>
+      <div class="card">
+        <div class="card-block">
+          <%= link_to(item) do %>
+            <%= image_tag(item.images[0].url.to_s, class: 'card-img-top img-fluid', style: "width: 540px;", alt: "Card image") %>
+          <% end %>
+          <h4 class="card-title">
+            <%= link_to(item) do %>
+              <%= item.title %>
+            <% end %>
+          </h4>
+          <p class="card-text"><%= item.text %></p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+          <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
+          <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
+          <%= link_to 'Delete', ads_item_url(item), method: :delete,
+          data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
           </div>
         </div>
+        <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+        
       <% end %>
+      </div>
     </div>
   </div>
   <div class="row">
