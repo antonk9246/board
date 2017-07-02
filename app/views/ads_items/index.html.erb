@@ -9,18 +9,18 @@
       <%= form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f| %>
         <% if @ads_item.errors.any? %>
           <div id="error_explanation">
-            <h2>
+            <p class="lead">
               <%= pluralize(@ads_item.errors.count, "error") %> prohibited
-                            this ads_items from being saved:
-            </h2>
-            <ul>
+                            this post from being saved:
+            </p>
+            <ul class="list-unstyled">
               <% @ads_item.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
               <% end %>
             </ul>
           </div>
         <% end %>
-        <div class="card"> 
+        <div class="card card-outline-primary"> 
           <div class="card-block">
             <div class="form-group">
               <%= f.label :title %><br>
