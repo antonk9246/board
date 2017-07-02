@@ -39,6 +39,11 @@
                 <%= f.text_area :text, :class => 'form-control' %>
               </div>
               <button type="f.submit" class="btn btn-primary">Submit</button>
+              <div class="form-group">
+                <%= f.label :approval_date %><br>
+                <%= f.datetime_local_field :approval_date, :class => 'form-control',
+                  type: "datetime-local", value: @ads_item.approval_date.strftime("%FT%R") %>
+              </div>
             </div>
           <% end %>
         </div>
