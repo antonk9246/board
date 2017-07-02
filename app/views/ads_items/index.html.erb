@@ -36,6 +36,11 @@
               <%= f.label :text %><br>
               <%= f.text_area :text, :class => 'form-control' %>
             </div>
+            <div class="form-group">
+              <%= f.label :approval_date %><br>
+              <%= f.datetime_local_field :approval_date, :class => 'form-control',
+                type: "datetime-local", value: Time.now.strftime("%FT%R") %>
+            </div>
             <button type="f.submit" class="btn btn-primary">Submit</button>
           </div>
         </div>
@@ -79,10 +84,9 @@
           </div>
         </div>
         <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
+        <small class="text-muted"><%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
         </div>
       </div>
-        
       <% end %>
       </div>
     </div>
