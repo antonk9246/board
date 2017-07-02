@@ -9,7 +9,7 @@
       <div class="card"> 
         <div class="card-block">            
           <% @ads_item.images.each do |image| %>
-            <%= image_tag(image.url.to_s, class: 'card-img-top img-fluid', style: "width: 540px;") %>
+            <%= image_tag(image.url.to_s, class: 'card-img img-fluid') %>
           <% end %>
           <h4 class="card-title"><%= @ads_item.title %></h4>
           <p class="card-text"><%= @ads_item.text %></p>

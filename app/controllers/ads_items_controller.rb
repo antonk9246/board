@@ -18,11 +18,12 @@ class AdsItemsController < ApplicationController
 
   def create
     @ads_item = AdsItem.new(ads_items_params)
- 
+    @ads_items = AdsItem.all
+    
     if @ads_item.save
       redirect_to @ads_item
     else
-      render 'new'
+      render 'index'
     end
   end
 

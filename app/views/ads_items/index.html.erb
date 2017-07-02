@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-      <%= form_for @ads_item, html: { multipart: true } do |f| %>
+      <%= form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f| %>
         <% if @ads_item.errors.any? %>
           <div id="error_explanation">
             <h2>
@@ -68,7 +68,12 @@
       <div class="card">
         <div class="card-block">
           <%= link_to(item) do %>
-            <%= image_tag(item.images[0].url.to_s, class: 'card-img-top img-fluid', style: "width: 540px;", alt: "Card image") %>
+            <% if item.images.empty? %>
+              <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png"
+                class="card-img-top img-fluid" alt="Card image" >
+            <% else %>
+              <%= image_tag(item.images[0].url.to_s, class: "card-img-top img-fluid", alt: "Card image") %>
+            <% end %>
           <% end %>
           <h4 class="card-title">
             <%= link_to(item) do %>
@@ -77,18 +82,17 @@
           </h4>
           <p class="card-text"><%= item.text %></p>
           <div class="btn-group" role="group" aria-label="Basic example">
-          <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
-          <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
-          <%= link_to 'Delete', ads_item_url(item), method: :delete,
-          data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+            <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
+            <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
+            <%= link_to 'Delete', ads_item_url(item), method: :delete,
+              data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
           </div>
         </div>
         <div class="card-footer">
-        <small class="text-muted"><%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+          <small class="text-muted"><%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
         </div>
       </div>
       <% end %>
-      </div>
     </div>
   </div>
   <div class="row">
@@ -106,5 +110,6 @@
           </li>
         </ul>
       </nav>
+    </div>
   </div>
 </div>
