@@ -1,59 +1,57 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3 text-center">
-      <h4 class="display-4"><%= @ads_item.title %></h4>
-    </div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3 text-center">
+    <h4 class="display-4"><%= @ads_item.title %></h4>
   </div>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-      <div class="card"> 
-        <div class="card-block">
-          <%= form_for @ads_item, url: {action: :update} do |f| %>
-            <% if @ads_item.errors.any? %>
-              <div id="error_explanation">
-                <h2>
-                  <%= pluralize(@ads_item.errors.count, "error") %> prohibited
-                  this ads_items from being saved:
-                </h2>
-                <ul>
-                  <% @ads_item.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-            <div class="form-group">
-              <% @ads_item.images.each do |image| %>
-                <%= image_tag(image.url.to_s, class: 'card-img-top img-fluid mx-auto d-block') %>
-              <% end %>
-              <div class="field">
-                <%= f.label :images %>
-                <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
-              </div>
-              <div class="form-group">
-                <div><%= f.label :title %></div>
-                <%= f.text_field :title, :class => 'form-control' %>
-              </div>
-              <div class="form-group">
-                <div><%= f.label :text %></div>
-                <%= f.text_area :text, :class => 'form-control' %>
-              </div>
-              <button type="f.submit" class="btn btn-primary">Submit</button>
-              <div class="form-group">
-                <%= f.label :approval_date %><br>
-                <%= f.datetime_local_field :approval_date, :class => 'form-control',
-                  type: "datetime-local", value: @ads_item.approval_date.strftime("%FT%R") %>
-              </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+    <div class="card"> 
+      <div class="card-block">
+        <%= form_for @ads_item, url: {action: :update} do |f| %>
+          <% if @ads_item.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@ads_item.errors.count, "error") %> prohibited
+                this ads_items from being saved:
+              </h2>
+              <ul>
+                <% @ads_item.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
             </div>
           <% end %>
-        </div>
+          <div class="form-group">
+            <% @ads_item.images.each do |image| %>
+              <%= image_tag(image.url.to_s, class: 'card-img-top img-fluid mx-auto d-block') %>
+            <% end %>
+            <div class="field">
+              <%= f.label :images %>
+              <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+            </div>
+            <div class="form-group">
+              <div><%= f.label :title %></div>
+              <%= f.text_field :title, :class => 'form-control' %>
+            </div>
+            <div class="form-group">
+              <div><%= f.label :text %></div>
+              <%= f.text_area :text, :class => 'form-control' %>
+            </div>
+            <button type="f.submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+              <%= f.label :approval_date %><br>
+              <%= f.datetime_local_field :approval_date, :class => 'form-control',
+                type: "datetime-local", value: @ads_item.approval_date.strftime("%FT%R") %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
-  <div class="row">
-    <nav class="breadcrumb">
-      <%= link_to 'Board', ads_items_path, class: "breadcrumb-item" %>
-      <span class="breadcrumb-item active"><%= @ads_item.title %></span>
-    </nav>
-  </div>
+</div>
+<div class="row">
+  <nav class="breadcrumb">
+    <%= link_to 'Board', ads_items_path, class: "breadcrumb-item" %>
+    <span class="breadcrumb-item active"><%= @ads_item.title %></span>
+  </nav>
 </div>

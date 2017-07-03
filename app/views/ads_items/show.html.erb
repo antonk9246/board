@@ -1,38 +1,35 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2 text-center">
-      <h4 class="display-4"><%= @ads_item.title %></h4>
-    </div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2 text-center">
+    <h4 class="display-4"><%= @ads_item.title %></h4>
   </div>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-      <div class="card"> 
-        <div class="card-block">            
-          <% @ads_item.images.each do |image| %>
-            <%= image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block') %>
-          <% end %>
-          <h4 class="card-title"><%= @ads_item.title %></h4>
-          <p class="card-text"><%= @ads_item.text %></p>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <%= link_to 'Edit', edit_ads_item_url, :class => "btn btn-primary" %>
-            <%= link_to 'Send to admin', ads_items_index_url, :class => "btn btn-primary" %>
-            <%= link_to 'Delete', ads_item_url, method: :delete,
-                data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
-          </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+    <div class="card"> 
+      <div class="card-block">            
+        <% @ads_item.images.each do |image| %>
+          <%= image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block') %>
+        <% end %>
+        <h4 class="card-title"><%= @ads_item.title %></h4>
+        <p class="card-text"><%= @ads_item.text %></p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <%= link_to 'Edit', edit_ads_item_url, :class => "btn btn-primary" %>
+          <%= link_to 'Send to admin', ads_items_index_url, :class => "btn btn-primary" %>
+          <%= link_to 'Delete', ads_item_url, method: :delete,
+              data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
         </div>
-        <div class="card-footer">
-          <small class="text-muted"><%= @ads_item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
-        </div>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted"><%= @ads_item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2">
-      <nav class="breadcrumb">
-        <%= link_to 'Board', ads_items_path, class: "breadcrumb-item" %>
-        <span class="breadcrumb-item active"><%= @ads_item.title %></span>
-      </nav>
-    </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2">
+    <nav class="breadcrumb">
+      <%= link_to 'Board', ads_items_path, class: "breadcrumb-item" %>
+      <span class="breadcrumb-item active"><%= @ads_item.title %></span>
+    </nav>
   </div>
 </div>
-

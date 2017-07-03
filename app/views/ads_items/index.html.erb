@@ -1,97 +1,90 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2 text-center">
-      <h1 class="display-1">Ads board</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-      <%= form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f| %>
-        <% if @ads_item.errors.any? %>
-          <div id="error_explanation">
-            <p class="lead">
-              <%= pluralize(@ads_item.errors.count, "error") %> prohibited
-                            this post from being saved:
-            </p>
-            <ul class="list-unstyled">
-              <% @ads_item.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <div class="card card-outline-primary"> 
-          <div class="card-block">
-            <div class="form-group">
-              <%= f.label :title %><br>
-              <%= f.text_field :title, :class => 'form-control', :placeholder =>"Enter title"%>
-            </div>
-            <div class="form-group">
-              <div class="field">
-                <%= f.label :images %>
-                <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
-              </div>
-            </div>
-            <div class="form-group">
-              <%= f.label :text %><br>
-              <%= f.text_area :text, :class => 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.label :approval_date %><br>
-              <%= f.datetime_local_field :approval_date, :class => 'form-control',
-                type: "datetime-local", value: Time.now.strftime("%FT%R") %>
-            </div>
-            <button type="f.submit" class="btn btn-primary">Submit</button>
-          </div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+    <%= form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f| %>
+      <% if @ads_item.errors.any? %>
+        <div id="error_explanation">
+          <p class="lead">
+            <%= pluralize(@ads_item.errors.count, "error") %> prohibited
+                          this post from being saved:
+          </p>
+          <ul class="list-unstyled">
+            <% @ads_item.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-4">
-      <nav aria-label="Page navigation example">
-        <%= paginate @ads_items %>
-      </nav>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
-      <% @ads_items.each do |item| %>
-      <div class="card">
+      <div class="card card-outline-primary"> 
         <div class="card-block">
-          <%= link_to(item) do %>
-            <% if item.images.empty? %>
-              <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png"
-                class="card-img-top img-fluid" alt="Card image" >
-            <% else %>
-              <%= image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image") %>
-            <% end %>
-          <% end %>
-          <h4 class="card-title">
-            <%= link_to(item) do %>
-              <%= item.title %>
-            <% end %>
-          </h4>
-          <p class="card-text"><%= item.text %></p>
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
-            <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
-            <%= link_to 'Delete', ads_item_url(item), method: :delete,
-              data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+          <div class="form-group">
+            <%= f.label :title %><br>
+            <%= f.text_field :title, :class => 'form-control', :placeholder =>"Enter title"%>
           </div>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted"><%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+          <div class="form-group">
+            <div class="field">
+              <%= f.label :images %>
+              <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :text %><br>
+            <%= f.text_area :text, :class => 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :approval_date %><br>
+            <%= f.datetime_local_field :approval_date, :class => 'form-control',
+              type: "datetime-local", value: Time.now.strftime("%FT%R") %>
+          </div>
+          <button type="f.submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
-      <% end %>
-    </div>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-4">
-      <nav aria-label="Page navigation example">
-        <%= paginate @ads_items %>
-      </nav>
+</div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-4">
+    <nav aria-label="Page navigation example">
+      <%= paginate @ads_items %>
+    </nav>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+    <% @ads_items.each do |item| %>
+    <div class="card">
+      <div class="card-block">
+        <%= link_to(item) do %>
+          <% if item.images.empty? %>
+            <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png"
+              class="card-img-top img-fluid" alt="Card image" >
+          <% else %>
+            <%= image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image") %>
+          <% end %>
+        <% end %>
+        <h4 class="card-title">
+          <%= link_to(item) do %>
+            <%= item.title %>
+          <% end %>
+        </h4>
+        <p class="card-text"><%= item.text %></p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
+          <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
+          <%= link_to 'Delete', ads_item_url(item), method: :delete,
+            data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+        </div>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted"><%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+      </div>
     </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-4">
+    <nav aria-label="Page navigation example">
+      <%= paginate @ads_items %>
+    </nav>
   </div>
 </div>
