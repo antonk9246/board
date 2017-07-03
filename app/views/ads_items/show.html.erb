@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2 text-center">
-      <h1 class="display-1"><%= @ads_item.title %></h1>
+      <h4 class="display-4"><%= @ads_item.title %></h4>
     </div>
   </div>
   <div class="row">
@@ -9,7 +9,7 @@
       <div class="card"> 
         <div class="card-block">            
           <% @ads_item.images.each do |image| %>
-            <%= image_tag(image.url.to_s, class: 'card-img img-fluid') %>
+            <%= image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block') %>
           <% end %>
           <h4 class="card-title"><%= @ads_item.title %></h4>
           <p class="card-text"><%= @ads_item.text %></p>

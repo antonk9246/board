@@ -64,7 +64,7 @@
               <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png"
                 class="card-img-top img-fluid" alt="Card image" >
             <% else %>
-              <%= image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid", alt: "Card image") %>
+              <%= image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image") %>
             <% end %>
           <% end %>
           <h4 class="card-title">

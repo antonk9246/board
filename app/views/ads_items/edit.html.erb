@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3 text-center">
-      <h1 class="display-1">Edit ad items</h1>
+      <h4 class="display-4"><%= @ads_item.title %></h4>
     </div>
   </div>
   <div class="row">
@@ -24,7 +24,7 @@
             <% end %>
             <div class="form-group">
               <% @ads_item.images.each do |image| %>
-                <%= image_tag(image.url.to_s, class: 'card-img-top img-fluid', style: "width: 540px;") %>
+                <%= image_tag(image.url.to_s, class: 'card-img-top img-fluid mx-auto d-block') %>
               <% end %>
               <div class="field">
                 <%= f.label :images %>
