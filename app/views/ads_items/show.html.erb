@@ -13,7 +13,7 @@
         <h4 class="card-title"><%= @ads_item.title %></h4>
         <p class="card-text"><%= @ads_item.text %></p>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <% if current_user %>
+          <% if current_user == @ads_item.user %>
             <%= link_to 'Edit', edit_ads_item_url, :class => "btn btn-primary" %>
             <%= link_to 'Send to admin', ads_items_index_url, :class => "btn btn-primary" %>
             <%= link_to 'Delete', ads_item_url, method: :delete,

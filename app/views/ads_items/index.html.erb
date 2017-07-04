@@ -68,7 +68,7 @@
         <p class="card-text"><%= item.text %></p>
         <div class="btn-group" role="group" aria-label="Basic example">
           <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
-          <% if current_user %>
+          <% if current_user == item.user %>
             <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
             <%= link_to 'Delete', ads_item_url(item), method: :delete,
               data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
