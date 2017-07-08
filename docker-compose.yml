@@ -9,8 +9,14 @@ services:
       - "3000:3000"
     depends_on:
       - migration
+      - bundle_install
   migration:
     build: .
     command: rails db:migrate RAILS_ENV=development
+    volumes:
+      - .:/app
+  bundle_install:
+    build: .
+    command: bundle install
     volumes:
       - .:/app
