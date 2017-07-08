@@ -1,5 +1,10 @@
 class AdsItemsController < ApplicationController
-  before_action :set_ads_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_locale, :set_ads_item, only: [:show, :edit, :update, :destroy]
+  
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+  
   # GET /ads_items
   # GET /ads_items.json
   def index
@@ -7,6 +12,8 @@ class AdsItemsController < ApplicationController
     @ads_items = AdsItem.order(approval_date: :desc).page params[:page]
     authorize @ads_items
   end
+  
+
   # GET /ads_items/1
   # GET /ads_items/1.json
   def show

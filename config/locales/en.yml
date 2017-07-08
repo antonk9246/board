@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  success:
+    'true':  'True!'
+    'on':    'On!'
+    'false': 'False!'
+  ads_board: ads board
