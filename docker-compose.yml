@@ -7,3 +7,10 @@ services:
       - .:/app
     ports:
       - "3000:3000"
+    depends_on:
+      - migration
+  migration:
+    build: .
+    command: rails db:migrate RAILS_ENV=development
+    volumes:
+      - .:/app
