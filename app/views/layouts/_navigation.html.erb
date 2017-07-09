@@ -3,6 +3,7 @@
     <ul class="nav nav-pills float-right">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <% if user_signed_in? %>
+      
         <a class="btn btn-secondary" href="#"><%= current_user.email %></a>
         <%= link_to "#{t'log_out'}", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
         <div class="btn-group" role="group">
