@@ -39,21 +39,17 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-group :test do
-  gem 'shoulda-matchers', require: false
-  gem "database_cleaner"
-  
-  gem 'faker'
-end
-
 group :development, :test do
+  gem 'byebug', platform: :mri
+  gem "database_cleaner"
   gem 'rspec-rails', '~> 3.6.0'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'faker'
-  gem 'byebug', platform: :mri
+end
+
+group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
 
   gem 'web-console', '>= 3.3.0'

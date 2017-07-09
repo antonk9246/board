@@ -3,7 +3,6 @@
     <ul class="nav nav-pills float-right">
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <% if user_signed_in? %>
-      
         <a class="btn btn-secondary" href="#"><%= current_user.email %></a>
         <%= link_to "#{t'log_out'}", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
         <div class="btn-group" role="group">
@@ -16,8 +15,13 @@
       <% else %>
         <li><%= link_to "#{t'log_in'}", new_user_session_path, class: 'nav-link'  %></li>
         <li><%= link_to "#{t'sign_up'}", new_user_registration_path, class: 'nav-link'  %></li>
-        <li><%= link_to_unless I18n.locale == :en, "English", locale: :en, class: 'nav-link' %></li>
-|       <li><%= link_to_unless I18n.locale == :ru, "Русский", locale: :ru,               class: 'nav-link' %></li>
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=t'language'%></button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <li><%= link_to "English", locale: :en, class: "dropdown-item" %></li>
+            <li><%= link_to "Русский", locale: :ru, class: "dropdown-item" %></li>
+          </div>
+        </div>
       <% end %>
     </div>
     </ul>
