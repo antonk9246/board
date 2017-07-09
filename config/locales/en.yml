@@ -25,7 +25,7 @@ en:
   back: 'Вack'
 
   are_you_sure: 'are you sure?'
-
+  language: 'Language'
   buttons: 
     'show': 'Show'
     'edit': 'Edit'

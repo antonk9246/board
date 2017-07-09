@@ -4,6 +4,8 @@ ru:
   back: 'Главную'
 
   are_you_sure: 'вы уверены?'
+
+  language: 'Язык'
   
   buttons: 
     'show': 'Просмотр'
@@ -33,5 +35,5 @@ ru:
       user:
       'signed_in': 'Вошёл'
       'signed_out': 'Вышел'
-      
+
       
