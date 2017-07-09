@@ -246,7 +246,8 @@ DEPENDENCIES
   puma (~> 3.0)
   pundit
   rails (~> 5.0.4)
-  rspec-rails
+  rails_admin_pundit!
+  rspec-rails (~> 3.6.0)
   sass-rails (~> 5.0)
   shoulda-matchers
   spring
