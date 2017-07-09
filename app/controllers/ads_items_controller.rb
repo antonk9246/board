@@ -1,9 +1,6 @@
 class AdsItemsController < ApplicationController
   before_action :set_locale, :set_ads_item, only: [:show, :edit, :update, :destroy]
-  
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-  end
+  before_filter :set_locale
   
   # GET /ads_items
   # GET /ads_items.json
@@ -107,4 +104,9 @@ class AdsItemsController < ApplicationController
       params.require(:ads_item).permit(:title, :text, {images:[]}, :approval_date, :user_id)
   end
 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+    Rails.application.routes.default_url_options[:locale]= I18n.locale 
+  end
+    
 end

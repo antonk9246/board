@@ -20,8 +20,39 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  success:
-    'true':  'True!'
-    'on':    'On!'
-    'false': 'False!'
-  ads_board: ads board
+  ads_board: 'Ads Board'
+
+  back: 'Вack'
+
+  are_you_sure: 'are you sure?'
+
+  buttons: 
+    'show': 'Show'
+    'edit': 'Edit'
+    'delete': 'Delete'
+    'submit': 'Submit'
+
+  published_by: 'Published by'
+
+  title: 'Title'
+  enter_title: 'Enter title'
+  images: 'Images'
+  text: 'Text'
+  approval_date: 'Approval date'
+
+  views:
+    pagination:
+      'first': 'First'
+      'last': 'Last'
+      'next': 'Next'
+      'previous': 'Previous'
+
+  sign_up: 'Sign in'
+  log_in: 'Log in'
+  log_out: 'Log out'
+
+  devise:
+    sessions:
+      user:
+      'signed_in': 'Signed in'
+      'signed_out': 'Signed out'

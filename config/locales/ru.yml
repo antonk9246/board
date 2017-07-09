@@ -1,6 +1,37 @@
 ru:
-  success:
-    'true':  'Верно!'
-    'on':    'Включено!'
-    'false': 'Ложь!'
-  ads_board: "рекламная доска"
+  ads_board: 'Доска Объявлений'
+
+  back: 'Главную'
+
+  are_you_sure: 'вы уверены?'
+  
+  buttons: 
+    'show': 'Просмотр'
+    'edit': 'Редактировать'
+    'delete': 'Удалить'
+    'submit': 'Отправить'
+  published_by: 'Опубликовано'
+
+  title: 'Заголовок'
+  enter_title: 'Введите заголовок'
+  images: 'Картинки'
+  text: 'Текст'
+  approval_date: 'Дата опубликования'
+  
+  views:
+    pagination:
+      'first': 'Первая'
+      'last': 'Последняя'
+      'next': 'Следующая'
+      'previous': 'Предыдущая'
+  sign_up: 'Зарегистрироваться'
+  log_in: 'Войти'
+  log_out: 'Выйти'
+
+  devise:
+    sessions:
+      user:
+      'signed_in': 'Вошёл'
+      'signed_out': 'Вышел'
+      
+      

@@ -18,25 +18,25 @@
         <div class="card card-outline-primary"> 
           <div class="card-block">
             <div class="form-group">
-              <%= f.label :title %><br>
-              <%= f.text_field :title, :class => 'form-control', :placeholder =>"Enter title"%>
+              <%= t 'title' %><br>
+              <%= f.text_field :title, :class => 'form-control', :placeholder => "#{t 'enter_title'}" %>
             </div>
             <div class="form-group">
               <div class="field">
-                <%= f.label :images %>
+                <%= t 'images' %>
                 <%= f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
               </div>
             </div>
             <div class="form-group">
-              <%= f.label :text %><br>
+              <%= t 'text' %><br>
               <%= f.text_area :text, :class => 'form-control' %>
             </div>
             <div class="form-group">
-              <%= f.label :approval_date %><br>
+              <%= t 'approval_date' %><br>
               <%= f.datetime_local_field :approval_date, :class => 'form-control',
                 type: "datetime-local", value: Time.now.strftime("%FT%R") %>
             </div>
-            <button type="f.submit" class="btn btn-primary">Submit</button>
+            <button type="f.submit" class="btn btn-primary"><%= t'buttons.submit'%></button>
           </div>
         </div>
       <% end %>
@@ -68,21 +68,21 @@
         </h4>
         <p class="card-text"><%= item.text %></p>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <%= link_to 'Show', ads_item_url(item), :class => "btn btn-primary" %>
+          <%= link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary" %>
           <% if current_user == item.user %>
-            <%= link_to 'Edit', edit_ads_item_url(item), :class => "btn btn-primary" %>
-            <%= link_to 'Delete', ads_item_url(item), method: :delete,
-              data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+            <%= link_to "#{t('buttons.edit')}", edit_ads_item_url(item), :class => "btn btn-primary" %>
+            <%= link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete,
+              data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger" %>
           <% else %>
           <% end %>
         </div>
       </div>
       <div class="card-footer">
         <% if item.user %>
-          <small class="text-muted">published  by  <%= item.user.email %></small>
+          <small class="text-muted"><%= t 'published_by' %> <%= item.user.email %></small>
         <% else %>
         <% end %>
-        <small class="text-muted">at  <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+        <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
       </div>
     </div>
     <% end %>
