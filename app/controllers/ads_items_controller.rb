@@ -6,7 +6,7 @@ class AdsItemsController < ApplicationController
   # GET /ads_items.json
   def index
     @ads_item = AdsItem.new
-    @ads_items = AdsItem.order(approval_date: :desc).page params[:page]
+    @ads_items = AdsItem.where(approval_date: (Time.now - 7.day)..Time.now).order(approval_date: :desc).page params[:page]
     authorize @ads_items
   end
   
