@@ -8,8 +8,10 @@ feature 'Sign in', :devise do
 
   scenario 'user can sign in with valid credentials' do
     user = FactoryGirl.create(:user)
+    expect(page).to have_no_selector 'form.new_ads_item'
     signin(user.email, user.password)
     expect(page).to have_content 'Signed in successfully.'
+    expect(page).to have_selector 'form.new_ads_item'
   end
 
   scenario 'user can not sign in with incorrect email' do
