@@ -1,7 +1,7 @@
 ru:
   ads_board: 'Доска Объявлений'
 
-  back: 'Главную'
+  back: 'Главнуя'
 
   are_you_sure: 'вы уверены?'
 
@@ -33,7 +33,7 @@ ru:
   devise:
     sessions:
       user:
-      'signed_in': 'Вошёл'
-      'signed_out': 'Вышел'
+        'signed_in': 'Вы успешно авторизовались'
+        'signed_out': 'Вы вышли из системы'
 
       

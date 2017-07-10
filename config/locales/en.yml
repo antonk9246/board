@@ -47,12 +47,12 @@ en:
       'next': 'Next'
       'previous': 'Previous'
 
-  sign_up: 'Sign in'
+  sign_up: 'Sign up'
   log_in: 'Log in'
   log_out: 'Log out'
 
   devise:
     sessions:
       user:
-      'signed_in': 'Signed in'
-      'signed_out': 'Signed out'
+        'signed_in': 'Signed in'
+        'signed_out': 'Signed out'
