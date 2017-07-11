@@ -3,6 +3,10 @@ class AdsItemPolicy < ApplicationPolicy
   def index?
     true
   end
+  
+  def show?
+    true
+  end
 
   def create?
     user.present?
@@ -10,6 +14,10 @@ class AdsItemPolicy < ApplicationPolicy
 
   def update?
     return true if user.present? && user == ads_item.user
+  end
+
+  def edit?
+    update?
   end
 
   def destroy?

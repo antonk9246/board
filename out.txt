@@ -1,0 +1,114 @@
+=> Booting Puma
+=> Rails 5.0.4 application starting in development on http://0.0.0.0:8080
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.9.1 (ruby 2.3.0-p0), codename: Private Caller
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://0.0.0.0:8080
+Use Ctrl-C to stop
+Started POST "/ads_items?locale=en" for 178.121.244.231 at 2017-07-10 18:38:55 +0000
+Cannot render console from 178.121.244.231! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AdsItemsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kUCb/Nget0Lmm2gu+tDB3vSl9LCE/gC0vfg6zYfR00n02/GlZFxehjT3TgN87jBHVeam6wGwcjrMdN6nxrbgwA==", "ads_item"=>{"title"=>"Text", "text"=>"", "approval_date"=>"2017-07-10T18:36"}, "locale"=>"en"}
+Current user:
+nil
+AdsItemPolicy:
+nil
+user.present?:
+false
+Redirected to https://project-advertising-antonk9246.c9users.io/?locale=en
+Completed 302 Found in 49ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/?locale=en" for 178.121.244.231 at 2017-07-10 18:38:55 +0000
+Cannot render console from 178.121.244.231! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by AdsItemsController#index as HTML
+  Parameters: {"locale"=>"en"}
+  Rendering ads_items/index.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "ads_items" WHERE ("ads_items"."approval_date" BETWEEN ? AND ?)[0m  [["approval_date", "2017-07-03 18:38:55.783180"], ["approval_date", "2017-07-10 18:38:55.783361"]]
+  [1m[36mAdsItem Load (0.3ms)[0m  [1m[34mSELECT  "ads_items".* FROM "ads_items" WHERE ("ads_items"."approval_date" BETWEEN ? AND ?) ORDER BY "ads_items"."approval_date" DESC LIMIT ? OFFSET ?[0m  [["approval_date", "2017-07-03 18:38:55.783180"], ["approval_date", "2017-07-10 18:38:55.783361"], ["LIMIT", 5], ["OFFSET", 0]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered ads_items/index.html.erb within layouts/application (622.3ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+Completed 200 OK in 880ms (Views: 875.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/users/sign_in" for 178.121.244.231 at 2017-07-10 18:39:02 +0000
+Cannot render console from 178.121.244.231! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::SessionsController#new as HTML
+  Rendering /usr/local/rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/shared/_links.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.0/gems/devise-4.3.0/app/views/devise/sessions/new.html.erb within layouts/application (16.6ms)
+  Rendered layouts/_navigation.html.erb (2.2ms)
+Completed 200 OK in 70ms (Views: 67.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 178.121.244.231 at 2017-07-10 18:39:11 +0000
+Cannot render console from 178.121.244.231! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"r9UhEW0xHKOhbaBAzYY249YJoDt/QTKaiv2NUjt1BhaC96QF5IGfk3fhLh9LclK5Jf9hcQ5d6etoSUQH3arpFA==", "user"=>{"email"=>"anatol_1988@mail.ru", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "anatol_1988@mail.ru"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "users" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "last_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["current_sign_in_at", "2017-07-10 18:39:12.038326"], ["last_sign_in_at", "2017-07-10 18:36:41.582802"], ["last_sign_in_ip", "178.121.244.231"], ["sign_in_count", 10], ["updated_at", "2017-07-10 18:39:12.040874"], ["id", 2]]
+  [1m[35m (14.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://project-advertising-antonk9246.c9users.io/
+Completed 302 Found in 182ms (ActiveRecord: 16.5ms)
+
+
+Started GET "/" for 178.121.244.231 at 2017-07-10 18:39:12 +0000
+Cannot render console from 178.121.244.231! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by AdsItemsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering ads_items/index.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "ads_items" WHERE ("ads_items"."approval_date" BETWEEN ? AND ?)[0m  [["approval_date", "2017-07-03 18:39:12.186930"], ["approval_date", "2017-07-10 18:39:12.187092"]]
+  [1m[36mAdsItem Load (0.3ms)[0m  [1m[34mSELECT  "ads_items".* FROM "ads_items" WHERE ("ads_items"."approval_date" BETWEEN ? AND ?) ORDER BY "ads_items"."approval_date" DESC LIMIT ? OFFSET ?[0m  [["approval_date", "2017-07-03 18:39:12.186930"], ["approval_date", "2017-07-10 18:39:12.187092"], ["LIMIT", 5], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered ads_items/index.html.erb within layouts/application (32.7ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+Completed 200 OK in 76ms (Views: 70.4ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/ads_items" for 178.121.244.231 at 2017-07-10 18:39:25 +0000
+Cannot render console from 178.121.244.231! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by AdsItemsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qC1PLQo41VR5K2nwWIvkbGj6skg9vxuTHQdwzuqby9C6J1mQjYn/HUtqpb6yKcMCIA4k2mY1R+o93tvfzMBMig==", "ads_item"=>{"title"=>"Title", "text"=>"", "approval_date"=>"2017-07-10T18:39"}}
+Current user:
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+#<User id: 2, email: "anatol_1988@mail.ru", created_at: "2017-07-03 08:37:32", updated_at: "2017-07-10 18:39:12">
+AdsItemPolicy:
+#<User id: 2, email: "anatol_1988@mail.ru", created_at: "2017-07-03 08:37:32", updated_at: "2017-07-10 18:39:12">
+user.present?:
+true
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "ads_items" ("approval_date", "title", "text", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["approval_date", "2017-07-10 18:39:00"], ["title", "Title"], ["text", ""], ["created_at", "2017-07-10 18:39:25.986269"], ["updated_at", "2017-07-10 18:39:25.986269"], ["user_id", 2]]
+  [1m[35m (14.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://project-advertising-antonk9246.c9users.io/ads_items/48
+Completed 302 Found in 30ms (ActiveRecord: 16.1ms)
+
+
+Started GET "/ads_items/48" for 178.121.244.231 at 2017-07-10 18:39:26 +0000
+Cannot render console from 178.121.244.231! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by AdsItemsController#show as HTML
+  Parameters: {"id"=>"48"}
+  [1m[36mAdsItem Load (0.3ms)[0m  [1m[34mSELECT  "ads_items".* FROM "ads_items" WHERE "ads_items"."id" = ? LIMIT ?[0m  [["id", 48], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mAdsItem Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "ads_items" WHERE "ads_items"."id" = ? LIMIT ?[0m  [["id", 48], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "ads_items".* FROM "ads_items" WHERE "ads_items"."id" = ? LIMIT ?[0m  [["id", 48], ["LIMIT", 1]]
+  Rendering ads_items/show.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered ads_items/show.html.erb within layouts/application (5.2ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+Completed 200 OK in 104ms (Views: 51.9ms | ActiveRecord: 1.2ms)
+
+
+Exiting
