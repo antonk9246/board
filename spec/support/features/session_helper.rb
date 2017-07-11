@@ -4,18 +4,18 @@ module Features
       visit new_user_session_path
       fill_in 'Email', with: email
       fill_in 'Password', with: password
-      find_button('Log in').click
+      find_button(I18n.t 'log_in').click
     end
     def signup(email, password, password_confirmation)
       visit new_user_registration_path
       fill_in 'Email', with: email
       fill_in 'Password', with: password
       fill_in 'Password confirmation', with: password_confirmation
-      find_button('Sign up').click
+      find_button(I18n.t 'sign_up').click
     end
     def signout(email)
       visit  ads_items_index_path
-      find_button('Log out').click
+      find_link(I18n.t 'log_out').click
     end
   end
 end
