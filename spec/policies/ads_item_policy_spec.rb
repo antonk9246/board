@@ -20,11 +20,11 @@ describe AdsItemPolicy do
     it { is_expected.to permit_actions([:index, :show, :create]) }
   end
   
-  context 'being an user_creator' do
-    let(:ads_item) { AdsItem.create(user_id: 15, title: "new") }
-    let(:user) { User.create(id: ads_item.user_id, email: "user@user.by") }
+  # context 'being an log in user' do
+  #   let(:ads_item) { AdsItem.create(user_id: 15, title: "new") }
+  #   let(:user) { User.create(id: ads_item.user_id, email: "user@user.by") }
     
-    it { is_expected.to permit_action(:update) }
-  end
+  #   it { is_expected.to permit_action(:update) }
+  # end
 end
 

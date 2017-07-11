@@ -11,7 +11,6 @@ feature 'Sign in', :devise do
     expect(page).to have_no_selector 'form.new_ads_item'
     signin(user.email, user.password)
     expect(page).to have_content I18n.t 'devise.sessions.user.signed_in'
-    #expect(page).to have_content 'Signed in successfully'
     expect(page).to have_selector 'form.new_ads_item'
   end
 

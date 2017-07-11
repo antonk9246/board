@@ -6,5 +6,16 @@ module Features
       fill_in 'Password', with: password
       find_button('Log in').click
     end
+    def signup(email, password, password_confirmation)
+      visit new_user_registration_path
+      fill_in 'Email', with: email
+      fill_in 'Password', with: password
+      fill_in 'Password confirmation', with: password_confirmation
+      find_button('Sign up').click
+    end
+    def signout
+      visit  destroy_user_session_path
+      find_button('Log out').click
+    end
   end
 end
