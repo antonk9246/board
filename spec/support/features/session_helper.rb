@@ -13,8 +13,8 @@ module Features
       fill_in 'Password confirmation', with: password_confirmation
       find_button('Sign up').click
     end
-    def signout
-      visit  destroy_user_session_path
+    def signout(email)
+      visit  ads_items_index_path
       find_button('Log out').click
     end
   end
