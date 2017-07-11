@@ -20,6 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  eng: 'English'
+
+  rus: 'Russian'
+
   ads_board: 'Ads Board'
 
   back: 'Вack'

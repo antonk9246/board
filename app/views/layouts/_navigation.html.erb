@@ -1,29 +1,30 @@
 <div class="header clearfix">
   <nav>
     <ul class="nav nav-pills float-right">
-      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
       <% if user_signed_in? %>
-        <a class="btn btn-secondary" href="#"><%= current_user.email %></a>
-        <%= link_to "#{t 'log_out'}", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
-        <div class="btn-group" role="group">
-          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=t 'language'%></button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <li><%= link_to "English", locale: :en, class: "dropdown-item" %></li>
-            <li><%= link_to "Русский", locale: :ru, class: "dropdown-item" %></li>
-          </div>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <a class="btn btn-secondary" href="#"><%= current_user.email %></a>
+          <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=t 'language'%></button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <li><%= link_to "#{t 'eng'}", locale: :en, class: "dropdown-item" %></li>
+              <li><%= link_to "#{t 'rus'}", locale: :ru, class: "dropdown-item" %></li>
+           </div>
+           <%= link_to "#{t 'log_out'}", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
         </div>
       <% else %>
-        <li><%= link_to "#{t 'log_in'}", new_user_session_path, class: 'nav-link'  %></li>
-        <li><%= link_to "#{t 'sign_up'}", new_user_registration_path, class: 'nav-link'  %></li>
-        <div class="btn-group" role="group">
-          <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=t 'language'%></button>
-          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <li><%= link_to "English", locale: :en, class: "dropdown-item" %></li>
-            <li><%= link_to "Русский", locale: :ru, class: "dropdown-item" %></li>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <div class="btn-group" role="group">
+            <%= link_to "#{t 'log_in'}", new_user_session_path, class: "btn btn-secondary"  %>
+            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=t 'language'%></button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <li><%= link_to "#{t 'eng'}", locale: :en, class: "dropdown-item" %></li>
+              <li><%= link_to "#{t 'rus'}", locale: :ru, class: "dropdown-item" %></li>
+            </div>
+            <%= link_to "#{t 'sign_up'}", new_user_registration_path, class: "btn btn-secondary"  %>
           </div>
         </div>
       <% end %>
-    </div>
     </ul>
     <%= link_to 'Ads Board', root_path, class: 'navbar-brand' %>
   </nav>
