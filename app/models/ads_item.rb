@@ -4,6 +4,6 @@ class AdsItem < ApplicationRecord
   validates :text, :length => {
     :maximum   => 800}
   mount_uploaders :images, ImageUploader   
-  serialize :images, JSON # If you use SQLite, add this line.
+  serialize :images, JSON
   belongs_to :user
 end

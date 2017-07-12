@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :ads_item do
-    title 'Title'
+    title 'title'
     association :user
   end
 end

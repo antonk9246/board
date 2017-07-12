@@ -8,7 +8,6 @@ feature 'Sign in', :devise do
 
   scenario 'user can sign in with valid credentials' do
     user = FactoryGirl.create(:user)
-    expect(page).to have_no_selector 'form.new_ads_item'
     signin(user.email, user.password)
     expect(page).to have_content I18n.t 'devise.sessions.user.signed_in'
     expect(page).to have_selector 'form.new_ads_item'

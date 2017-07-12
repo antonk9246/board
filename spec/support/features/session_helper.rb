@@ -17,10 +17,9 @@ module Features
       visit  ads_items_index_path
       find_link(I18n.t 'log_out').click
     end
-    # def language
+    # def new_ad_without_title(title)
     #   visit ads_items_index_path
-    #   find_button(I18n.t 'language').click
-    #   find_link(I18n.t 'rus').click
+    #   find_button(I18n.t 'buttons.submit').click
     # end
   end
 end

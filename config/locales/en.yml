@@ -29,8 +29,10 @@ en:
   back: 'Вack'
 
   are_you_sure: 'are you sure?'
+  
   language: 'Language'
-  buttons: 
+  
+  buttons:
     'show': 'Show'
     'edit': 'Edit'
     'delete': 'Delete'
@@ -60,3 +62,8 @@ en:
       user:
         'signed_in': 'Signed in'
         'signed_out': 'Signed out'
+  ad:
+    'updated': 'Ad was successfully updated'
+    'destroyed': 'Ad was successfully destroyed'
+    'created': 'Ad was successfully created'
+    'dont_have_title': 'Ad must have a title'
