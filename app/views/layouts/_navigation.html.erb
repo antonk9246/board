@@ -3,8 +3,8 @@
     <ul class="nav nav-pills float-right">
       <% if user_signed_in? %>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-          <a class="btn btn-secondary" href="#"><%= current_user.email %></a>
-          <div class="btn-group" role="group">
+          <%= link_to "#{current_user.email}", ads_items_user_page_url(@ads_items), :class => "btn btn-secondary" %>
+            <div class="btn-group" role="group">
             <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=t 'language'%></button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
               <li><%= link_to "#{t 'eng'}", locale: :en, class: "dropdown-item" %></li>

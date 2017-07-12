@@ -4,7 +4,7 @@ class AdsItemsController < ApplicationController
 
   def index
     @ads_item = AdsItem.new
-    @ads_items = AdsItem.where(approval_date: (Time.now - 3.day)..Time.now).order(approval_date: :desc).page params[:page]
+    @ads_items = AdsItem.where(approval_date: (Time.now - 10.day)..Time.now).order(approval_date: :desc).page params[:page]
     authorize @ads_items
   end
 
