@@ -58,12 +58,20 @@ en:
   sign_up: 'Sign up'
   log_in: 'Log in'
   log_out: 'Log out'
+  admin_page: 'Admin page'
 
   devise:
+    registrations:
+      user:
+        'signed_up': 'Вы успешно зарегистрировались'
+    failure:
+      user:
+        'unauthenticated': 'Unauthenticated user'
     sessions:
       user:
         'signed_in': 'Signed in'
         'signed_out': 'Signed out'
+        'signed_up': 'Signed up'
   ad:
     'updated': 'Ad was successfully updated'
     'destroyed': 'Ad was successfully destroyed'

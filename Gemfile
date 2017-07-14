@@ -14,6 +14,7 @@ gem 'devise'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', github: 'sferik/rails_admin'
 gem 'rails_admin_rollincode', '~> 1.0'
+gem 'rails_admin-i18n'
 
 gem 'pundit'
 gem 'sqlite3'

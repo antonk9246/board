@@ -36,12 +36,20 @@ ru:
   sign_up: 'Зарегистрироваться'
   log_in: 'Войти'
   log_out: 'Выйти'
+  admin_page: 'Страница администратора'
 
   devise:
+    registrations:
+      user:
+        'signed_up': 'Вы успешно зарегистрировались'
+    failure:
+      user:
+        'unauthenticated': 'Неавторизованный пользователь'
     sessions:
       user:
         'signed_in': 'Вы успешно авторизовались'
         'signed_out': 'Вы вышли из системы'
+
   ad:
     'updated': 'Объявление успешно обновлено'
     'destroyed': 'Объявление успешно удалено'
