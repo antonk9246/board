@@ -20,9 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  eng: 'English'
-
-  rus: 'Russian'
+  name: 'English'
 
   user_page: 'User page'
 
