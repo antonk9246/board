@@ -32,12 +32,17 @@
 
   <body>
     <%= render "layouts/navigation" %>
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-warning <%= key %>"><%= value %></div>
-      <% end %>
-    </div>
     <div class="container">
+      <div id="flash">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-info alert-dismissible fade show <%= key %>" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <%= value %>
+          </div>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
   </body>
