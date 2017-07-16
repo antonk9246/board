@@ -189,6 +189,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_admin-i18n (1.11.1)
     rails_admin_rollincode (1.2.1)
       rails (>= 4.0, < 6)
     railties (5.0.4)
@@ -289,6 +290,7 @@ DEPENDENCIES
   pundit-matchers
   rails (~> 5.0.4)
   rails_admin!
+  rails_admin-i18n
   rails_admin_rollincode (~> 1.0)
   remotipart!
   rspec-rails (~> 3.6.0)
