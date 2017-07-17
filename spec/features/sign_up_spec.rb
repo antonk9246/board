@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Sign up', :devise do
   scenario 'user can sign up with valid credentials' do
     signup('user@mail.ru', 'password', 'password' )
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
+    expect(page).to have_content I18n.t 'devise.registrations.user.signed_up'
   end
 
   scenario 'user can not sign up with invalid password confirmation' do
