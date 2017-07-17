@@ -67,7 +67,7 @@ class AdsItemsController < ApplicationController
       authorize @ads_item
   end
   def ads_items_params
-      params.require(:ads_item).permit(:title, :text, {images:[]}, :approval_date, :user_id)
+      params.require(:ads_item).permit(:title, :text, {images:[]}, :approved, :approval_date, :user_id)
   end
 
   def set_locale

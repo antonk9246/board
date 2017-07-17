@@ -51,6 +51,7 @@
       <%= paginate @ads_items %>
     </nav>
     <% @ads_items.each do |item| %>
+      <% if item.approved == true %>
       <div class="card">
         <div class="card-block">
           <%= link_to(item) do %>
@@ -76,14 +77,16 @@
             <% end %>
           </div>
         </div>
-        <div class="card-footer">
-          <% if item.user %>
-            <small class="text-muted"><%= t 'published_by' %> <%= item.user.email %></small>
-          <% else %>
-          <% end %>
-          <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+            <div class="card-footer">
+            <% if item.user %>
+              <small class="text-muted"><%= t 'published_by' %> <%= item.user.email %></small>
+            <% else %>
+            <% end %>
+            <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+          </div>
         </div>
-      </div>
+      <% else %>
+      <% end %>
     <% end %>
     <nav aria-label="Page navigation example">
       <%= paginate @ads_items %>
