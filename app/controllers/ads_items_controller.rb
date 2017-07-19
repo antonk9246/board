@@ -1,5 +1,6 @@
 class AdsItemsController < ApplicationController
-  before_action :set_locale, :set_ads_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_ads_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_approve, only: [:approved]
   before_filter :set_locale
 
   def index
@@ -53,11 +54,18 @@ class AdsItemsController < ApplicationController
 
   def destroy
 
-  @ads_item.destroy
+    @ads_item.destroy
     respond_to do |format|
       format.html { redirect_to ads_items_url, notice: "#{t 'ad.destroyed'}" }
       format.json { head :no_content }
     end
+  end
+
+  def set_approve
+    @ads_item = AdsItem.find(params[:ads_item_id])
+    @ads_item.approved = true
+    @ads_item.save
+    redirect_to ads_items_url, notice: "#{t 'ad.approved'}"
   end
 
   private

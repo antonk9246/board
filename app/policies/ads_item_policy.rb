@@ -21,6 +21,7 @@ class AdsItemPolicy < ApplicationPolicy
   end
 
   def destroy?
+    return true if user.try(:admin?)
     return true if user.present? && user == ads_item.user
   end
 

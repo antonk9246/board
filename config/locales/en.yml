@@ -32,6 +32,10 @@ en:
   
   language: 'Language'
   
+  send_at: 'Send at'
+
+  approve: 'Approve'
+
   buttons:
     'show': 'Show'
     'edit': 'Edit'
@@ -75,3 +79,4 @@ en:
     'destroyed': 'Ad was successfully destroyed'
     'created': 'Ad was successfully created'
     'dont_have_title': 'Ad must have a title'
+    'approved': 'Approved by admin'
