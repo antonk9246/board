@@ -25,6 +25,10 @@ class AdsItemPolicy < ApplicationPolicy
     return true if user.present? && user == ads_item.user
   end
 
+  def set_approve?
+    return true if user.try(:admin?)
+  end
+
   private
 
   def ads_item

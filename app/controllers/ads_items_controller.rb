@@ -74,6 +74,7 @@ class AdsItemsController < ApplicationController
       @ads_item = AdsItem.find(params[:id])
       authorize @ads_item
   end
+    
   def ads_items_params
       params.require(:ads_item).permit(:title, :text, {images:[]}, :approved, :approval_date, :user_id)
   end
