@@ -17,6 +17,7 @@
         <% end %>
         <div class="card card-outline-primary"> 
           <div class="card-block">
+          <h1><%="#{t('new_ad')}"%></h1>
             <div class="form-group">
               <%= t 'title' %><br>
               <%= f.text_field :title, :class => 'form-control', :placeholder => "#{t 'enter_title'}" %>
@@ -46,6 +47,7 @@
 <% end %>
 <div class="row">
   <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
+    <h1><%="#{t('ads_board')}"%></h1>
     <nav aria-label="Page navigation example">
       <%= paginate @ads_items %>
     </nav>
@@ -54,7 +56,6 @@
         <% if item.approved != true  %>
           <div class="card card-outline-primary">
             <div class="card-block">
-              <h1><%="#{t('ads_board')}"%></h1>
               <%= link_to(item) do %>
                 <% if item.images.empty? %>
                   <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" class="card-img-top img-fluid" alt="Card image" >

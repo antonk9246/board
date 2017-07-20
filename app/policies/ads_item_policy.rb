@@ -1,5 +1,4 @@
 class AdsItemPolicy < ApplicationPolicy
-
   def index?
     true
   end

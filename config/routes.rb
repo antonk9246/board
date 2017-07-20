@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  
   devise_for :admins
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
   devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'ads_items/user_page'
   get 'ads_items/index'
   resources :ads_items
@@ -12,5 +10,4 @@ Rails.application.routes.draw do
   resources :ads_items do
     patch :set_approve
   end
-
 end
