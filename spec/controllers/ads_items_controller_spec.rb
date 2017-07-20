@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AdsItemsController, :type => :controller do
+RSpec.describe AdsItemsController, type: :controller do
   describe "index controller for guest" do
     before :each do
       login_with nil
@@ -36,15 +36,36 @@ RSpec.describe AdsItemsController, :type => :controller do
 
 # set_approve +++++++++++++++++++++++++++++++++++
 
-  describe "set_approve controller for admin" do
+  describe "show controller for guest" do
+    before :each do
+      login_with nil
+    end
+
+    it "show page for guest" do
+      get :show
+      expect(response).to have_http_status(200)
+    end
+  end
+  
+  describe "show controller for user" do
     before :each do
       login_with create( :user )
     end
 
-    it "set_approve for admin" do
-      patch :set_approve
+    it "show page for user" do
+      get :show
       expect(response).to have_http_status(200)
     end
   end
- 
+
+  describe "show controller for admin" do
+    before :each do
+      login_with create( :admin )
+    end
+
+    it "show page for admin" do
+      get :show
+      expect(response).to have_http_status(200)
+    end
+  end
 end
