@@ -1,12 +1,18 @@
 class AdsItemsController < ApplicationController
+  attr_reader :user
   before_action :set_ads_item, only: [:show, :edit, :update, :destroy]
   before_action :set_approve, only: [:approved]
   before_filter :set_locale
 
   def index
     @ads_item = AdsItem.new
-    @ads_items = AdsItem.where(approval_date: (Time.now - 10.day)..Time.now).order(approval_date: :desc).page params[:page]
+    
+    if current_user.try(:admin?)
+      @ads_items = AdsItem.where(approval_date: (Time.now - 10.day)..Time.now).order(approval_date: :desc).page params[:page]
+    else 
+      @ads_items = AdsItem.where(approved: "t", approval_date: (Time.now - 10.day)..Time.now).order(approval_date: :desc).page params[:page]
     authorize @ads_items
+    end
   end
 
   def show

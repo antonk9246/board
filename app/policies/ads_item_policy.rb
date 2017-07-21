@@ -4,7 +4,7 @@ class AdsItemPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    ads_item.approved? == true || user.try(:admin?) || user == ads_item.user
   end
 
   def create?

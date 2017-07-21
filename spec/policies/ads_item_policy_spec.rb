@@ -3,29 +3,51 @@ require 'pundit/matchers'
 
 describe AdsItemPolicy do
   subject { AdsItemPolicy.new(user, ads_item) }
-  let(:ads_item) { FactoryGirl.create(:ads_item) }
+  # let(:ads_item) { FactoryGirl.create(:ads_item) }
 
-  # let(:ads_item) { AdsItem.create(user_id: 1001) }
-
-  context 'being a visitor' do
+  context 'being a visitor (approved true)' do
     let(:user) { nil }
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
     it { is_expected.to permit_actions([:index, :show]) }
     it { is_expected.to forbid_actions([:create, :update, :edit, :destroy, :set_approve]) }
   end
+
+  context 'being a visitor (approved false)' do
+    let(:user) { nil }
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "false") }
+    it { is_expected.to permit_action(:index) }
+    it { is_expected.to forbid_actions([:create, :show, :update, :edit, :destroy, :set_approve]) }
+  end
   
-  context 'being an user' do
-    let(:ads_item) { FactoryGirl.create(:ads_item) }
+  context 'user is creator (approved true)' do
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
     let(:user) { User.create(id: ads_item.user_id) }
 
     it { is_expected.to permit_actions([:index, :show, :create, :destroy, :edit, :update]) }
     it { is_expected.to forbid_action(:set_approve) }
   end
 
-  context 'being an admin' do
-    let(:ads_item) { FactoryGirl.create(:ads_item) }
-    let(:user) { User.create(id: 1, admin: true) }
-    
-    it { is_expected.to permit_actions([:index, :show, :create, :destroy, :edit, :update, :set_approve]) }
+  context 'user is creator (approved false)' do
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "false") }
+    let(:user) { User.create(id: ads_item.user_id) }
+
+    it { is_expected.to permit_actions([:index, :show, :edit, :create, :destroy, :update]) }
+    it { is_expected.to forbid_action(:set_approve) }
+  end
+
+  context 'user is not creator (approved true)' do
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
+    let(:user) { User.create(id: 10) }
+
+    it { is_expected.to permit_actions([:index, :show, :create]) }
+    it { is_expected.to forbid_actions([:edit, :destroy, :update, :set_approve]) }
+  end
+
+  context 'user is not creator (approved false)' do
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "false") }
+    let(:user) { User.create(id: 10) }
+
+    it { is_expected.to permit_actions([:index, :create]) }
+    it { is_expected.to forbid_actions([ :show, :edit, :destroy, :update, :set_approve]) }
   end
 end
-
