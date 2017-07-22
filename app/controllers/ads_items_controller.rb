@@ -2,17 +2,11 @@ class AdsItemsController < ApplicationController
   attr_reader :user
   before_action :set_ads_item, only: %i[show edit update destroy]
   before_action :set_approve, only: [:approved]
-  before_filter :set_locale
+  
 
   def index
     @ads_item = AdsItem.new
-
-    if current_user.try(:admin?)
-      @ads_items = AdsItem.where(approval_date: (Time.now - 3.day)..Time.now).order(approval_date: :desc).page params[:page]
-    else
-      @ads_items = AdsItem.where(approved: 't', approval_date: (Time.now - 10.day)..Time.now).order(approval_date: :desc).page params[:page]
-      authorize @ads_items
-    end
+    @ads_items = policy_scope(AdsItem).page params[:page]
   end
 
   def show
@@ -75,6 +69,11 @@ class AdsItemsController < ApplicationController
 
   private
 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+    Rails.application.routes.default_url_options[:locale] = I18n.locale
+  end
+
   def set_ads_item
     @ads_item = AdsItem.find(params[:id])
     authorize @ads_item
@@ -82,10 +81,5 @@ class AdsItemsController < ApplicationController
 
   def ads_items_params
     params.require(:ads_item).permit(:title, :text, { images: [] }, :approved, :approval_date, :user_id)
-  end
-
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-    Rails.application.routes.default_url_options[:locale] = I18n.locale
   end
 end

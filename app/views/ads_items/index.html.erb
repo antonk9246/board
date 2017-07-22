@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if policy(@ads_item).create? %>
   <div class="row">
     <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
       <%= form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f| %>
@@ -43,7 +43,6 @@
       <% end %>
     </div>
   </div>
-<% else %>
 <% end %>
 <div class="row">
   <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
@@ -52,75 +51,46 @@
       <%= paginate @ads_items %>
     </nav>
     <% @ads_items.each do |item| %>
-      <% if current_user.try(:admin?) %>
-        <% if item.approved != true  %>
-          <div class="card card-outline-primary">
-            <div class="card-block">
-              <%= link_to(item) do %>
-                <% if item.images.empty? %>
-                  <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" class="card-img-top img-fluid" alt="Card image" >
-                <% else %>
-                  <%= image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image") %>
-                <% end %>
-              <% end %>
-              <h4 class="card-title">
-                <%= link_to(item) do %>
-                  <%= item.title %>
-                <% end %>
-              </h4>
-              <p class="card-text"><%= item.text %></p>
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <%= link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary" %>
-                  <%= link_to "#{t('buttons.edit')}", edit_ads_item_url(item), :class => "btn btn-primary" %>
-                <%= link_to "#{t('approve')}", ads_item_set_approve_url(item), method: :patch, :class => "btn btn-success" %>
-                <%= link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete,
-                data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger" %>
-              </div>
-            </div>
-            <div class="card-footer">
-              <% if item.user %>
-                <small class="text-muted"><%= t 'send_at' %> <%= item.user.email %></small>
-              <% else %>
-              <% end %>
-              <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
-            </div>
-          </div>
+      <% if item.approved != true  %>
+        <div class="card card-outline-primary">
+      <% else %>
+        <div class="card card-outline-secondary">
+      <% end %>
+      <div class="card-block">
+        <%= link_to(item) do %>
+          <% if item.images.empty? %>
+            <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" class="card-img-top img-fluid" alt="Card image" >
+          <% else %>
+            <%= image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image") %>
+          <% end %>
+        <% end %>
+        <h4 class="card-title">
+          <%= link_to(item) do %>
+            <%= item.title %>
+          <% end %>
+        </h4>
+        <p class="card-text"><%= item.text %></p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <% if policy(item).set_approve? && item.approved != true %>
+            <%= link_to "#{t('approve')}", ads_item_set_approve_url(item), method: :patch, :class => "btn btn-success" %>
+          <% end %>
+          <%= link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary" %>
+          <% if policy(item).update? %>
+            <%= link_to "#{t('buttons.edit')}", edit_ads_item_url(item), :class => "btn btn-primary" %>
+          <% end %>
+          <% if policy(item).destroy? %>
+            <%= link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete, data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger" %>
+          <% end %> 
+        </div>
+      </div>
+      <div class="card-footer">
+        <% if item.user %>
+          <small class="text-muted"><%= t 'send_at' %> <%= item.user.email %></small>
         <% else %>
         <% end %>
-      <% end %>
-      <% if item.approved == true %>
-        <div class="card card-outline-secondary">
-          <div class="card-block">
-            <%= link_to(item) do %>
-              <% if item.images.empty? %>
-                <img src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" class="card-img-top img-fluid" alt="Card image" >
-              <% else %>
-                <%= image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image") %>
-              <% end %>
-            <% end %>
-            <h4 class="card-title">
-              <%= link_to(item) do %>
-                <%= item.title %>
-              <% end %>
-            </h4>
-            <p class="card-text"><%= item.text %></p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <%= link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary" %>
-              <% if policy(item).update? %>
-                <%= link_to "#{t('buttons.edit')}", edit_ads_item_url(item), :class => "btn btn-primary" %>
-                <%= link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete, data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger" %>
-              <% end %>
-            </div>
-          </div>
-          <div class="card-footer">
-            <% if item.user %>
-              <small class="text-muted"><%= t 'published_by' %> <%= item.user.email %></small>
-            <% else %>
-            <% end %>
-            <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
-          </div>
-        </div>
-      <% end %>
+        <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+      </div>
+    </div>
     <% end %>
     <nav aria-label="Page navigation example">
       <%= paginate @ads_items %>
