@@ -7,8 +7,8 @@ feature 'Sign up', :devise do
   end
 
   scenario 'user can not sign up with invalid password confirmation' do
-    signup('user@mail.ru', 'password', 'passwork')
-    expect(page).to have_content "Password confirmation doesn't match Password"
+    signup('user1@mail.ru', 'password', 'plaswork')
+    expect(page).to have_content I18n.t('activerecord.errors.models.user.attributes.password_confirmation.confirmation')
   end
 
   scenario 'user can not sign up with short password' do

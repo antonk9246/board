@@ -11,7 +11,7 @@ class AdsItemPolicy < ApplicationPolicy
       if user.try(:admin?)
         scope.all.order(approval_date: :desc)
       else
-        scope.where(approved: 't', approval_date: (Time.now - 3.day)..Time.now).order(approval_date: :desc)
+        scope.where(approved: true, approval_date: (Time.now - 3.day)..Time.now).order(approval_date: :desc)
       end
     end
   end

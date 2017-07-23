@@ -21,6 +21,7 @@
 
 en:
   password: 'Password'
+  password_confirmation: 'Password confirmation'
 
   name: 'English'
 
@@ -86,3 +87,11 @@ en:
   user_not_authorized: 'You are not authorized to perform this action'
 
   new_ad: 'New ad'
+  
+  activerecord:
+    errors:
+        models:
+          user:
+            attributes:
+              password_confirmation:
+                confirmation: 'Пароль не подтвержден'

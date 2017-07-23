@@ -7,7 +7,7 @@ describe AdsItemPolicy do
 
   context 'being a visitor (approved true)' do
     let(:user) { nil }
-    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: true) }
     it { is_expected.to permit_actions([:index, :show]) }
     it { is_expected.to forbid_actions([:create, :update, :edit, :destroy, :set_approve]) }
   end
@@ -20,7 +20,7 @@ describe AdsItemPolicy do
   end
   
   context 'user is creator (approved true)' do
-    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: true) }
     let(:user) { User.create(id: ads_item.user_id) }
 
     it { is_expected.to permit_actions([:index, :show, :create, :destroy, :edit, :update]) }
@@ -36,7 +36,7 @@ describe AdsItemPolicy do
   end
 
   context 'user is not creator (approved true)' do
-    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: true) }
     let(:user) { User.create(id: 10) }
 
     it { is_expected.to permit_actions([:index, :show, :create]) }
@@ -54,22 +54,22 @@ describe AdsItemPolicy do
 
 
     context 'admin is creator (approved true)' do
-    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
-    let(:user) { User.create(id: ads_item.user_id, admin: 't') }
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: true) }
+    let(:user) { User.create(id: ads_item.user_id, admin: true) }
 
     it { is_expected.to permit_actions([:index, :show, :create, :destroy, :edit, :update, :set_approve]) }
   end
 
   context 'user is creator (approved false)' do
     let(:ads_item) { FactoryGirl.create(:ads_item, approved: "false") }
-    let(:user) { User.create(id: ads_item.user_id, admin: 't') }
+    let(:user) { User.create(id: ads_item.user_id, admin: true) }
 
     it { is_expected.to permit_actions([:index, :show, :edit, :create, :destroy, :update, :set_approve]) }
   end
 
   context 'user is not creator (approved true)' do
-    let(:ads_item) { FactoryGirl.create(:ads_item, approved: "t") }
-    let(:user) { User.create(id: 10, admin: 't') }
+    let(:ads_item) { FactoryGirl.create(:ads_item, approved: true) }
+    let(:user) { User.create(id: 10, admin: true) }
 
     it { is_expected.to permit_actions([:index, :show, :create, :destroy, :set_approve]) }
     it { is_expected.to forbid_actions([:edit, :update]) }
@@ -77,7 +77,7 @@ describe AdsItemPolicy do
 
   context 'user is not creator (approved false)' do
     let(:ads_item) { FactoryGirl.create(:ads_item, approved: "false") }
-    let(:user) { User.create(id: 10, admin: 't') }
+    let(:user) { User.create(id: 10, admin: true) }
 
     it { is_expected.to permit_actions([:index, :create, :show, :destroy, :set_approve]) }
     it { is_expected.to forbid_actions([:edit, :update]) }

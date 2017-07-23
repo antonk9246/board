@@ -1,6 +1,7 @@
 ru:
   password: 'Пароль'
-  #password: 'Пароль'
+  password_confirmation: 'Подтверждение пароля'
+
   
   name: 'Русский'
 
@@ -128,3 +129,9 @@ ru:
         remember_me: "Запомнить меня"
     models:
       user: "Пользователь"
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: 'Пароль не подтвержден'

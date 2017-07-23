@@ -2,7 +2,6 @@ class AdsItemsController < ApplicationController
   attr_reader :user
   before_action :set_ads_item, only: %i[show edit update destroy]
   before_action :set_approve, only: [:approved]
-  
 
   def index
     @ads_item = AdsItem.new
