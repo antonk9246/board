@@ -1,4 +1,7 @@
 ru:
+  password: 'Пароль'
+  #password: 'Пароль'
+  
   name: 'Русский'
 
   user_page: 'Страница пользователя'
@@ -40,18 +43,6 @@ ru:
   log_out: 'Выйти'
   admin_page: 'Страница администратора'
 
-  devise:
-    registrations:
-      user:
-        'signed_up': 'Вы успешно зарегистрировались'
-    failure:
-      user:
-        'unauthenticated': 'Неавторизованный пользователь'
-    sessions:
-      user:
-        'signed_in': 'Вы успешно авторизовались'
-        'signed_out': 'Вы вышли из системы'
-
   ad:
     'updated': 'Объявление успешно обновлено'
     'destroyed': 'Объявление успешно удалено'
@@ -69,6 +60,8 @@ ru:
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
       send_paranoid_instructions: "Если ваш адрес email есть в нашей базе данных, то в течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
     failure:
+      user:
+        unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
       already_authenticated: "Вы уже вошли в систему."
       inactive: "Ваша учётная запись ещё не активирована."
       invalid: "Неверный адрес email или пароль."
@@ -76,7 +69,6 @@ ru:
       locked: "Ваша учётная запись заблокирована."
       not_found_in_database: "Неверный пароль или email."
       timeout: "Ваш сеанс закончился. Пожалуйста, войдите в систему снова."
-      unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
       unconfirmed: "Вы должны подтвердить вашу учётную запись."
     mailer:
       confirmation_instructions:
@@ -96,6 +88,8 @@ ru:
       updated: "Ваш пароль изменён. Теперь вы вошли в систему."
       updated_not_active: "Пароль успешно изменён."
     registrations:
+      user:
+        signed_up: 'Вы успешно зарегистрировались'
       destroyed: "До свидания! Ваша учётная запись удалена. Надеемся снова увидеть вас."
       signed_up: "Добро пожаловать! Вы успешно зарегистрировались."
       signed_up_but_inactive: "Вы успешно зарегистрировались. Тем не менее, вы не можете войти, потому что ваша учетная запись не активирована."
@@ -104,8 +98,9 @@ ru:
       updated: "Ваша учётная запись изменена."
       update_needs_confirmation: "Ваш аккаунт успешно обновлен, нонеобходимо подтвердить ваш новый адрес email. Пожалуйста, проверьте свою электронную почту и нажмите на ссылку \"Подтвердить\", чтобы завершить обновления email."
     sessions:
-      signed_in: "Вход в систему выполнен."
-      signed_out: "Выход из системы выполнен."
+      user:
+        signed_in: "Вход в систему выполнен."
+        signed_out: "Выход из системы выполнен."
     unlocks:
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по разблокировке вашей учётной записи."
       send_paranoid_instructions: "Если ваша учётная запись существует, то в течение нескольких минут вы получите письмо с инструкциями по её разблокировке."
@@ -133,59 +128,3 @@ ru:
         remember_me: "Запомнить меня"
     models:
       user: "Пользователь"
-  devise:
-    confirmations:
-      new:
-        resend_confirmation_instructions: "Выслать повторно письмо с активацией"
-    mailer:
-      confirmation_instructions:
-        action: "Активировать"
-        greeting: "Привет %{recipient}!"
-        instruction: "Вы можете активировать свою учетную запись, нажав ссылку снизу:"
-      reset_password_instructions:
-        action: "Изменить пароль"
-        greeting: "Привет, %{recipient}!"
-        instruction: "Вы (или кто-то еще) запросили изменение пароля. Для изменение пароля нажимите ссылку ниже:"
-        instruction_2: "Если вы не запрашивали изменение пароля - проигнорируйте это сообщение"
-        instruction_3: "Ваш пароль не изменится пока вы не нажмете на ссылку и не введете новый."
-      unlock_instructions:
-        action: "Разблокировать учетную запись"
-        greeting: "Привет, %{recipient}!"
-        instruction: "Нажмите ссылку для активации учетной записи:"
-        message: "Ваша учетная запись была заблокирована в связи с превышением лимита неудачных попыток входа."
-    passwords:
-      edit:
-        change_my_password: "Изменить мой пароль"
-        change_your_password: "Изменить пароль"
-        confirm_new_password: "Повторите новый пароль"
-        new_password: "Новый пароль"
-      new:
-        forgot_your_password: "Забыли пароль?"
-        send_me_reset_password_instructions: "Выслать новый пароль"
-    registrations:
-      edit:
-        are_you_sure: "Вы уверены?"
-        cancel_my_account: "Удалить учетную запись"
-        currently_waiting_confirmation_for_email: "Ожидается подтверждение адреса E-mail: %{email}"
-        leave_blank_if_you_don_t_want_to_change_it: "оставьте поле пустым, если не хотите ничего менять"
-        title: "Редактировать %{resource}"
-        unhappy: "Разочарованы"
-        update: "Обновить"
-        we_need_your_current_password_to_confirm_your_changes: "введите текущий пароль для подтверждения изменений"
-      new:
-        sign_up: "Регистрация"
-    sessions:
-      new:
-        sign_in: "Войти"
-    shared:
-      links:
-        back: "Назад"
-        didn_t_receive_confirmation_instructions: "Не получили подтверждение?"
-        didn_t_receive_unlock_instructions: "Не получили код разблокировки?"
-        forgot_your_password: "Забыли пароль?"
-        sign_in: "Войти"
-        sign_in_with_provider: "Войти с помощью: %{provider}"
-        sign_up: "Регистрация"
-    unlocks:
-      new:
-        resend_unlock_instructions: "Выслать подтверждение заново"
