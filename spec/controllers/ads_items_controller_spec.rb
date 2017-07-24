@@ -38,7 +38,6 @@ RSpec.describe AdsItemsController, type: :controller do
     end
   end
 
-# show +++++++++++++++++++++++++++++++++++
 
   it "routes get show" do
     expect(:get => "ads_items/1001").to route_to(

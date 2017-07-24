@@ -1,7 +1,6 @@
 # require 'rails_helper'
-
-# feature 'New ad in index', :devise do
-#   scenario 'user can create new ad in index path' do
+# feature 'Set approve in index path', :devise do
+#   scenario 'admin can set approve' do
 #     user = FactoryGirl.create(:user)
 #     expect(page).to have_no_selector 'form.new_ads_item'
 #     signin(user.email, user.password)

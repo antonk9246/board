@@ -6,6 +6,6 @@ feature 'Sign out', :devise do
     signin(user.email, user.password)
     expect(page).to have_content I18n.t 'devise.sessions.user.signed_in'
     signout(user.email)
-    expect(page).to have_content 'Signed out'
+    expect(page).to have_content I18n.t 'devise.sessions.user.signed_out'
   end
 end

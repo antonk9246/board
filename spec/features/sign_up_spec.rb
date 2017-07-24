@@ -13,12 +13,12 @@ feature 'Sign up', :devise do
 
   scenario 'user can not sign up with short password' do
     signup('user@mail.ru', 'pass', 'pass')
-    expect(page).to have_content "Password is too short (minimum is 6 characters)"
+    expect(page).to have_content 'Password is too short (minimum is 6 characters)'
   end
 
   scenario 'user can not sign up with short password' do
     user = FactoryGirl.create(:user)
     signup('test@example.com', 'password1', 'password1')
-    expect(page).to have_content "Email has already been taken"
+    expect(page).to have_content 'Email has already been taken'
   end
 end

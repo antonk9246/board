@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'ads_items/index'
   resources :ads_items
   root 'ads_items#index'
-
+  get 'users', to: 'ads_items#index'
   resources :ads_items do
     patch :set_approve
   end
