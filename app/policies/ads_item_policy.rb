@@ -9,9 +9,10 @@ class AdsItemPolicy < ApplicationPolicy
 
     def resolve
       if user.try(:admin?)
-        scope.all.order(approval_date: :desc)
+        scope.all
       else
-        scope.where(approved: true, approval_date: (Time.now - 3.day)..Time.now).order(approval_date: :desc)
+        scope.where(approved: true,
+                    approval_date: (Time.now - 3.day)..Time.now)
       end
     end
   end

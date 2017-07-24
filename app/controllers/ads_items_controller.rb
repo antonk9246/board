@@ -2,12 +2,19 @@ class AdsItemsController < ApplicationController
   attr_reader :user
   before_action :set_ads_item, only: %i[show edit update destroy]
   before_action :set_approve, only: [:approved]
+  helper_method :sort_direction
 
   def index
     @ads_item = AdsItem.new
-    @ads_items = policy_scope(AdsItem).page params[:page]
+    if params[:sort] == 'date'
+      @ads_items = policy_scope(AdsItem).order("approval_date #{sort_direction}").page params[:page]
+    elsif params[:sort] == 'author'
+      @ads_items = policy_scope(AdsItem).order("user_id #{sort_direction}").page params[:page]
+    else
+      @ads_items = policy_scope(AdsItem).page params[:page]
+    end
   end
-
+  
   def show
     @ads_item = AdsItem.find(params[:id])
   end
@@ -67,6 +74,10 @@ class AdsItemsController < ApplicationController
   end
 
   private
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
