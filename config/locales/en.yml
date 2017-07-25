@@ -24,10 +24,13 @@ en:
   password_confirmation: 'Password confirmation'
 
   sort_by: 'Sort by'
+  sorted_by: 'Sorted by'
   sort:
     date: 'date'
     author: 'author'
-
+  date: 'date'
+  author: 'author'
+  
   name: 'English'
 
   user_page: 'User page'

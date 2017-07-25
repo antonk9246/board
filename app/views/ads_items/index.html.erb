@@ -62,7 +62,7 @@
       </div>
       <%= link_to "▲", url_for( :sort => params[:sort], :direction => 'asc'), type: "link", class: "nav-link" %>
       <%= link_to "▼", url_for( :sort => params[:sort], :direction => 'desc'), type: "link", class: "nav-link" %>
-      <h5>Sorted by <%= params[:sort] %>  <%= params[:direction] %></h5>
+      <h5><%="#{t('sorted_by')}"%> <%= I18n.t"#{params[:sort]}" %></h5>
     </ul>
     <% @ads_items.each do |item| %>
       <% if item.approved != true  %>

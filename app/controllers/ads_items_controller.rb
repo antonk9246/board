@@ -14,7 +14,7 @@ class AdsItemsController < ApplicationController
       @ads_items = policy_scope(AdsItem).order(approval_date: :desc).page params[:page]
     end
   end
-  
+
   def show
     @ads_item = AdsItem.find(params[:id])
   end
