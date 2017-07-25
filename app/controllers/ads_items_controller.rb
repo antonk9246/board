@@ -11,7 +11,7 @@ class AdsItemsController < ApplicationController
     elsif params[:sort] == 'author'
       @ads_items = policy_scope(AdsItem).order("user_id #{sort_direction}").page params[:page]
     else
-      @ads_items = policy_scope(AdsItem).page params[:page]
+      @ads_items = policy_scope(AdsItem).order(approval_date: :desc).page params[:page]
     end
   end
   
@@ -49,6 +49,8 @@ class AdsItemsController < ApplicationController
   def update
     respond_to do |format|
       if @ads_item.update(ads_items_params)
+        @ads_item.approved = nil
+        @ads_item.save
         format.html { redirect_to @ads_item, notice: (t 'ad.updated').to_s }
         format.json { render :show, status: :ok, location: @ads_item }
       else
