@@ -47,6 +47,17 @@
 <div class="row">
   <div class="col-sm-12 offset-sm-0 col-md-6 offset-md-3">
     <h1><%="#{t('ads_board')}"%></h1>
+    <h1>Sorted by <%= params[:sort] %></h1>
+    <h1><%= params[:direction] %></h1>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort by
+      </a>
+      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <li><%= link_to "Date", url_for( :sort => 'date', :direction => 'asc'),  autocomplete: "off", type: "checkbox" %></li>
+        <li><%= link_to "Author", url_for( :sort => 'author', :direction => 'desc'), autocomplete: "off", type: "checkbox" %></li>
+      </div>
+    </div>
     <nav aria-label="Page navigation example">
       <%= paginate @ads_items %>
     </nav>
