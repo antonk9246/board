@@ -53,15 +53,15 @@
     <ul class="nav nav-pills">
       <div class="btn-group" role="group">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Sort by
+          <%=t 'sort_by'%>
         </a>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <li><%= link_to "Date", url_for( :sort => 'date', :direction => 'asc'),  autocomplete: "off", type: "checkbox" %></li>
-          <li><%= link_to "Author", url_for( :sort => 'author', :direction => 'desc'), autocomplete: "off", type: "checkbox" %></li>
+          <li><%= link_to "#{t 'sort.date'}", url_for( :sort => 'date', :direction => 'asc'),  autocomplete: "off", type: "checkbox" %></li>
+          <li><%= link_to "#{t 'sort.author'}", url_for( :sort => 'author', :direction => 'desc'), autocomplete: "off", type: "checkbox" %></li>
         </div>
       </div>
-      <%= link_to "▲", url_for(:direction => 'asc'), type: "link", class: "nav-link" %>
-      <%= link_to "▼", url_for(:direction => 'desc'), type: "link", class: "nav-link" %>
+      <%= link_to "▲", url_for( :sort => params[:sort], :direction => 'asc'), type: "link", class: "nav-link" %>
+      <%= link_to "▼", url_for( :sort => params[:sort], :direction => 'asc'), type: "link", class: "nav-link" %>
       <h5>Sorted by <%= params[:sort] %>  <%= params[:direction] %></h5>
     </ul>
     <% @ads_items.each do |item| %>

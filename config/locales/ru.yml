@@ -2,6 +2,10 @@ ru:
   password: 'Пароль'
   password_confirmation: 'Подтверждение пароля'
 
+  sort_by: 'Сортировать по'
+  sort:
+    date: 'дате'
+    author: 'автору'
   
   name: 'Русский'
 
