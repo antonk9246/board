@@ -15,7 +15,7 @@
             </ul>
           </div>
         <% end %>
-        <div class="card card-outline-primary"> 
+        <div class="card card-outline-secondary"> 
           <div class="card-block">
           <h1><%="#{t('new_ad')}"%></h1>
             <div class="form-group">
@@ -35,7 +35,7 @@
             <div class="form-group">
               <%= t 'approval_date' %><br>
               <%= f.datetime_local_field :approval_date, :class => 'form-control',
-                type: "datetime-local", value: Time.now.strftime("%FT%R") %>
+                type: "datetime-local", value: Time.zone.now.strftime("%FT%R") %>
             </div>
             <button type="f.submit" class="btn btn-primary"><%= t 'buttons.submit'%></button>
           </div>

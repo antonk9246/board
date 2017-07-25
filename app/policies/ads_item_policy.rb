@@ -12,7 +12,7 @@ class AdsItemPolicy < ApplicationPolicy
         scope.all
       else
         scope.where(approved: true,
-                    approval_date: (Time.now - 3.day)..Time.now)
+                    approval_date: (Time.zone.now - 3.day)..Time.zone.now)
       end
     end
   end
