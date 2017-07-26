@@ -7,13 +7,14 @@ class AdsItemsController < ApplicationController
   def index
     @ads_item = AdsItem.new
     if params[:sort] == 'date'
-      @ads_items = policy_scope(AdsItem).order("approval_date #{sort_direction}").page params[:page]
+      ads = policy_scope(AdsItem).order("approval_date #{sort_direction}")
     elsif params[:sort] == 'author'
-      @ads_items = policy_scope(AdsItem).order("user_id #{sort_direction}").page params[:page]
+      ads = policy_scope(AdsItem).order("user_id #{sort_direction}")
     else
       params[:sort] = 'date'
-      @ads_items = policy_scope(AdsItem).order(approval_date: :desc).page params[:page]
+      ads = policy_scope(AdsItem).order(approval_date: :desc)
     end
+    @ads_items = ads.page params[:page]
   end
 
   def show

@@ -3,7 +3,7 @@ ru:
   password_confirmation: 'Подтверждение пароля'
 
   sort_by: 'Сортировать по '
-  sorted_by: 'Отсортировано по '
+  sorted_by: 'Отсортировано по'
   sort:
     date: 'дате'
     author: 'автору'

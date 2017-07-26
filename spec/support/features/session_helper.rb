@@ -1,5 +1,9 @@
 module Features
   module SessionHelpers
+    def guest
+      visit ads_items_index_path
+    end
+    
     def signin(email, password)
       visit new_user_session_path
       fill_in 'Email', with: email

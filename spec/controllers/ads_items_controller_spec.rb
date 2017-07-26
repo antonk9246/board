@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe AdsItemsController, type: :controller do
   let(:ads_item) { FactoryGirl.create(:ads_item) }
 
-
-
   describe "index controller for guest" do
     before :each do
       login_with nil
@@ -29,7 +27,7 @@ RSpec.describe AdsItemsController, type: :controller do
 
   describe "index controller for admin" do
     before :each do
-      login_with create( :admin )
+      login_with create( :user, admin: true )
     end
 
     it "show index page for admin" do
