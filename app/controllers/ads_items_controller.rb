@@ -11,6 +11,7 @@ class AdsItemsController < ApplicationController
     elsif params[:sort] == 'author'
       @ads_items = policy_scope(AdsItem).order("user_id #{sort_direction}").page params[:page]
     else
+      params[:sort] = 'date'
       @ads_items = policy_scope(AdsItem).order(approval_date: :desc).page params[:page]
     end
   end

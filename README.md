@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+`rails db:setup` - установка базы данных. Команда также создаст в бд 
+пользователя с правами администратора (email: "admin@admin.com", password: "firstadmin")
 
-Things you may want to cover:
+`rake delete:old_records` - удаление всех реклам, которые были опубликованы
+более 60 дней назад
 
-* Ruby version
+`rake spec` - запуск spec тестов
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`rails s -b $IP -p $PORT` - запуск сервера
