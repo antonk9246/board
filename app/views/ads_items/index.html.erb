@@ -32,11 +32,6 @@
               <%= t 'text' %><br>
               <%= f.text_area :text, :class => 'form-control' %>
             </div>
-            <div class="form-group">
-              <%= t 'approval_date' %><br>
-              <%= f.datetime_local_field :approval_date, :class => 'form-control',
-                type: "datetime-local", value: Time.zone.now.strftime("%FT%R") %>
-            </div>
             <button type="f.submit" class="btn btn-primary"><%= t 'buttons.submit'%></button>
           </div>
         </div>
@@ -98,11 +93,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <% if item.user %>
-          <small class="text-muted"><%= t 'send_at' %> <%= item.user.email %></small>
+        <% if item.approved == true %>
+          <small class="text-muted">published by <%= item.user.email %></small>
+          <small class="text-muted">at  <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
         <% else %>
+          <small class="text-muted">send by <%= item.user.email %></small>
+          <small class="text-muted">at  <%= item.updated_at.strftime("%d.%m.%Y %H:%M") %></small>
         <% end %>
-        <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
       </div>
     </div>
     <% end %>

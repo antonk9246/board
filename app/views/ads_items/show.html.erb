@@ -18,7 +18,6 @@
           <% end %>
           <% if policy(@ads_item).update? %>
             <%= link_to "#{t('buttons.edit')}", edit_ads_item_url, :class => "btn btn-primary" %>
-            <%= link_to 'Send to admin', ads_items_index_url, :class => "btn btn-primary" %>
           <% end %>
           <% if policy(@ads_item).destroy? %>
             <%= link_to "#{t('buttons.delete')}", ads_item_url, method: :delete,
@@ -27,11 +26,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <% if @ads_item.user %>
-          <small class="text-muted">published  by  <%= @ads_item.user.email %></small>
+        <% if @ads_item.approved == true %>
+          <small class="text-muted">published by <%= @ads_item.user.email %></small>
+          <small class="text-muted">at  <%= @ads_item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
         <% else %>
+          <small class="text-muted">send by <%= @ads_item.user.email %></small>
+          <small class="text-muted">at  <%= @ads_item.updated_at.strftime("%d.%m.%Y %H:%M") %></small>
         <% end %>
-        <small class="text-muted">at  <%= @ads_item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
       </div>
     </div>
   </div>

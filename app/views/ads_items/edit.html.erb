@@ -39,9 +39,13 @@
             </div>
             <button type="f.submit" class="btn btn-primary"><%= t'buttons.submit'%></button>
             <div class="form-group">
-              <%= f.label :approval_date %><br>
-              <%= f.datetime_local_field :approval_date, :class => 'form-control',
-                type: "datetime-local", value: @ads_item.approval_date.strftime("%FT%R") %>
+              <% if @ads_item.approved == true %>
+                <small class="text-muted">published by <%= @ads_item.user.email %></small>
+                <small class="text-muted">at  <%= @ads_item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+              <% else %>
+                <small class="text-muted">send by <%= @ads_item.user.email %></small>
+                <small class="text-muted">at  <%= @ads_item.updated_at.strftime("%d.%m.%Y %H:%M") %></small>
+              <% end %>
             </div>
           </div>
         <% end %>

@@ -52,6 +52,7 @@ class AdsItemsController < ApplicationController
     respond_to do |format|
       if @ads_item.update(ads_items_params)
         @ads_item.approved = nil
+        @ads_item.approval_date = nil
         @ads_item.save
         format.html { redirect_to @ads_item, notice: (t 'ad.updated').to_s }
         format.json { render :show, status: :ok, location: @ads_item }
@@ -73,6 +74,7 @@ class AdsItemsController < ApplicationController
   def set_approve
     @ads_item = AdsItem.find(params[:ads_item_id])
     @ads_item.approved = true
+    @ads_item.approval_date = Time.zone.now.strftime("%d.%m.%Y %H:%M")
     @ads_item.save
     redirect_to ads_items_url, notice: (t 'ad.approved').to_s
   end

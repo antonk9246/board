@@ -24,12 +24,13 @@
           </div>
         </div>
         <div class="card-footer">
-          <% if item.user %>
-            <small class="text-muted"><%= t 'published_by' %> <%= item.user.email %></small>
-          <% else %>
-          <% end %>
-          <small class="text-muted">at <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
-        </div>
+          <% if item.approved == true && item.user %>
+          <small class="text-muted">published by <%= item.user.email %></small>
+          <small class="text-muted">at  <%= item.approval_date.strftime("%d.%m.%Y %H:%M") %></small>
+        <% else %>
+          <small class="text-muted">send by <%= item.user.email %></small>
+          <small class="text-muted">at  <%= item.updated_at.strftime("%d.%m.%Y %H:%M") %></small>
+        <% end %>
       </div>
     <% end %>
   </div>
