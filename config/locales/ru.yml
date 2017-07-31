@@ -20,6 +20,8 @@ ru:
 
   are_you_sure: 'вы уверены?'
 
+  language_is_changed: 'Язык изменен'
+  
   language: 'Язык'
   
   send_at: 'Отправлено'

@@ -40,7 +40,8 @@ en:
   back: 'Вack'
 
   are_you_sure: 'are you sure?'
-  
+
+  language_is_changed: 'Language is changed'
   language: 'Language'
   
   send_at: 'Send at'

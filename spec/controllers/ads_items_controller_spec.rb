@@ -44,6 +44,5 @@ RSpec.describe AdsItemsController, type: :controller do
      :id => "1001"
     )
   end
-
   
 end
