@@ -24,8 +24,8 @@ feature 'change language', :set_locale do
   end
 
   scenario 'admin can change language' do
-    user = FactoryGirl.create(:admin)
-    signin(user.email, user.password)
+    admin = FactoryGirl.create(:admin)
+    signin(admin.email, admin.password)
     visit ads_items_index_path
     find_link(I18n.t('language')).click
     find_link('Русский').click

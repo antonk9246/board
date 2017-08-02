@@ -8,4 +8,12 @@ feature 'Sign out', :devise do
     signout(user.email)
     expect(page).to have_content I18n.t 'devise.sessions.user.signed_out'
   end
+
+  scenario 'admin can sign out' do
+    admin = FactoryGirl.create(:admin)
+    signin(admin.email, admin.password)
+    expect(page).to have_content I18n.t 'devise.sessions.user.signed_in'
+    signout(admin.email)
+    expect(page).to have_content I18n.t 'devise.sessions.user.signed_out'
+  end
 end

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'visibility for ads', :devise do
   scenario 'guest can not see ads more than 3 days after approved' do
-    guest
     user = FactoryGirl.create(:user, id: 1)
     ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 5.day), user_id: 1, id: 1)
     visit ads_items_index_path

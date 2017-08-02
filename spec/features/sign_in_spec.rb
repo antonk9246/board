@@ -24,4 +24,11 @@ feature 'Sign in', :devise do
     signin(user.email, 'incorrect_password')
     expect(page).to have_content 'Invalid Email or password'
   end
+
+  scenario 'admin can sign in with valid credentials' do
+    admin = FactoryGirl.create(:admin)
+    signin(admin.email, admin.password)
+    expect(page).to have_content I18n.t 'devise.sessions.user.signed_in'
+    expect(page).to have_selector 'form.new_ads_item'
+  end
 end
