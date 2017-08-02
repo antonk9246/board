@@ -74,7 +74,7 @@ class AdsItemsController < ApplicationController
   def set_approve
     @ads_item = AdsItem.find(params[:ads_item_id])
     @ads_item.approved = true
-    @ads_item.approval_date = Time.zone.now.strftime("%d.%m.%Y %H:%M")
+    @ads_item.approval_date = Time.zone.now.strftime('%d.%m.%Y %H:%M')
     @ads_item.save
     redirect_to ads_items_url, notice: (t 'ad.approved').to_s
   end
@@ -83,11 +83,6 @@ class AdsItemsController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-  end
-
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
-    Rails.application.routes.default_url_options[:locale] = I18n.locale
   end
 
   def set_ads_item
