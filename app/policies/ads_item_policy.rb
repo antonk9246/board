@@ -30,7 +30,7 @@ class AdsItemPolicy < ApplicationPolicy
   end
 
   def update?
-    if user.present? && user == ads_item.user
+    true if user.present? && user == ads_item.user
   end
 
   def edit?
@@ -38,11 +38,11 @@ class AdsItemPolicy < ApplicationPolicy
   end
 
   def destroy?
-    if user.try(:admin?) || (user.present? && user == ads_item.user)
+    true if user.try(:admin?) || (user.present? && user == ads_item.user)
   end
 
   def set_approve?
-    if user.try(:admin?)
+    true if user.try(:admin?)
   end
 
   private
