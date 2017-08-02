@@ -1,0 +1,31 @@
+.row
+  .col-sm-12.offset-sm-0.col-md-6.offset-md-3
+    h1= "# t ('user_page') "
+    - current_user.ads_items.reverse.each do |item|
+      .card
+        .card-block
+          = link_to(item) do
+            - if item.images.empty?
+              img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" /
+            - else
+              = image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image")
+          h4.card-title
+            = link_to(item) do
+              = item.title
+          p.card-text= item.text
+          .btn-group aria-label=("Basic example") role="group" 
+            = link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary"
+            = link_to "#{t('buttons.edit')}", edit_ads_item_url(item), :class => "btn btn-primary"
+            = link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete, data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger"
+        .card-footer
+          - if item.approved == true && item.user
+            small.text-muted
+              | published by #{item.user.email}
+            small.text-muted
+              | at  #{item.approval_date.strftime("%d.%m.%Y %H:%M")}
+          - else
+            small.text-muted
+              | send by #{item.user.email}
+            small.text-muted
+              | at  #{item.updated_at.strftime("%d.%m.%Y %H:%M")}
+ 
