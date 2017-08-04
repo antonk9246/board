@@ -14,7 +14,7 @@
           </div>
         </div>
         <% if current_user.try(:admin?) %>
-          <%= link_to "#{t 'admin_page'}", rails_admin_url, class: "nav-link" %>
+          <%= link_to "#{t 'admin_page'}", admin_dashboard_path, class: "nav-link" %>
         <% end %>
         <%= link_to "#{t 'log_out'}", destroy_user_session_path, method: :delete, class: "nav-link" %>
       <% else %>

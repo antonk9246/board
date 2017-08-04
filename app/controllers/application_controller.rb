@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 
+  def authenticate_admin!
+    if current_user && current_user.admin
+    # fine
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
   private
 
   def set_locale
