@@ -2,6 +2,7 @@
   <nav>
     <ul class="nav nav-pills float-right">
       <% if user_signed_in? %>
+        <%= image_tag(current_user.avatar.url(:medium), class: "round-image-40") %>
         <%= link_to "#{current_user.email}", ads_items_user_page_url(@ads_items), class: "nav-link" %>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -16,7 +17,7 @@
         <% if current_user.try(:admin?) %>
           <%= link_to "#{t 'admin_page'}", admin_dashboard_path, class: "nav-link" %>
         <% end %>
-        <%= link_to "#{t 'log_out'}", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        <%= link_to "#{t 'log_out'}", destroy_user_session_path, method: :get, class: "nav-link" %>
       <% else %>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,7 +25,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% I18n.available_locales.each do |language| %>
-              <%= link_to t("name", :locale => language) , url_for( :locale => language), class: "dropdown-item" %>
+              <%= link_to t("name", :locale => language) , url_for(:locale => language), class: "dropdown-item" %>
             <% end %>
           </div>
         </div>

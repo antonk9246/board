@@ -1,5 +1,10 @@
 ru:
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
+      
   password: 'Пароль'
+  new_password: 'Новый пароль'
   password_confirmation: 'Подтверждение пароля'
 
   sort_by: 'Сортировать по '

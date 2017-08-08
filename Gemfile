@@ -15,6 +15,7 @@ gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'activeadmin'
 gem 'slim'
 gem 'slim-rails'
+gem "paperclip"
 
 gem 'pundit'
 gem 'sqlite3'

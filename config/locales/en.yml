@@ -21,6 +21,7 @@
 
 en:
   password: 'Password'
+  new_password: 'New password'
   password_confirmation: 'Password confirmation'
 
   sort_by: 'Sort by'
