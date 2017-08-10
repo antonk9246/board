@@ -24,8 +24,8 @@ en:
   new_password: 'New password'
   password_confirmation: 'Password confirmation'
 
-  sort_by: 'Sort by'
-  sorted_by: 'Sorted by'
+  sort_by: 'Sort by '
+  sorted_by: 'Sorted by '
   sort:
     date: 'date'
     author: 'author'
@@ -103,5 +103,7 @@ en:
         models:
           user:
             attributes:
+              email:
+                taken: 'taken'
               password_confirmation:
                 confirmation: 'Пароль не подтвержден'

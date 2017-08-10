@@ -8,7 +8,7 @@ ru:
   password_confirmation: 'Подтверждение пароля'
 
   sort_by: 'Сортировать по '
-  sorted_by: 'Отсортировано по'
+  sorted_by: 'Отсортировано по '
   sort:
     date: 'дате'
     author: 'автору'
@@ -147,5 +147,7 @@ ru:
       models:
         user:
           attributes:
+            email:
+              taken: 'уже используется'
             password_confirmation:
               confirmation: 'Пароль не подтвержден'
