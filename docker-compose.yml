@@ -1,5 +1,7 @@
 version: '3'
 services:
+  db:
+    image: postgres
   rspec:
     build: .
     command: rspec
@@ -17,6 +19,7 @@ services:
     depends_on:
       - migration
       - bundle_install
+      - db
   migration:
     build: .
     command: rails db:migrate RAILS_ENV=development
