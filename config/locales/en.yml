@@ -21,8 +21,9 @@
 
 en:
   password: 'Password'
-  new_password: 'New password'
   password_confirmation: 'Password confirmation'
+  new_password: 'New password'
+  new_password_confirmation: 'Confirmation new password'
 
   sort_by: 'Sort by '
   sorted_by: 'Sorted by '
@@ -54,6 +55,8 @@ en:
     'edit': 'Edit'
     'delete': 'Delete'
     'submit': 'Submit'
+    'change_avatar': 'Change avatar'
+    'change_password': 'Change password'
 
   published_by: 'Published by'
 
@@ -94,6 +97,12 @@ en:
     'created': 'Ad was successfully created'
     'dont_have_title': 'Ad must have a title'
     'approved': 'Approved by admin'
+  
+  user:
+    'password_updated': 'Password was successfully updated'
+    'password_not_updated': 'Password not updated'
+    'avatar_updated': 'Avatar was successfully updated'
+    'avatar_not_updated': 'Avatar not updated'
 
   user_not_authorized: 'You are not authorized to perform this action'
 

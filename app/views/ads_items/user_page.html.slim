@@ -1,6 +1,15 @@
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
     h1= t 'user_page'
+    = image_tag(current_user.avatar.url(:medium))
+    = form_for(current_user, :url => { :controller =>"users", :action => "update_password" }) do |f|
+      = f.password_field :current_password, autocomplete: "off", :class => 'form-control', :placeholder => "#{t 'password'}"
+      = f.password_field :password, autocomplete: "off", :class => 'form-control', :placeholder => "#{t 'new_password'}"
+      = f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :placeholder => "#{t 'new_password_confirmation'}"
+      = f.submit t('buttons.change_password'), class: "btn btn-lg btn-primary btn-block"
+    = form_for(current_user, :url => { :controller =>"users", :action => "update_avatar" }, html: { multipart: true }) do |f|
+      = f.file_field :avatar
+      = f.submit t('buttons.change_avatar'), class: "btn btn-lg btn-primary btn-block"
     - current_user.ads_items.reverse.each do |item|
       .card
         .card-block

@@ -4,8 +4,10 @@ ru:
       long: "%Y-%m-%d %H:%M:%S"
       
   password: 'Пароль'
-  new_password: 'Новый пароль'
   password_confirmation: 'Подтверждение пароля'
+  new_password: 'Новый пароль'
+  new_password_confirmation: 'Подтверждение нового пароля'
+  
 
   sort_by: 'Сортировать по '
   sorted_by: 'Отсортировано по '
@@ -38,6 +40,8 @@ ru:
     'edit': 'Редактировать'
     'delete': 'Удалить'
     'submit': 'Отправить'
+    'change_avatar': 'Изменить аватар'
+    'change_password': 'Изменить пароль'
 
   published_by: 'Опубликовано'
 
@@ -65,6 +69,12 @@ ru:
     'created': 'Объявление успешно добавлено'
     'dont_have_title': 'Объявление должно содержать заголовок'
     'approved': 'Одобрено администратором'
+    
+  user:
+    'password_updated': 'Пароль успешно обновлен'
+    'password_not_updated': 'Пароль не обновлен'
+    'avatar_updated': 'Аватар успешно обновлен'
+    'avatar_not_updated': 'Аватар не обновлен'
 
   user_not_authorized: 'Для выполнения этого действия требуется авторизация'
 
