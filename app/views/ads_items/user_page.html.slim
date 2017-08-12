@@ -1,7 +1,6 @@
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
-    h1= "# t ('user_page') "
-    = image_tag(current_user.avatar.url(:medium))
+    h1= t 'user_page'
     - current_user.ads_items.reverse.each do |item|
       .card
         .card-block
@@ -13,6 +12,7 @@
           h4.card-title
             = link_to(item) do
               = item.title
+          p.card-text = item.category.name
           p.card-text= item.text
           .btn-group aria-label=("Basic example") role="group" 
             = link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary"

@@ -19,6 +19,10 @@
               br
               = f.text_field :title, :class => 'form-control', :placeholder => "#{t 'enter_title'}"
             .form-group
+              = t 'category'
+              br
+              = f.collection_select :category_id, Category.all, :id, locale
+            .form-group
               .field
                 = t 'images'
                 = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"
@@ -30,15 +34,15 @@
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
     h1=  t 'ads_board'
-    nav aria-label=("Page navigation example") 
+    ul.nav aria-label=("Page navigation example") 
       = paginate @ads_items
     ul.nav.nav-pills
       .btn-group role="group"
         a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="http://example.com" 
           = t 'sort_by'
         .dropdown-menu aria-labelledby="btnGroupDrop1" 
-          li= link_to "# t 'sort.date' ", url_for( :sort => 'date', :direction => 'asc'),  autocomplete: "off", type: "checkbox"
-          li= link_to "# t 'sort.author' ", url_for( :sort => 'author', :direction => 'asc'), autocomplete: "off", type: "checkbox"
+          li= link_to "#{t'sort.date'}", url_for( :sort => 'date', :direction => 'asc'),  autocomplete: "off", type: "checkbox"
+          li= link_to "#{t'sort.author'}", url_for( :sort => 'author', :direction => 'asc'), autocomplete: "off", type: "checkbox"
       = link_to "▲", url_for( :sort => params[:sort], :direction => 'asc'), type: "link", class: "nav-link"
       = link_to "▼", url_for( :sort => params[:sort], :direction => 'desc'), type: "link", class: "nav-link"
       h5
@@ -56,6 +60,7 @@
               h4.card-title
                 = link_to(item) do
                   = item.title
+              p.card-text = item.category.ru
               p.card-text= item.text
               .btn-group aria-label=("Basic example") role="group" 
                 - if policy(item).set_approve? && item.approved != true

@@ -8,4 +8,6 @@ class AdsItem < ApplicationRecord
   mount_uploaders :images, ImageUploader
   serialize :images, JSON
   belongs_to :user
+  belongs_to :category
+  validates :category, presence: true
 end

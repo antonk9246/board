@@ -17,7 +17,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo.png"
+  config.site_title_image = "ab.ico"
 
   # == Default Namespace
   #
@@ -128,7 +128,7 @@ ActiveAdmin.setup do |config|
   config.comments = false
   #
   # You can change the name under which comments are registered:
-  config.comments_registration_name = 'AdminComment'
+  # config.comments_registration_name = 'AdminComment'
   #
   # You can change the order for the comments and you can change the column
   # to be used for ordering:
@@ -263,7 +263,7 @@ ActiveAdmin.setup do |config|
   # Pagination is enabled by default for all resources.
   # You can control the default per page count for all resources here.
   #
-  # config.default_per_page = 30
+  config.default_per_page = 30
   #
   # You can control the max per page count too.
   #

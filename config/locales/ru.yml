@@ -43,6 +43,7 @@ ru:
 
   title: 'Заголовок'
   enter_title: 'Введите заголовок'
+  category: 'Категория'
   images: 'Изображения'
   text: 'Текст'
   approval_date: 'Дата опубликования'
@@ -151,3 +152,6 @@ ru:
               taken: 'уже используется'
             password_confirmation:
               confirmation: 'Пароль не подтвержден'
+  
+  auto: 'Авто'
+  other: 'Другая'

@@ -91,6 +91,6 @@ class AdsItemsController < ApplicationController
   end
 
   def ads_items_params
-    params.require(:ads_item).permit(:title, :text, { images: [] }, :approved, :approval_date, :user_id)
+    params.require(:ads_item).permit(:title, :text, :category_id,{ images: [] }, :approved, :approval_date, :user_id)
   end
 end

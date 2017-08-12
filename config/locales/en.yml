@@ -59,6 +59,7 @@ en:
 
   title: 'Title'
   enter_title: 'Enter title'
+  category: 'Category'
   images: 'Images'
   text: 'Text'
   approval_date: 'Approval date'
@@ -107,3 +108,6 @@ en:
                 taken: 'taken'
               password_confirmation:
                 confirmation: 'Пароль не подтвержден'
+  
+  auto: 'Auto'
+  other: 'Other'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808082413) do
+ActiveRecord::Schema.define(version: 20170811192900) do
 
   create_table "ads_items", force: :cascade do |t|
     t.datetime "approval_date"
@@ -21,7 +21,16 @@ ActiveRecord::Schema.define(version: 20170808082413) do
     t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.boolean  "approved"
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_ads_items_on_category_id"
     t.index ["user_id"], name: "index_ads_items_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "ru"
+    t.string   "en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
