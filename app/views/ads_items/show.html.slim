@@ -8,7 +8,10 @@
         - @ads_item.images.each do |image|
           = image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block')
         h4.card-title= @ads_item.title
-        p.card-text = @ads_item.category.name
+        -if locale == :ru
+           p.card-text = @ads_item.category.ru
+        - else
+           p.card-text = @ads_item.category.en
         p.card-text= @ads_item.text
         .btn-group aria-label=("Basic example") role="group" 
           - if policy(@ads_item).set_approve? && @ads_item.approved != true
