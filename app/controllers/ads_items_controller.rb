@@ -42,7 +42,7 @@ class AdsItemsController < ApplicationController
         format.html { redirect_to @ads_item, notice: (t 'ad.created').to_s }
         format.json { render :show, status: :created, location: @ads_item }
       else
-        format.html { redirect_to @ads_item, notice: (t 'ad.dont_have_title').to_s }
+        format.html { redirect_to @ads_item, notice: (t 'ad.not_created').to_s }
         format.json { render json: @ads_item.errors, status: :unprocessable_entity }
       end
     end

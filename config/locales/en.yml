@@ -95,6 +95,7 @@ en:
     'updated': 'Ad was successfully updated'
     'destroyed': 'Ad was successfully destroyed'
     'created': 'Ad was successfully created'
+    'not_created': 'Ad not created'
     'dont_have_title': 'Ad must have a title'
     'approved': 'Approved by admin'
   

@@ -6,8 +6,7 @@
           #error_explanation
             p.lead
               = pluralize(@ads_item.errors.count, "error")
-              | prohibited
-              | this post from being saved:
+                | prohibited this post from being saved:
             ul.list-unstyled
               - @ads_item.errors.full_messages.each do |msg|
                 li= msg
