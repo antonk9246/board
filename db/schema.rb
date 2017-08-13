@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170811192900) do
+ActiveRecord::Schema.define(version: 20170813100236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20170811192900) do
   create_table "ads_items", force: :cascade do |t|
     t.datetime "approval_date"
     t.text     "title"
-    t.string   "images"
+    t.json     "images"
     t.text     "text"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

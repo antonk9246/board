@@ -64,7 +64,7 @@
                 p.card-text = item.category.ru
               - else
                 p.card-text = item.category.en
-              p.card-text= item.text
+              p.card-text = item.text
               .btn-group aria-label=("Basic example") role="group" 
                 - if policy(item).set_approve? && item.approved != true
                   = link_to "#{t('approve')}", ads_item_set_approve_url(item), method: :patch, :class => "btn btn-success"
@@ -89,6 +89,10 @@
               h4.card-title
                 = link_to(item) do
                   = item.title
+              -if locale == :ru
+                p.card-text = item.category.ru
+              - else
+                p.card-text = item.category.en
               p.card-text= item.text
               .btn-group aria-label=("Basic example") role="group" 
                 - if policy(item).set_approve? && item.approved != true

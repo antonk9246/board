@@ -20,7 +20,7 @@
             .form-group
               = t 'category'
               br
-              = f.collection_select :category_id, Category.all, :id, :name
+              = f.collection_select :category_id, Category.all, :id, locale
             .form-group
               .field
                 = t 'images'
