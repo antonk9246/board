@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :category do
-    ru "MyString"
-    en "MyString"
+    id 2
+    ru 'MyString'
+    en 'MyString'
   end
 end

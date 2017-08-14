@@ -10,7 +10,9 @@ ru:
   
 
   sort_by: 'Сортировать по '
-  sorted_by: 'Отсортировано по '
+  sorted_by:
+    date: 'Отсортировано по дате'
+    author: 'Отсортировано по автору'
   sort:
     date: 'дате'
     author: 'автору'
@@ -133,7 +135,7 @@ ru:
       send_paranoid_instructions: "Если ваша учётная запись существует, то в течение нескольких минут вы получите письмо с инструкциями по её разблокировке."
       unlocked: "Ваша учётная запись разблокирована. Теперь вы вошли в систему."
 
-  errors:
+  errors: 
     messages:
       already_confirmed: "уже подтверждена. Пожалуйста, попробуйте войти в систему"
       confirmation_period_expired: "должен быть подтвержден в течении %{period}, пожалуйста, запросите подтверждение аккаунта завтра"
@@ -157,12 +159,21 @@ ru:
       user: "Пользователь"
     errors:
       models:
+        ads_item:
+          attributes:
+            title:
+              blank: 'Объявление должно содержать заголовок'
+              too_long: 'Слишком много символов'
+            text:
+              too_long: 'Слишком много символов'
         user:
           attributes:
             email:
               taken: 'уже используется'
             password_confirmation:
               confirmation: 'Пароль не подтвержден'
+
+  category_cant_be_blank: 'Необходимо выбрать категорию'
+  ad_created: 'Объявление успешно добавлено'
+  ad_not_created: 'Объявление не добавлено'
   
-  auto: 'Авто'
-  other: 'Другая'

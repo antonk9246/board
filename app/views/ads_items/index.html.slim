@@ -2,33 +2,37 @@
   .row
     .col-sm-12.offset-sm-0.col-md-6.offset-md-3
       = form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f|
-        - if @ads_item.errors.any?
-          #error_explanation
-            p.lead
-              = pluralize(@ads_item.errors.count, "error")
-                | prohibited this post from being saved:
-            ul.list-unstyled
-              - @ads_item.errors.full_messages.each do |msg|
-                li= msg
         .card.card-outline-secondary
           .card-block
             h1= t 'new_ad'
+             = @category.ads_items
             .form-group
               = t 'title'
               br
-              = f.text_field :title, :class => 'form-control', :placeholder => "#{t 'enter_title'}"
+                = f.text_field :title, :class => 'form-control', :placeholder => "#{t 'enter_title'}"
+                .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :title)
             .form-group
               = t 'category'
               br
-              = f.collection_select :category_id, Category.all, :id, locale
-            .form-group
+                = f.collection_select :category_id, Category.all, :id, locale
+                .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :category)
               .field
                 = t 'images'
                 = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"
+                .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :image)
             .form-group
               = t 'text'
               br
-              = f.text_area :text, :class => 'form-control'
+                = f.text_area :text, :class => 'form-control'
+                .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :text)
             button.btn.btn-primary type="f.submit" = t 'buttons.submit'
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
@@ -45,8 +49,7 @@
       = link_to "▲", url_for( :sort => params[:sort], :direction => 'asc'), type: "link", class: "nav-link"
       = link_to "▼", url_for( :sort => params[:sort], :direction => 'desc'), type: "link", class: "nav-link"
       h5
-        = I18n.t('sorted_by')
-        = I18n.t"#{params[:sort]}"
+        = I18n.t('sorted_by'".""#{params[:sort]}") 
     - @ads_items.each do |item|
       - if item.approved != true
         .card.card-outline-primary
@@ -72,11 +75,11 @@
                   = link_to "#{t('buttons.edit')}", edit_ads_item_url(item), :class => "btn btn-primary"
                 - if policy(item).destroy?
                   = link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete, data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger"
-            .card-footer
-              small.text-muted
-                | send by #{item.user.email}
-              small.text-muted
-                | at  #{item.updated_at.strftime("%d.%m.%Y %H:%M")}
+          .card-footer
+            small.text-muted
+              | send by #{item.user.email}
+            small.text-muted
+              | at  #{item.updated_at.strftime("%d.%m.%Y %H:%M")}
       - else
         .card.card-outline-secondary
           .card-block

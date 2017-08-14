@@ -36,15 +36,13 @@ class AdsItemsController < ApplicationController
     @ads_items = AdsItem.order(:title).page params[0]
     @ads_item.user = current_user
     authorize @ads_item
-
-    respond_to do |format|
-      if @ads_item.save
-        format.html { redirect_to @ads_item, notice: (t 'ad.created').to_s }
-        format.json { render :show, status: :created, location: @ads_item }
-      else
-        format.html { redirect_to @ads_item, notice: (t 'ad.not_created').to_s }
-        format.json { render json: @ads_item.errors, status: :unprocessable_entity }
-      end
+    if @ads_item.save
+      flash[:notice] = t 'ad_created'
+      redirect_to :back
+    else
+      flash[:notice] = t 'ad_not_created'
+      params[:sort] = 'date'
+      render :new
     end
   end
 

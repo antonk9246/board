@@ -11,7 +11,7 @@ FactoryGirl.define do
     id 1
     admin false
   end
-  
+
   factory :admin, class: User do
     email 'admin@admin.com'
     password 'adminadmin'

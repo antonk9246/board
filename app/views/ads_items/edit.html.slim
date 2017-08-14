@@ -6,27 +6,34 @@
     .card
       .card-block
         = form_for @ads_item, url: {action: :update} do |f|
-          - if @ads_item.errors.any?
-            #error_explanation
-              h2
-                = pluralize(@ads_item.errors.count, "error")
-                | prohibited
-                | this ads_items from being saved:
-              ul
-                - @ads_item.errors.full_messages.each do |msg|
-                  li= msg
           .form-group
             - @ads_item.images.each do |image|
               = image_tag(image.url.to_s, class: 'card-img-top img-fluid mx-auto d-block')
             .field
-              = f.label :images
+              = t 'images'
               = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"
+              .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :image)
             .form-group
-              div= f.label :title
+              = t 'title'
               = f.text_field :title, :class => 'form-control'
+              .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :title)
             .form-group
-              div= f.label :text
+              = t 'category'
+              br
+                = f.collection_select :category_id, Category.all, :id, locale
+                .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :category)
+            .form-group
+              = t 'text'
               = f.text_area :text, :class => 'form-control'
+              .form-group.has-error
+                  #helpBlock2.help-block
+                    = error_message_on(f.object, :text)
             button.btn.btn-primary type="f.submit" = t'buttons.submit'
             .form-group
               - if @ads_item.approved == true

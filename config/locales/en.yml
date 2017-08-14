@@ -26,7 +26,10 @@ en:
   new_password_confirmation: 'Confirmation new password'
 
   sort_by: 'Sort by '
-  sorted_by: 'Sorted by '
+  sorted_by:
+    sorted_by:
+    date: 'Sorted by date'
+    author: 'Sorted by author'
   sort:
     date: 'date'
     author: 'author'
@@ -112,12 +115,18 @@ en:
   activerecord:
     errors:
         models:
+          ads_item:
+            attributes:
+              title:
+                blank: 'Ad must include a title'
           user:
             attributes:
               email:
                 taken: 'taken'
               password_confirmation:
-                confirmation: 'Пароль не подтвержден'
+                confirmation: 'Password not confirmed'
   
-  auto: 'Auto'
-  other: 'Other'
+  category_cant_be_blank: 'You must choose the category'
+  ad_created: 'Ad was created'
+  ad_not_created: 'Ad not created'
+  

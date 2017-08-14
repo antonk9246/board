@@ -19,6 +19,6 @@ feature 'Sign up', :devise do
   scenario 'user can not sign up with short password' do
     user = FactoryGirl.create(:user)
     signup('test@example.com', 'password1', 'password1')
-    expect(page).to have_content 'Email has already been taken'
+    expect(page).to have_content 'Email taken'
   end
 end

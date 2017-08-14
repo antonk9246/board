@@ -1,5 +1,6 @@
 ActiveAdmin.register AdsItem do
   config.clear_action_items!
+  actions :all, :except => [:new]
   scope :all
   index as: :table do
     column :id
@@ -15,7 +16,7 @@ ActiveAdmin.register AdsItem do
       links += ' '
       links += link_to I18n.t('active_admin.edit'), edit_ads_item_path(resource)
       links += ' '
-      links += link_to I18n.t('active_admin.delete'), ads_item_path(resource),
+      links += link_to I18n.t('active_admin.delete'), admin_ads_item_path(resource),
                        confirm: 'Are you sure?', method: :delete
       links
     end

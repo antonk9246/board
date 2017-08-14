@@ -24,7 +24,7 @@ class UsersController < ApplicationController
                   notice: (t 'user.avatar_not_updated').to_s
     else
       @user.update(user_params)
-      redirect_to ads_items_url, notice: (t 'user.avatar_updated').to_s
+      redirect_to ads_items_user_page_url, notice: (t 'user.avatar_updated').to_s
     end
   end
 
