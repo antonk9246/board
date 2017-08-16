@@ -60,6 +60,9 @@ en:
     'submit': 'Submit'
     'change_avatar': 'Change avatar'
     'change_password': 'Change password'
+    'search': "Search"
+  add_new_ad: 'Add new ad'
+  find: "I want to find..."
 
   published_by: 'Published by'
 

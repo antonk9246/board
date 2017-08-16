@@ -32,3 +32,8 @@
                   #helpBlock2.help-block
                     = error_message_on(f.object, :text)
             button.btn.btn-primary type="f.submit" = t 'buttons.submit'
+.row
+  .col-sm-12.offset-sm-0.col-md-8.offset-md-2
+    nav.breadcrumb
+      = link_to "#{t('back')}", ads_items_path, class: "breadcrumb-item"
+      span.breadcrumb-item.active= @ads_item.title

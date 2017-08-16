@@ -16,6 +16,7 @@ gem 'activeadmin'
 gem 'slim'
 gem 'slim-rails'
 gem "paperclip"
+gem 'pg_search'
 
 gem 'pundit'
 gem 'pg'

@@ -110,5 +110,5 @@
                 | published by #{item.user.email}
               small.text-muted
                 | at  #{item.approval_date.strftime("%d.%m.%Y %H:%M")}
-    nav aria-label=("Page navigation example")
+    ul.nav aria-label=("Page navigation example") 
       = paginate @ads_items

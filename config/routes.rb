@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  resources :search_content_for, only: [:index]
   get 'ads_items/user_page'
   root 'ads_items#index'
   scope '/:locale', locale: /en|ru/ do

@@ -44,6 +44,9 @@ ru:
     'submit': 'Отправить'
     'change_avatar': 'Изменить аватар'
     'change_password': 'Изменить пароль'
+    'search': "Найти"
+  add_new_ad: 'Добавить объявление'
+  find: "Я хочу найти..."
 
   published_by: 'Опубликовано'
 
