@@ -111,6 +111,10 @@ en:
     'approved': 'Approved by admin'
     'published': 'Ad sent to admin'
     'return_to_drafts': 'Ad submit to drafts'
+
+  categories:
+    delete: 'Category deleted'
+    not_delete: 'You can only delete an empty category'
   
   user:
     'password_updated': 'Password was successfully updated'
