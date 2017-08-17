@@ -1,5 +1,29 @@
 class AdsItem < ApplicationRecord
   include PgSearch
+  include AASM
+  aasm do
+    state :draft, :initial => true
+    state :new
+    state :approved
+    state :archived
+
+    event :to_new do
+      transitions :from => :draft, :to => :new
+    end
+
+    event :approve do
+      transitions :from => :new, :to => :approved
+    end
+
+    event :archive do
+      transitions :from => :approved, :to => :archived
+    end
+
+    event :return do
+      transitions :from => :new, :to => :draft
+    end
+  end
+  
   pg_search_scope :search_content_for, :against => { :title => 'A', :text => 'B'}, using: { tsearch: { any_word: true } }
   validates :title, presence: true
   validates :title, length: { maximum: 100 }

@@ -36,7 +36,7 @@
                     = error_message_on(f.object, :text)
             button.btn.btn-primary type="f.submit" = t'buttons.submit'
             .form-group
-              - if @ads_item.approved == true
+              - if @ads_item.aasm_state == 'approved'
                 small.text-muted
                   | published by #{@ads_item.user.email}
                 small.text-muted

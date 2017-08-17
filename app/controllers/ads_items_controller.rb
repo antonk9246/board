@@ -55,7 +55,7 @@ class AdsItemsController < ApplicationController
   def update
     respond_to do |format|
       if @ads_item.update(ads_items_params)
-        @ads_item.approved = nil
+        @ads_item.aasm_state = :draft
         @ads_item.approval_date = nil
         @ads_item.save
         format.html { redirect_to @ads_item, notice: (t 'ad.updated').to_s }
@@ -75,12 +75,34 @@ class AdsItemsController < ApplicationController
     end
   end
 
-  def set_approve
+  def to_new
     @ads_item = AdsItem.find(params[:ads_item_id])
-    @ads_item.approved = true
+    @ads_item.aasm_state = :new
+    @ads_item.save
+    redirect_to :back, notice: (t 'ad.published').to_s
+  end
+
+  def approve
+    @ads_item = AdsItem.find(params[:ads_item_id])
+    @ads_item.aasm_state = :approved
     @ads_item.approval_date = Time.zone.now.strftime('%d.%m.%Y %H:%M')
     @ads_item.save
-    redirect_to ads_items_url, notice: (t 'ad.approved').to_s
+    redirect_to :back, notice: (t 'ad.approved').to_s
+  end
+
+  def return
+    @ads_item = AdsItem.find(params[:ads_item_id])
+    @ads_item.aasm_state = :draft
+    @ads_item.approval_date = Time.zone.now.strftime('%d.%m.%Y %H:%M')
+    @ads_item.save
+    redirect_to :back, notice: (t 'ad.return_to_drafts').to_s
+  end
+  
+  def archive
+    @ads_item = AdsItem.find(params[:ads_item_id])
+    @ads_item.aasm_state = :archived
+    @ads_item.save
+    redirect_to :back, notice: (t 'ad.return_to_drafts').to_s
   end
 
   private
@@ -95,6 +117,6 @@ class AdsItemsController < ApplicationController
   end
 
   def ads_items_params
-    params.require(:ads_item).permit(:title, :text, :category_id,{ images: [] }, :approved, :approval_date, :user_id)
+    params.require(:ads_item).permit(:title, :text, :category_id,{ images: [] }, :approved, :approval_date, :user_id, :aasm_state)
   end
 end

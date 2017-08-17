@@ -9,10 +9,9 @@ class AdsItemPolicy < ApplicationPolicy
 
     def resolve
       if user.try(:admin?)
-        scope.all
+        scope.where(:aasm_state == :approved, :aasm_state == :new)
       else
-        scope.where(approved: true,
-                    approval_date: (Time.zone.now - 3.day)..Time.zone.now)
+        scope.where(:aasm_state == :approved)
       end
     end
   end
@@ -41,7 +40,19 @@ class AdsItemPolicy < ApplicationPolicy
     true if user.try(:admin?) || (user.present? && user == ads_item.user)
   end
 
-  def set_approve?
+  def to_new?
+    true if user.present? && user == ads_item.user
+  end
+
+  def approve?
+    true if user.try(:admin?)
+  end
+
+  def return?
+    true if user.present? && user == ads_item.user
+  end 
+  
+  def archive?
     true if user.try(:admin?)
   end
 

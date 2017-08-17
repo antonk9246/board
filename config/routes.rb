@@ -6,16 +6,20 @@ Rails.application.routes.draw do
     get 'ads_items', to: 'ads_items#index'
     resources :ads_items
     devise_for :users
-    resource :user, only: [:edit] do
+    resource :user, only: [:edit, :destroy] do
       collection do
         patch 'update_password'
         patch 'update_avatar'
+        delete 'user_delete'
       end
     end
     ActiveAdmin.routes(self)
   end
   
   resources :ads_items do
-    patch :set_approve
+    patch :to_new
+    patch :approve
+    patch :archive
+    patch :return
   end
 end

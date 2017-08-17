@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_delete
+    @user = User.find(current_user.id)
+    @user.destroy
+    redirect_to ads_items_path, notice: (t 'user.delete').to_s
+  end
+
   def update_avatar
     @user = User.find(current_user.id)
     if params[:user].nil?

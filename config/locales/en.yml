@@ -61,6 +61,11 @@ en:
     'change_avatar': 'Change avatar'
     'change_password': 'Change password'
     'search': "Search"
+    'to_new': "Publish"
+    'approve': "Approve"
+    'return': "Submit to draft"
+    'delete_profile': 'Delete profile'
+
   add_new_ad: 'Add new ad'
   find: "I want to find..."
 
@@ -104,6 +109,8 @@ en:
     'not_created': 'Ad not created'
     'dont_have_title': 'Ad must have a title'
     'approved': 'Approved by admin'
+    'published': 'Ad sent to admin'
+    'return_to_drafts': 'Ad submit to drafts'
   
   user:
     'password_updated': 'Password was successfully updated'
