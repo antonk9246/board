@@ -97,13 +97,6 @@ class AdsItemsController < ApplicationController
     @ads_item.save
     redirect_to :back, notice: (t 'ad.return_to_drafts').to_s
   end
-  
-  def archive
-    @ads_item = AdsItem.find(params[:ads_item_id])
-    @ads_item.aasm_state = :archived
-    @ads_item.save
-    redirect_to :back, notice: (t 'ad.return_to_drafts').to_s
-  end
 
   private
 

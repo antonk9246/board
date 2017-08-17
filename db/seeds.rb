@@ -21,6 +21,7 @@ AdsItem.create(id: 1, user_id: 1, approval_date: 5.days.ago, category_id: 1, tit
 AdsItem.create(id: 2, user_id: 1, approval_date: 2.days.ago, category_id: 1, title: "2 days ago", aasm_state: :approved)
 AdsItem.create(id: 3, user_id: 1, approval_date: 3.days.ago, category_id: 1, title: "3 days ago", aasm_state: :approved)
 AdsItem.create(id: 4, user_id: 1, approval_date: 10.days.ago, category_id: 1, title: "10 days ago", aasm_state: :approved)
+AdsItem.create(id: 5, user_id: 1, approval_date: 10.days.ago, category_id: 1, title: "new", aasm_state: :new)
 
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)

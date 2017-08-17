@@ -18,6 +18,7 @@
       .card
         .card-block
           = link_to(item) do
+            = item.aasm_state
             - if item.images.empty?
               img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" /
             - else

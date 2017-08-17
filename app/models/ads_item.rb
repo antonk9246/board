@@ -15,10 +15,6 @@ class AdsItem < ApplicationRecord
       transitions :from => :new, :to => :approved
     end
 
-    event :archive do
-      transitions :from => :approved, :to => :archived
-    end
-
     event :return do
       transitions :from => :new, :to => :draft
     end

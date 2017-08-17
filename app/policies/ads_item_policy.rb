@@ -9,9 +9,9 @@ class AdsItemPolicy < ApplicationPolicy
 
     def resolve
       if user.try(:admin?)
-        scope.where(:aasm_state == :approved, :aasm_state == :new)
+        scope.where(:aasm_state => [:approved, :new])
       else
-        scope.where(:aasm_state == :approved)
+        scope.where(:aasm_state => :approved)
       end
     end
   end
@@ -52,10 +52,6 @@ class AdsItemPolicy < ApplicationPolicy
     true if user.present? && user == ads_item.user
   end 
   
-  def archive?
-    true if user.try(:admin?)
-  end
-
   private
 
   def ads_item

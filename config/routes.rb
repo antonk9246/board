@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   resources :ads_items do
     patch :to_new
     patch :approve
-    patch :archive
     patch :return
   end
 end
