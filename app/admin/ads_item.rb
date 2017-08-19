@@ -3,13 +3,17 @@ ActiveAdmin.register AdsItem do
   actions :all, :except => [:new]
   scope :all
 
+  filter :user, :as => :select, :collection => User.all.map(&:email)
+  filter :aasm_state, :as => :select, :collection => AdsItem.all.map(&:aasm_state)
+  filter :created_at
+  filter :approval_date
+
   index as: :table do
     column :id
     column :user
     column :title
     column :aasm_state
     column :text
-    column :approved
     column :created_at
 
     column :actions do |resource|
