@@ -20,7 +20,15 @@ class AdsItem < ApplicationRecord
     end
   end
   
-  pg_search_scope :search_content_for, :against => { :title => 'A', :text => 'B'}, using: { tsearch: { any_word: true } }
+  pg_search_scope :search, :against => { :title => 'A', :text => 'B'}, using: { tsearch: { any_word: true } }
+
+  def self.perform_search(keyword)
+    if keyword.present?
+    then AdsItem.search(keyword)
+    else AdsItem.all
+    end
+  end
+
   validates :title, presence: true
   validates :title, length: { maximum: 100 }
   validates :text, length: { maximum: 800 }

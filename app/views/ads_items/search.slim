@@ -1,44 +1,6 @@
-- if policy(@ads_item).create?
-  .row
-    .col-sm-12.offset-sm-0.col-md-6.offset-md-3
-      = form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f|
-        .card.card-outline-secondary
-          .card-block
-            h1= t 'new_ad'
-             = @category.ads_items
-            .form-group
-              = t 'title'
-              br
-                = f.text_field :title, :class => 'form-control', :placeholder => "#{t 'enter_title'}"
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :title)
-            .form-group
-              = t 'category'
-              br
-                = f.collection_select :category_id, Category.all, :id, locale
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :category)
-              .field
-                = t 'images'
-                = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :image)
-            .form-group
-              = t 'text'
-              br
-                = f.text_area :text, :class => 'form-control'
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :text)
-            button.btn.btn-primary type="f.submit" = t 'buttons.submit'
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
     h1=  t 'ads_board'
-    ul.nav aria-label=("Page navigation example") 
-      = paginate @ads_items
     ul.nav.nav-pills
       .btn-group role="group"
         a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="http://example.com" 
@@ -56,7 +18,6 @@
           .card-block
             = link_to(item) do
               - if item.images.empty?
-                img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png"
               - else
                 = image_tag(item.images.first.url.to_s, class: "card-img-top img-fluid mx-auto d-block", alt: "Card image")
               h4.card-title
@@ -116,5 +77,3 @@
                 | published by #{item.user.email}
               small.text-muted
                 | at  #{item.approval_date.strftime("%d.%m.%Y %H:%M")}
-    ul.nav aria-label=("Page navigation example") 
-      = paginate @ads_items

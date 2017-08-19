@@ -12,6 +12,8 @@
            p.card-text = @ads_item.category.ru
         - else
            p.card-text = @ads_item.category.en
+        - if policy(@ads_item).destroy?
+          .label.label-primary = I18n.t "#{@ads_item.aasm_state}"
         p.card-text= @ads_item.text
         .btn-group aria-label=("Basic example") role="group" 
           - if policy(@ads_item).approve? && @ads_item.aasm_state == "new"

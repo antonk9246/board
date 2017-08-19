@@ -49,6 +49,8 @@ ru:
     'approve': "Одобрить"
     'return': "Отправить в черновики"
     'delete_profile': 'Удалить профиль'
+
+  approved: 'Одобрено'
   
   categories:
     delete: 'Категория удалена'

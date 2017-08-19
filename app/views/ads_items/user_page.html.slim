@@ -18,7 +18,6 @@
       .card
         .card-block
           = link_to(item) do
-            = item.aasm_state
             - if item.images.empty?
               img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" /
             - else
@@ -30,6 +29,8 @@
             p.card-text = item.category.ru
           - else
             p.card-text = item.category.en
+          - if policy(item).destroy?
+            .label.label-primary = I18n.t "#{item.aasm_state}"
           p.card-text= item.text
           .btn-group aria-label=("Basic example") role="group" 
             - if policy(item).approve? && item.aasm_state == "new"

@@ -2,11 +2,12 @@ ActiveAdmin.register AdsItem do
   config.clear_action_items!
   actions :all, :except => [:new]
   scope :all
+
   index as: :table do
     column :id
     column :user
     column :title
-    column :category
+    column :aasm_state
     column :text
     column :approved
     column :created_at

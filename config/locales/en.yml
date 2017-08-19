@@ -66,6 +66,8 @@ en:
     'return': "Submit to draft"
     'delete_profile': 'Delete profile'
 
+  approved: 'Approved'
+
   add_new_ad: 'Add new ad'
   find: "I want to find..."
 

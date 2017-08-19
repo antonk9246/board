@@ -14,13 +14,16 @@ class AdsItemsController < ApplicationController
       params[:sort] = 'date'
       ads = policy_scope(AdsItem).order(approval_date: :desc)
     end
-      if params[:query].present?
-        params[:sort] = 'date'
-        ads = policy_scope(AdsItem).order(approval_date: :desc)
-        @ads_items = ads.search_content_for(params[:query]).page params[:page]
-      else
-        @ads_items = ads.page params[:page]
-      end
+    @ads_items = ads.page params[:page]
+  end
+
+  def search
+    if params[:search].present?
+      params[:sort] = 'date'
+      @ads_items = policy_scope(AdsItem).order(approval_date: :desc).perform_search(params[:search])
+    else
+      @ads_items = AdsItem.all
+    end
   end
 
   def show
