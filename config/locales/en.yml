@@ -53,6 +53,15 @@ en:
 
   approve: 'Approve'
 
+  enter_comment: 'Enter your comment'
+
+  states:
+    'draft': 'Draft'
+    'new': 'New ad'
+    'approved': 'Approved'
+    'refused': 'Refused'
+    'archived': 'Archived'
+
   buttons:
     'show': 'Show'
     'edit': 'Edit'
@@ -113,6 +122,9 @@ en:
     'approved': 'Approved by admin'
     'published': 'Ad sent to admin'
     'return_to_drafts': 'Ad submit to drafts'
+    'decline': 'Decline ad'
+
+  approved: 'Approved'
 
   categories:
     delete: 'Category deleted'

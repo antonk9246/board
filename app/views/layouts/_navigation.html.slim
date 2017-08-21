@@ -25,7 +25,7 @@
     u1.nav.nav-pills.float-left
       = link_to 'Ads Board', ads_items_path, :class => 'nav-link'
       .form-inline.my-2.my-lg-0
-        = form_for(:search, :url => ads_items_search_url, :method=> "GET" ) do |f|
+        = form_for(:search, :url => ads_items_search_url, :method => "GET" ) do |f|
           = f.text_field :search, placeholder: "#{t 'find'}", class: "form-control"
           button.btn.btn-primary.glyphicon.glyphicon-search type="f.submit"
 

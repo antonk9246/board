@@ -18,6 +18,7 @@ gem 'slim-rails'
 gem "paperclip"
 gem 'pg_search'
 gem 'aasm'
+gem 'jquery-rails'
 
 gem 'pundit'
 gem 'pg'

@@ -4,7 +4,7 @@ feature 'click buttons', :devise do
   scenario 'guest can see and click show button' do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     visit root_path
     expect(page).to have_text("2207")
     find_link(I18n.t'buttons.show').click
@@ -12,10 +12,10 @@ feature 'click buttons', :devise do
     expect(page).to have_text(I18n.t'back')
   end
 
-  scenario 'guest can not see edit, delete and approve buttons' do
+  scenario 'guest can not see edit and delete buttons' do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     visit root_path
     expect(page).to have_text("2207")
     expect(page).to have_no_text(I18n.t'buttons.edit')
@@ -27,7 +27,7 @@ feature 'click buttons', :devise do
   scenario 'user can see and click show button' do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(user.email, user.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -39,7 +39,7 @@ feature 'click buttons', :devise do
   scenario 'user(author) can see and click edit button' do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(user.email, user.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -52,7 +52,7 @@ feature 'click buttons', :devise do
   scenario 'user(author) can see and click delete button' do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(user.email, user.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -64,21 +64,20 @@ feature 'click buttons', :devise do
   scenario 'user(author) can not see approve button' do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :new, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(user.email, user.password)
     visit root_path
-    expect(page).to have_text("2207")
     expect(page).to have_no_text(I18n.t'approve')
   end
 
-  scenario 'user(not author) can not see edit, delete and approve buttons' do
+  scenario 'user(not author) can not see edit and delete buttons' do
     user = FactoryGirl.create(:user, id: 2)
     user1 = FactoryGirl.create(:user1)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :new, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(user.email, user.password)
     visit root_path
-    expect(page).to have_text("2207")
+    expect(page).to have_no_text("2207")
     expect(page).to have_no_text(I18n.t'buttons.edit')
     expect(page).to have_no_text(I18n.t'buttons.delete')
     expect(page).to have_no_text(I18n.t'approve')
@@ -89,7 +88,7 @@ feature 'click buttons', :devise do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
     admin = FactoryGirl.create(:admin, id: 100)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(admin.email, admin.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -101,7 +100,7 @@ feature 'click buttons', :devise do
   scenario 'admin(author) can see and click edit button' do
     admin = FactoryGirl.create(:admin, id: 100)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 100, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 100, id: 1, category_id: 2)
     signin(admin.email, admin.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -116,7 +115,7 @@ feature 'click buttons', :devise do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
     admin = FactoryGirl.create(:admin, id: 100)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(admin.email, admin.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -126,7 +125,7 @@ feature 'click buttons', :devise do
   scenario 'admin(author) can see and click delete button' do
     admin = FactoryGirl.create(:admin, id: 100)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 100, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 100, id: 1, category_id: 2)
     signin(admin.email, admin.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -140,7 +139,7 @@ feature 'click buttons', :devise do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
     admin = FactoryGirl.create(:admin, id: 100)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", approved: true, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", aasm_state: :approved, approval_date: (Time.now - 1.day), user_id: 1, id: 1, category_id: 2)
     signin(admin.email, admin.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -153,7 +152,7 @@ feature 'click buttons', :devise do
   scenario 'admin(author) can see and click approve button' do
     admin = FactoryGirl.create(:admin, id: 100)
     category = FactoryGirl.create(:category, id: 2)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", user_id: 100, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", user_id: 100, id: 1, category_id: 2, aasm_state: :new)
     signin(admin.email, admin.password)
     visit root_path
     expect(page).to have_text("2207")
@@ -166,7 +165,7 @@ feature 'click buttons', :devise do
     user = FactoryGirl.create(:user, id: 1)
     category = FactoryGirl.create(:category, id: 2)
     admin = FactoryGirl.create(:admin, id: 100)
-    ads_item = FactoryGirl.create(:ads_item, title: "2207", user_id: 1, id: 1, category_id: 2)
+    ads_item = FactoryGirl.create(:ads_item, title: "2207", user_id: 1, id: 1, category_id: 2, aasm_state: :new)
     signin(admin.email, admin.password)
     visit root_path
     expect(page).to have_text("2207")

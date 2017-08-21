@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :ads_items do
     patch :to_new
     patch :approve
+    patch :decline
     patch :return
   end
 end

@@ -5,6 +5,7 @@ class AdsItem < ApplicationRecord
     state :draft, :initial => true
     state :new
     state :approved
+    state :refused
     state :archived
 
     event :to_new do
@@ -13,6 +14,10 @@ class AdsItem < ApplicationRecord
 
     event :approve do
       transitions :from => :new, :to => :approved
+    end
+
+    event :decline do
+      transitions :from => :new, :to => :refused
     end
 
     event :return do

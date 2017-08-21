@@ -24,6 +24,10 @@ class AdsItemPolicy < ApplicationPolicy
     ads_item.approved? == true || user.try(:admin?) || user == ads_item.user
   end
 
+  def search
+    true
+  end
+
   def create?
     user.present?
   end
@@ -41,15 +45,19 @@ class AdsItemPolicy < ApplicationPolicy
   end
 
   def to_new?
-    true if user.present? && user == ads_item.user
+    true if user.present? && user == ads_item.user && ads_item.aasm_state == 'draft'
   end
 
   def approve?
-    true if user.try(:admin?)
+    true if user.try(:admin?) && ads_item.aasm_state == 'new'
   end
 
+  def decline?
+    true if user.try(:admin?) && ads_item.aasm_state == 'new'
+  end 
+
   def return?
-    true if user.present? && user == ads_item.user
+    true if user.present? && user == ads_item.user && ads_item.aasm_state == 'new'
   end 
   
   private
