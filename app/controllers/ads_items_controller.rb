@@ -20,7 +20,8 @@ class AdsItemsController < ApplicationController
   def search
     if params[:search].present?
       params[:sort] = 'date'
-      @ads_items = policy_scope(AdsItem).order(approval_date: :desc).perform_search(params[:search])
+      @ads_items = policy_scope(AdsItem).order(approval_date: :desc)
+                                        .perform_search(params[:search][:q])
     else
       @ads_items = AdsItem.all
     end

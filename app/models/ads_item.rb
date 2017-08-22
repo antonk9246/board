@@ -29,8 +29,9 @@ class AdsItem < ApplicationRecord
 
   def self.perform_search(keyword)
     if keyword.present?
-    then AdsItem.search(keyword)
-    else AdsItem.all
+      AdsItem.search(keyword)
+    else
+      AdsItem.all
     end
   end
 
