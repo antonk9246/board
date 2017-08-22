@@ -57,3 +57,8 @@
               | send by #{item.user.email}
             small.text-muted
               | at  #{item.updated_at.strftime("%d.%m.%Y %H:%M")}
+.row
+  .col-sm-12.offset-sm-0.col-md-8.offset-md-2
+    nav.breadcrumb
+      = link_to "#{t('back')}", ads_items_path, class: "breadcrumb-item"
+      span.breadcrumb-item.active = I18n.t'user_page'

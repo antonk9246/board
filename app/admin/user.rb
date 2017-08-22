@@ -2,6 +2,9 @@ ActiveAdmin.register User do
   permit_params :admin, :email, :password, :password_confirmation
   scope :all
 
+  filter :admin
+  filter :created_at
+
   index :as => :table do
     column :id
     column :email

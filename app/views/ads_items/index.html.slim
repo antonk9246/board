@@ -80,6 +80,7 @@
                 - if policy(item).destroy?
                   = link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete, data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger"
               - if policy(item).decline?
+                = link_to "Comments", "#", id:"comments-link"
                 = form_for @ads_item, url: ads_item_decline_url(item), method: :patch  do |f|
                   = f.text_field :comment, :class => 'form-control', :placeholder => "#{t 'enter_comment'}"
                   button.btn.btn-danger type="f.submit" = t 'buttons.decline'

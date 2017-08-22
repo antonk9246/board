@@ -55,6 +55,10 @@ en:
 
   enter_comment: 'Enter your comment'
 
+  user_page: 'User page'
+
+  search_page: 'Search'
+
   states:
     'draft': 'Draft'
     'new': 'New ad'

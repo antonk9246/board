@@ -24,7 +24,7 @@ class AdsItemPolicy < ApplicationPolicy
     ads_item.approved? == true || user.try(:admin?) || user == ads_item.user
   end
 
-  def search
+  def search?
     true
   end
 
