@@ -47,10 +47,10 @@ class AdsItemsController < ApplicationController
     @ads_item.user = current_user
     authorize @ads_item
     if @ads_item.save
-      flash[:notice] = t 'ad_created'
+      flash[:notice] = t 'ad.сreated'
       redirect_to :back
     else
-      flash[:notice] = t 'ad_not_created'
+      flash[:notice] = t 'ad.not_created'
       params[:sort] = 'date'
       render :new
     end

@@ -3,7 +3,7 @@ ActiveAdmin.register AdsItem do
   actions :all, :except => [:new]
   scope :all
 
-  filter :user, :as => :select, :collection => User.all.map(&:id)
+  filter :user, :as => :select, collection: proc { User.distinct.pluck :email, :id }
   filter :aasm_state, :as => :select, :collection => [:draft, :new, :refused, :approved, :archived]
   filter :created_at
   filter :approval_date
@@ -11,7 +11,6 @@ ActiveAdmin.register AdsItem do
   index as: :table do
     column :id
     column :user
-    column :user_id
     column :title
     column :aasm_state
     column :comment

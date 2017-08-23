@@ -78,6 +78,7 @@ en:
     'approve': "Approve"
     'return': "Submit to draft"
     'delete_profile': 'Delete profile'
+    'decline': 'Decline'
 
   approved: 'Approved'
 
@@ -120,7 +121,7 @@ en:
   ad:
     'updated': 'Ad was successfully updated'
     'destroyed': 'Ad was successfully destroyed'
-    'created': 'Ad was successfully created'
+    'created': 'Ad was successfully created at drafts'
     'not_created': 'Ad not created'
     'dont_have_title': 'Ad must have a title'
     'approved': 'Approved by admin'
@@ -159,6 +160,5 @@ en:
                 confirmation: 'Password not confirmed'
   
   category_cant_be_blank: 'You must choose the category'
-  ad_created: 'Ad was created'
-  ad_not_created: 'Ad not created'
+  
   

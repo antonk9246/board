@@ -2,5 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  $('#comments-link').click "ajax:success", (e, data, status, xhr) ->
-    alert "Clicked!"
+  $('#comments-link').click ->
+    $('#comments-form').fadeToggle()
+    
+$ ->
+  $('#new-ad-link').click ->
+    $('#new-ad-form').fadeToggle()
+
+

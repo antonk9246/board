@@ -37,7 +37,7 @@ class AdsItem < ApplicationRecord
 
   validates :title, presence: true
   validates :title, length: { maximum: 100 }
-  validates :text, length: { maximum: 800 }
+  validates :text, length: { maximum: 300 }
   mount_uploaders :images, ImageUploader
   belongs_to :user
   belongs_to :category
