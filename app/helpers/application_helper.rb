@@ -1,10 +1,8 @@
 module ApplicationHelper
-  def sortable(title, column, direction)
-    direction = sort_direction == "asc" ? "desc" : "asc"
-    icon = sort_direction == 'desc' ? '↓' : '↑'
-
-    link_to ads_items_path, class: 'tiny button secondary', id: column do
-      "#{title} &nbsp; #{icon}".html_safe
-    end
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    css_class = column == sort_column ? "current #{sort_direction}" : nil
+    direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    link_to title, params.merge(:sort => column, :direction => direction, :page => nil), {:class => css_class}
   end
 end

@@ -23,9 +23,11 @@
         = link_to "#{t 'log_in'}", new_user_session_path, class: "nav-link"
         = link_to "#{t 'sign_up'}", new_user_registration_path, class: "nav-link"
     u1.nav.nav-pills.float-left
-      = link_to 'Ads Board', ads_items_path, :class => 'nav-link'
+      = link_to 'Ads Board', ads_items_path(locale), :class => 'nav-link'
       .form-inline.my-2.my-lg-0
         = form_for :search, :url => ads_items_search_url, :method => "GET" do |f|
+          = hidden_field :sort, params[:sort]
+          = hidden_field :direction, params[:direction]
           = f.text_field :q, placeholder: "#{t 'find'}", class: "form-control"
           button.btn.btn-primary.glyphicon.glyphicon-search type="f.submit"
    

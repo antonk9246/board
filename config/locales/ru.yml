@@ -2,7 +2,9 @@ ru:
   time:
     formats:
       long: "%Y-%m-%d %H:%M:%S"
-      
+  
+  message_for_user: 'Новое объявление будет добавлено в черновики'
+  
   password: 'Пароль'
   password_confirmation: 'Подтверждение пароля'
   new_password: 'Новый пароль'
@@ -102,6 +104,7 @@ ru:
     'approved': 'Одобрено администратором'
     'published': 'Объявление отправлено на рассмотрение администратору'
     'return_to_drafts': 'Объявление отправлено в черновики'
+    'decline': 'Объявление отклонено'
     
   user:
     'password_updated': 'Пароль успешно обновлен'

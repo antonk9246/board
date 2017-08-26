@@ -8,8 +8,7 @@ ActiveAdmin.setup do |config|
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
-  # config.site_title_link = "/ads_items"
-  config.site_title_link = "/ads_items"
+  config.site_title_link = "/"
   
 
   # Set an optional image to be displayed for the header

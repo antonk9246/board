@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  message_for_user: 'The new ad will be added to the draft'
   password: 'Password'
   password_confirmation: 'Password confirmation'
   new_password: 'New password'

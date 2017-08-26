@@ -16,13 +16,12 @@ Rails.application.routes.draw do
         delete 'user_delete'
       end
     end
+    resources :ads_items do
+      patch :to_new
+      patch :approve
+      patch :decline
+      patch :return
+    end
     ActiveAdmin.routes(self)
-  end
-  
-  resources :ads_items do
-    patch :to_new
-    patch :approve
-    patch :decline
-    patch :return
   end
 end

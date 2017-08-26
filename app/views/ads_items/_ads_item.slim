@@ -1,0 +1,41 @@
+.card.card-outline-secondary
+  .card-block
+    - item.images.each do |image|
+      - if item.images.empty?
+        img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" 
+      - else
+        = image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block')
+    h4.card-title= item.title
+    -if locale == :ru
+        p.card-text = item.category.ru
+    - else
+        p.card-text = item.category.en
+    - if policy(item).destroy?
+      .label.label-primary = I18n.t "states.#{item.aasm_state}"
+    p.card-text= item.text
+    .btn-group aria-label=("Basic example") role="group" 
+      = link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary"
+      - if policy(item).update?
+        = link_to "#{t('buttons.edit')}", edit_ads_item_url(item), :class => "btn btn-primary"
+      - if policy(item).return?
+        = link_to "#{t('buttons.return')}", ads_item_return_url(item), method: :patch, :class => "btn btn-warning"
+      - if policy(item).destroy?
+        = link_to "#{t('buttons.delete')}", ads_item_url(item), method: :delete, data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger"
+  - if policy(item).approve?
+    .card-footer
+      .btn-group aria-label=("Basic example") role="group" 
+        - if policy(item).approve?
+          = link_to "#{t('buttons.approve')}", ads_item_approve_url(item), method: :patch, :class => "btn btn-success"
+        - if policy(item).decline?
+          = link_to "#{t('buttons.decline')}", "javascript:void(0)", id: "comments-link", class: "btn btn-warning"
+      #comments-form
+        = form_for item, url: ads_item_decline_url(item), method: :patch  do |f|
+          = f.text_field :comment, :class => 'form-control', :placeholder => "#{t 'enter_comment'}"
+          button.btn.btn-primary type="f.submit" = t 'buttons.submit'
+  .card-footer
+    - if item.aasm_state == 'approved'
+      small.text-muted
+        | published by #{item.user.email} at #{item.approval_date.strftime("%d.%m.%Y %H:%M")}
+    - else
+      small.text-muted
+        | send by #{item.user.email} at #{item.updated_at.strftime("%d.%m.%Y %H:%M")}

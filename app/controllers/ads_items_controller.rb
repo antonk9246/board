@@ -19,11 +19,16 @@ class AdsItemsController < ApplicationController
 
   def search
     if params[:search].present?
-      params[:sort] = 'date'
-      @ads_items = policy_scope(AdsItem).order(approval_date: :desc)
-                                        .perform_search(params[:search][:q])
+      if params[:sort] == 'date'
+        ads = policy_scope(AdsItem).order("approval_date #{sort_direction}")
+      elsif params[:sort] == 'author'
+        ads = policy_scope(AdsItem).order("user_id #{sort_direction}")
+      else
+        params[:sort] = 'date'
+        ads = policy_scope(AdsItem).order(approval_date: :desc)
+      end
+      @ads_items = ads.perform_search(params[:search][:q])
     else
-      @ads_items = AdsItem.all
     end
   end
 
@@ -47,37 +52,28 @@ class AdsItemsController < ApplicationController
     @ads_item.user = current_user
     authorize @ads_item
     if @ads_item.save
-      flash[:notice] = t 'ad.сreated'
-      redirect_to :back
+      redirect_to :back, notice: (t 'ad.created').to_s
     else
-      flash[:notice] = t 'ad.not_created'
-      params[:sort] = 'date'
-      render :new
+      render :new, notice: (t 'ad.not_created').to_s
+      
     end
     authorize @ads_item
   end
 
   def update
-    respond_to do |format|
-      if @ads_item.update(ads_items_params)
-        @ads_item.aasm_state = :draft
-        @ads_item.approval_date = nil
-        @ads_item.save
-        format.html { redirect_to @ads_item, notice: (t 'ad.updated').to_s }
-        format.json { render :show, status: :ok, location: @ads_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @ads_item.errors, status: :unprocessable_entity }
-      end
+    if @ads_item.update(ads_items_params)
+      @ads_item.aasm_state = :draft
+      @ads_item.approval_date = nil
+      @ads_item.save
+      redirect_to :back, notice: (t 'ad.updated').to_s
+    else
+      format.html { render :edit }
     end
   end
 
   def destroy
     @ads_item.destroy
-    respond_to do |format|
-      format.html { redirect_to ads_items_url, notice: (t 'ad.destroyed').to_s }
-      format.json { head :no_content }
-    end
+    redirect_to :back, notice: (t 'ad.destroyed').to_s
   end
 
   def to_new
@@ -92,7 +88,7 @@ class AdsItemsController < ApplicationController
     @ads_item.aasm_state = :approved
     @ads_item.approval_date = Time.zone.now.strftime('%d.%m.%Y %H:%M')
     @ads_item.save
-    redirect_to ads_items_url, notice: (t 'ad.approved').to_s
+    redirect_to :back, notice: (t 'ad.approved').to_s
    end
 
   def decline

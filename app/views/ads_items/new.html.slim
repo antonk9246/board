@@ -1,37 +1,6 @@
 .row
-    .col-sm-12.offset-sm-0.col-md-6.offset-md-3
-      = form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f|
-        .card.card-outline-secondary
-          .card-block
-            h1= t 'new_ad'
-            .form-group
-              = t 'title'
-              br
-                = f.text_field :title, :class => 'form-control', :placeholder => "#{t 'enter_title'}"
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :title)
-            .form-group
-              = t 'category'
-              br
-                = f.collection_select :category_id, Category.all, :id, locale
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :category)
-              .field
-                = t 'images'
-                = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :image)
-            .form-group
-              = t 'text'
-              br
-                = f.text_area :text, :class => 'form-control'
-                .form-group.has-error
-                  #helpBlock2.help-block
-                    = error_message_on(f.object, :text)
-            button.btn.btn-primary type="f.submit" = t 'buttons.submit'
+  .col-sm-12.offset-sm-0.col-md-6.offset-md-3
+    = render :partial => "new_ad_form", object: @ads_item
 .row
   .col-sm-12.offset-sm-0.col-md-8.offset-md-2
     nav.breadcrumb
