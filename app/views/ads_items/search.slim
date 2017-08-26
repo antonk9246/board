@@ -1,20 +1,22 @@
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
-    h1=  t 'ads_board'
-    ul.nav.nav-pills
-      .btn-group role="group"
-        a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="http://example.com" 
-          = t 'sort_by'
-        .dropdown-menu aria-labelledby="btnGroupDrop1" 
-          li= link_to "#{t'sort.date'}", url_for( :sort => 'date', :direction => 'asc'),  autocomplete: "off", type: "checkbox"
-          li= link_to "#{t'sort.author'}", url_for( :sort => 'author', :direction => 'asc'), autocomplete: "off", type: "checkbox"
-      = link_to "▲", url_for( :sort => params[:sort], :direction => 'asc'), type: "link", class: "nav-link"
-      = link_to "▼", url_for( :sort => params[:sort], :direction => 'desc'), type: "link", class: "nav-link"
-      h5
-        = I18n.t('sorted_by'".""#{params[:sort]}") 
-    = render :partial => "ads_items", :collection => @ads_items, :as => :item
-.row
-  .col-sm-12.offset-sm-0.col-md-8.offset-md-2
-    nav.breadcrumb
-      = link_to "#{t('back')}", ads_items_path, class: "breadcrumb-item"
-      span.breadcrumb-item.active = I18n.t'search_page'
+    
+      table
+        thead.pretty
+          tr
+            th
+              = sortable "title"
+            th
+              = sortable "approval_date"
+            th
+              = sortable "user_id"
+        tbody
+          - for ads_item in @ads_items
+            tr
+              td
+                = ads_item.title
+              td
+                = ads_item.approval_date
+              td
+                = ads_item.user_id
+      

@@ -2,7 +2,7 @@ class AdsItemsController < ApplicationController
   attr_reader :user
   before_action :set_ads_item, only: %i[show edit update destroy]
   before_action :set_approve, only: [:approved]
-  helper_method :sort_direction
+  helper_method :sort_column, :sort_direction
 
   def index
     @ads_item = AdsItem.new
@@ -18,18 +18,7 @@ class AdsItemsController < ApplicationController
   end
 
   def search
-    if params[:search].present?
-      if params[:sort] == 'date'
-        ads = policy_scope(AdsItem).order("approval_date #{sort_direction}")
-      elsif params[:sort] == 'author'
-        ads = policy_scope(AdsItem).order("user_id #{sort_direction}")
-      else
-        params[:sort] = 'date'
-        ads = policy_scope(AdsItem).order(approval_date: :desc)
-      end
-      @ads_items = ads.perform_search(params[:search][:q])
-    else
-    end
+    @ads_items = policy_scope(AdsItem).order(sort_column + " " + sort_direction)
   end
 
   def show
@@ -111,6 +100,10 @@ class AdsItemsController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+  end
+
+  def sort_column
+    AdsItem.column_names.include?(params[:sort]) ? params[:sort] : "title"
   end
 
   def set_ads_item
