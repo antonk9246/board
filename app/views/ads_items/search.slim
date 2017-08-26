@@ -9,7 +9,9 @@
             th
               = sortable "approval_date"
             th
-              = sortable "user_id"
+              = sortable "user"
+            th
+              = sortable "category"
         tbody
           - for ads_item in @ads_items
             tr
@@ -18,5 +20,7 @@
               td
                 = ads_item.approval_date
               td
-                = ads_item.user_id
+                = ads_item.user.email
+              td
+                = ads_item.category.ru
       
