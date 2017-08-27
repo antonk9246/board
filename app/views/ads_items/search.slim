@@ -1,5 +1,14 @@
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
+    .form-check.form-check-inline
+      - @categories.each do |n|
+        label.form-check-label
+          input#inlineCheckbox1.form-check-input type="checkbox" value="option1"
+            -if locale == :ru
+              = n.ru
+            -else
+              = n.en
+            | (#{n.count_of_ads})
     #ads_items
       = render "search"
       
