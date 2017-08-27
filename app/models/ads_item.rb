@@ -24,7 +24,7 @@ class AdsItem < ApplicationRecord
       transitions :from => :new, :to => :draft
     end
   end
-  
+
   pg_search_scope :search, :against => { :title => 'A', :text => 'B'}, using: { tsearch: { any_word: true } }
 
   def self.perform_search(keyword)

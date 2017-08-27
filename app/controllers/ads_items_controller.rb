@@ -18,7 +18,8 @@ class AdsItemsController < ApplicationController
   end
 
   def search
-    @ads_items = policy_scope(AdsItem).perform_search(params[:search]).order(sort_column + " " + sort_direction)
+    col = sort_column = 'user_id' ? 'users.email' : sort_column
+    @ads_items = policy_scope(AdsItem).perform_search(params[:search]).joins(:user).order(col + " " + sort_direction)
     puts sort_column
     puts sort_direction
   end
@@ -105,7 +106,7 @@ class AdsItemsController < ApplicationController
   end
 
   def sort_column
-    AdsItem.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    AdsItem.column_names.include?(params[:sort]) ? params[:sort] : 'title'
   end
 
   def set_ads_item
