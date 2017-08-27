@@ -19,6 +19,8 @@ class AdsItemsController < ApplicationController
 
   def search
     @ads_items = policy_scope(AdsItem).perform_search(params[:search]).order(sort_column + " " + sort_direction)
+    puts sort_column
+    puts sort_direction
   end
 
   def show

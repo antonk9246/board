@@ -11,5 +11,5 @@ $(document).on "turbolinks:load", ->
 
 $(document).on "turbolinks:load", ->
   $("#ads_items th a").click ->
-    $.getScript $(this).attr('href')
+    $.getScript(this.href)
     return false
