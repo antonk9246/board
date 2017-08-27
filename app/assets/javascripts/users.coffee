@@ -9,7 +9,7 @@ $(document).on "turbolinks:load", ->
   $('#new-ad-link').click ->
     $('#new-ad-form').fadeToggle()
 
-$(document).on "turbolinks:load", ->
-  $("#ads_items th a").click ->
+$(document).on 'turbolinks:load', ->
+  $(document).on 'click', '#ads_items th a', ->
     $.getScript(this.href)
-    return false
+    false
