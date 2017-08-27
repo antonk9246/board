@@ -24,6 +24,7 @@ services:
       - migration
       - bundle_install
       - db
+      - adminer
   migration:
     build: .
     command: rails db:migrate RAILS_ENV=development
