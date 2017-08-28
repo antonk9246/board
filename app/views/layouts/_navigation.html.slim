@@ -28,6 +28,7 @@
         = form_tag ads_items_search_url, :method => "get", id: "ads_item_search" do |f|
           = hidden_field_tag :sort, params[:sort]
           = hidden_field_tag :direction, params[:direction]
+          = hidden_field_tag :filter, params[:filter] = nil
           = text_field_tag :search
           = submit_tag "Search", :name => nil
    

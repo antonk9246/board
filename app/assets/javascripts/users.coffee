@@ -15,7 +15,7 @@ $(document).on 'turbolinks:load', ->
     false
 
 $(document).on 'turbolinks:load', ->
-  $(":submit").on 'ckick', ->
+  $(":submit").on 'submit', ->
     $.getScript('/ads_items/search')
     false
 

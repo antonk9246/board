@@ -1,8 +1,8 @@
-.row
-  .col-sm-12.offset-sm-0.col-md-6.offset-md-3
+.row.justify-content-center
+  .col-sm-12.offset-sm-0.col-md-6
     = render :partial => "new_ad_form", object: @ads_item
-.row
-  .col-sm-12.offset-sm-0.col-md-8.offset-md-2
+.row.justify-content-center
+  .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb
       = link_to "#{t('back')}", ads_items_path, class: "breadcrumb-item"
       span.breadcrumb-item.active = I18n.t'new_ad'

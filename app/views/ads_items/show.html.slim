@@ -1,11 +1,11 @@
-.row
-  .col-sm-12.offset-sm-0.col-md-8.offset-md-2.text-center
+.row.justify-content-center
+  .col-sm-12.offset-sm-0.col-md-6.text-center
     h4.display-4= @ads_item.title
-.row
-  .col-sm-12.offset-sm-0.col-md-6.offset-md-3
+.row.justify-content-center
+  .col-sm-12.offset-sm-0.col-md-6
     = render :partial => "ads_item", object: @ads_item, :as => :item
-.row
-  .col-sm-12.offset-sm-0.col-md-8.offset-md-2
+.row.justify-content-center
+  .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb
       = link_to "#{t('back')}", ads_items_path, class: "breadcrumb-item"
       span.breadcrumb-item.active = @ads_item.title
