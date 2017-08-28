@@ -1,17 +1,18 @@
 .row
   .col-sm-12.offset-sm-0.col-md-6.offset-md-3
-    = form_tag ads_items_search_url, :method => :get, id: "form-filter" do
-      = text_field_tag "filter"
-      = submit_tag 'Filter'
+    = form_tag ads_items_search_url, remote: true, :method => :get, class: "form-filter" do
+          = text_field_tag "filter"
+          = submit_tag 'Filter'
     .form-check.form-check-inline 
       - @categories.each do |n| 
         label.form-check-label 
           input#inlineCheckbox1.form-check-input type="checkbox" value="option1" 
             -if locale == :ru 
               = n.ru 
+              | (#{n.count_of_ads})
             -else 
               = n.en 
-            | (#{n.count_of_ads}) 
+              | (#{n.count_of_ads})
     #ads_items
       = render "search"
       

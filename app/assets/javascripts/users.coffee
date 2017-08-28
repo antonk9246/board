@@ -13,3 +13,10 @@ $(document).on 'turbolinks:load', ->
   $(document).on 'click', '#ads_items th a', ->
     $.getScript(this.href)
     false
+
+$(document).on 'turbolinks:load', ->
+  $(":submit").on 'ckick', ->
+    $.getScript('/ads_items/search')
+    false
+
+
