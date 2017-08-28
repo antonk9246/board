@@ -10,7 +10,7 @@ table
       th
         = sortable "category_id", "Category"
   tbody
-    - for ads_item in @ads_items
+    - @ads_items.each do |ads_item|
       tr
         td
           = ads_item.title

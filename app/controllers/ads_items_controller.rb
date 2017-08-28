@@ -19,7 +19,11 @@ class AdsItemsController < ApplicationController
 
   def search
     col = sort_column == 'user_id' ? 'users.email' : sort_column
-    @ads_items = policy_scope(AdsItem).perform_search(params[:search]).joins(:user).order(col + " " + sort_direction)
+    if params[:filter]
+      @ads_items = policy_scope(AdsItem).perform_search(params[:search]).joins(:user).order(col + " " + sort_direction).filter(params[:filter])
+    else
+      @ads_items = policy_scope(AdsItem).perform_search(params[:search]).joins(:user).order(col + " " + sort_direction)
+    end
     puts sort_column
     puts sort_direction
     @categories = Category.all

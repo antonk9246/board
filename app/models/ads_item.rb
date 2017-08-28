@@ -35,6 +35,12 @@ class AdsItem < ApplicationRecord
     end
   end
 
+  def self.filter(filter)
+    if filter
+      where(category_id: filter)
+    end
+  end
+
   validates :title, presence: true
   validates :title, length: { maximum: 100 }
   validates :text, length: { maximum: 300 }
