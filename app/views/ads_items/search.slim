@@ -13,7 +13,9 @@
       p
         = submit_tag "#{t'buttons.filter'}", :class => "btn btn-primary"
     #ads_items
-      = render "search"
+      .card
+        .card-body
+          = render "search"
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb

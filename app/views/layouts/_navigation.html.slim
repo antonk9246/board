@@ -5,7 +5,7 @@
         = image_tag(current_user.avatar.url(:medium), class: "round-image-40")
         = link_to "#{current_user.email}", ads_items_user_page_path, class: "nav-link"
         .nav-item.dropdown
-          a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="http://example.com" 
+          a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="http://example.com"
             = t 'language'
           .dropdown-menu aria-labelledby="navbarDropdownMenuLink" 
             - I18n.available_locales.each do |language|

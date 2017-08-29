@@ -1,7 +1,6 @@
 class AdsItemsController < ApplicationController
   attr_reader :user
-  before_action :set_ads_item, only: %i[show edit update destroy]
-  before_action :set_approve, only: [:approved]
+  before_action :set_ads_item, only: %i[show create new edit update destroy]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -25,9 +24,6 @@ class AdsItemsController < ApplicationController
       filtered = policy_scope(AdsItem).perform_search(params[:search]).joins(:user)
     end
     @ads_items = filtered.order(col + " " + sort_direction)
-    puts params[:filter]
-    puts sort_column
-    puts sort_direction
     @categories = Category.all
   end
 
@@ -37,26 +33,21 @@ class AdsItemsController < ApplicationController
 
   def new
     @ads_item = AdsItem.new
-    authorize @ads_item
   end
 
   def edit
     @ads_item = AdsItem.find(params[:id])
-    authorize @ads_item
   end
 
   def create
     @ads_item = AdsItem.new(ads_items_params)
     @ads_items = AdsItem.order(:title).page params[0]
     @ads_item.user = current_user
-    authorize @ads_item
     if @ads_item.save
       redirect_to :back, notice: (t 'ad.created').to_s
     else
       render :new, notice: (t 'ad.not_created').to_s
-      
     end
-    authorize @ads_item
   end
 
   def update
@@ -66,7 +57,7 @@ class AdsItemsController < ApplicationController
       @ads_item.save
       redirect_to :back, notice: (t 'ad.updated').to_s
     else
-      format.html { render :edit }
+      render :edit
     end
   end
 
