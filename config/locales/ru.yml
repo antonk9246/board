@@ -37,6 +37,8 @@ ru:
   
   send_at: 'Отправлено'
 
+  select_all: 'Выбрать все категории'
+
   approve: 'Одобрить'
 
   enter_comment: 'Добавить комментарий'
@@ -60,6 +62,7 @@ ru:
     'change_avatar': 'Изменить аватар'
     'change_password': 'Изменить пароль'
     'search': "Найти"
+    'filter': "Фильтрация"
     'to_new': "Опубликовать"
     'approve': "Одобрить"
     'return': "В черновики"

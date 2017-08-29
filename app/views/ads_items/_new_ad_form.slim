@@ -1,6 +1,6 @@
 = form_for @ads_item, url: {action: :create}, html: { multipart: true } do |f|
-  .card.card-outline-secondary
-    .card-block
+  .card
+    .card-body
       h1= t 'new_ad'
       .form-group
         = t 'title'

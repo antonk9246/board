@@ -3,7 +3,7 @@
     ul.nav.nav-pills.float-right
       - if user_signed_in?
         = image_tag(current_user.avatar.url(:medium), class: "round-image-40")
-        = link_to "#{current_user.email}", ads_items_user_page_url(@ads_items), class: "nav-link"
+        = link_to "#{current_user.email}", ads_items_user_page_path, class: "nav-link"
         .nav-item.dropdown
           a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="http://example.com" 
             = t 'language'
@@ -25,10 +25,10 @@
     u1.nav.nav-pills.float-left
       = link_to 'Ads Board', ads_items_path(locale), :class => 'nav-link'
       .form-inline.my-2.my-lg-0
-        = form_tag ads_items_search_url, :method => "get", id: "ads_item_search" do |f|
+        = form_tag ads_items_search_path, :method => "get", id: "ads_item_search" do |f|
           = hidden_field_tag :sort, params[:sort]
           = hidden_field_tag :direction, params[:direction]
           = hidden_field_tag :filter, params[:filter] = nil
           = text_field_tag :search
-          = submit_tag "Search", :name => nil
+          = submit_tag "#{t'buttons.search'}", :name => nil, :class => "btn btn-link"
    

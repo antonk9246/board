@@ -52,6 +52,8 @@ en:
   
   send_at: 'Send at'
 
+  select_all: 'Select all categories'
+
   approve: 'Approve'
 
   enter_comment: 'Enter your comment'
@@ -75,6 +77,7 @@ en:
     'change_avatar': 'Change avatar'
     'change_password': 'Change password'
     'search': "Search"
+    'filter': "Filtration"
     'to_new': "Publish"
     'approve': "Approve"
     'return': "Submit to draft"

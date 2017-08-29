@@ -1,10 +1,10 @@
-.card.card-outline-secondary
-  .card-block
-    = link_to(item) do
-      - if item.images.empty?
-        img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" 
-      - else
-        = image_tag(item.images.first.url.to_s, class: 'card-img img-fluid mx-auto d-block')
+.card
+  = link_to(item) do
+    - if item.images.empty?
+      img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" 
+    - else
+      = image_tag(item.images.first.url.to_s, class: 'card-img img-fluid mx-auto d-block')
+  .card-body
     h4.card-title
       = link_to(item) do
         = item.title

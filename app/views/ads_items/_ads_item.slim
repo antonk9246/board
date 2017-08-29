@@ -1,10 +1,10 @@
-.card.card-outline-secondary
-  .card-block
-    - item.images.each do |image|
-      - if item.images.empty?
-        img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" 
-      - else
-        = image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block')
+.card
+  - item.images.each do |image|
+    - if item.images.empty?
+      img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" 
+    - else
+      = image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block')
+  .card-body
     h4.card-title= item.title
     -if locale == :ru
         p.card-text = item.category.ru

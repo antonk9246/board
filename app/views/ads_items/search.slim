@@ -4,13 +4,18 @@
       - @categories.each do |n|
         p
           = radio_button_tag :filter, "#{n.id}", checked: true
-          - if locale == "ru"
+          - if locale == :ru
             = label :filter, "#{n.ru} (#{n.count_of_ads})"
           - else
             = label :filter, "#{n.en} (#{n.count_of_ads})"
       = radio_button_tag :filter, "", checked: true
-      = label :filter, "Выбрать все"
-      = submit_tag I18n.t 'filter'
+      = label :filter, "#{t'select_all'}"
+      p
+        = submit_tag "#{t'buttons.filter'}", :class => "btn btn-primary"
     #ads_items
       = render "search"
-      
+.row.justify-content-center
+  .col-sm-12.offset-sm-0.col-md-6
+    nav.breadcrumb
+      = link_to "#{t('back')}", ads_items_path, class: "breadcrumb-item"
+      span.breadcrumb-item.active = I18n.t'search_page'
