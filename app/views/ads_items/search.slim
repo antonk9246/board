@@ -5,17 +5,18 @@
         p
           = radio_button_tag :filter, "#{n.id}", checked: true
           - if locale == :ru
-            = label :filter, "#{n.ru} (#{n.count_of_ads})"
+            = label :filter, "#{n.ru}" 
+            | (#{n.ads_items.where(:aasm_state => :approved).length})
           - else
             = label :filter, "#{n.en} (#{n.count_of_ads})"
       = radio_button_tag :filter, "", checked: true
       = label :filter, "#{t'select_all'}"
       p
         = submit_tag "#{t'buttons.filter'}", :class => "btn btn-primary"
-    #ads_items
-      .card
-        .card-body
-          = render "search"
+    .card
+      .card-body
+      #ads_items
+        = render "search"
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb
