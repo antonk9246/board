@@ -22,3 +22,7 @@
 .byebug_history
 
 public/system/users/avatars/*
+
+config/database\.yml
+
+config/cable\.yml
