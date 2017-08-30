@@ -19,7 +19,7 @@ ru:
     date: 'дате'
     author: 'автору'
   date: 'дате'
-  author: 'автору'
+  author: 'Aвтор'
 
   name: 'Русский'
 
@@ -81,6 +81,7 @@ ru:
   published_by: 'Опубликовано'
 
   title: 'Заголовок'
+  .author: 'Автор'
   enter_title: 'Введите заголовок'
   category: 'Категория'
   images: 'Изображения'

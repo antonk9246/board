@@ -35,14 +35,4 @@ RSpec.describe AdsItemsController, type: :controller do
       expect(response).to have_http_status(200)
     end
   end
-
-
-  it "routes get show" do
-    expect(:get => "ads_items/1001").to route_to(
-      :controller => "ads_items",
-      :action => "show",
-     :id => "1001"
-    )
-  end
-  
 end

@@ -2,21 +2,25 @@ table.table
   thead.pretty
     tr
       th
-        = sortable "title"
+        = sortable "title", "#{I18n.t'title'}"
       th
-        = sortable "approval_date"
+        = sortable "approval_date", "#{I18n.t'approval_date'}"
       th
-        = sortable "user_id"
+        = sortable "user_id", "#{I18n.t'author'}"
       th
-        = sortable "category_id", "Category"
+        = sortable "category_id", "#{I18n.t'category'}"
   tbody
     - @ads_items.each do |ads_item|
       tr
         td
-          = ads_item.title
+          = link_to(ads_item) do
+            = ads_item.title
         td
           = ads_item.approval_date
         td
           = ads_item.user.email
         td
-          = ads_item.category.ru
+          - if locale == :ru
+            = ads_item.category.ru
+          -else
+            = ads_item.category.en

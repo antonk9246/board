@@ -18,5 +18,3 @@ $(document).on 'turbolinks:load', ->
   $(":submit").on 'submit', ->
     $.getScript('/ads_items/search')
     false
-
-

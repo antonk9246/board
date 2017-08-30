@@ -15,7 +15,7 @@
     - if policy(item).destroy?
       .label.label-primary = I18n.t "states.#{item.aasm_state}"
     p.card-text= item.text
-    .btn-group aria-label=("Basic example") role="group" 
+    .btn-group.btn-group-justified role="group"
       - if policy(item).to_new?
         = link_to "#{t('buttons.to_new')}", ads_item_to_new_url(item), method: :patch, :class => "btn btn-success"
       = link_to "#{t('buttons.show')}", ads_item_url(item), :class => "btn btn-primary"
