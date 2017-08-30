@@ -14,6 +14,8 @@
         p.card-text = item.category.en
     - if policy(item).destroy?
       .label.label-primary = I18n.t "states.#{item.aasm_state}"
+    - if policy(item).update?
+      = item.comment
     p.card-text= item.text
     .btn-group.btn-group-justified role="group"
       - if policy(item).to_new?
