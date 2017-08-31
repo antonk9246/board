@@ -59,6 +59,15 @@ class AdsItemPolicy < ApplicationPolicy
   def return?
     true if user.present? && user == ads_item.user && ads_item.aasm_state == 'new'
   end 
+
+  def permitted_attributes
+    if user.try(:admin?) 
+      [:title, :text, :category_id, :comment, { images: [] }, :approval_date, :user_id, :aasm_state]
+    elsif user.present?
+      [:title, :text, :category_id, { images: [] }]
+    else
+    end
+  end
   
   private
 

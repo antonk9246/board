@@ -1,16 +1,20 @@
 .row
   .col-sm-12.offset-sm-0.col-md-3
     = form_tag ads_items_search_url, remote: true, :method => :get, class: "form-filter" do
+      = hidden_field_tag :sort, params[:sort]
+      = hidden_field_tag :direction, params[:direction]
+      = hidden_field_tag :search, params[:search]
       = radio_button_tag :filter, "", checked: true
       = label :filter, "#{t'select_all'}"
       - @categories.each do |n|
         p
           = radio_button_tag :filter, "#{n.id}", checked: true
           - if locale == :ru
-            = label :filter, "#{n.ru}" 
+            = label :filter, "#{n.ru}"
             | (#{n.ads_items.where(:aasm_state => :approved).length})
           - else
-            = label :filter, "#{n.en} (#{n.count_of_ads})"
+            = label :filter, "#{n.en}"
+            | (#{n.ads_items.where(:aasm_state => :approved).length})
       p
         = submit_tag "#{t'buttons.filter'}", :class => "btn btn-primary"
   .col-sm-12.offset-sm-0.col-md-6
