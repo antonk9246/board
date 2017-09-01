@@ -23,6 +23,8 @@
 
 public/system/users/avatars/*
 
+config/database\.yml
+
 config/cable\.yml
 
-config/secrets.yml
+config/secrets\.yml
