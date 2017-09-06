@@ -138,7 +138,8 @@ en:
   categories:
     delete: 'Category deleted'
     not_delete: 'You can only delete an empty category'
-  
+    updated: 'Category updated'
+    
   user:
     'password_updated': 'Password was successfully updated'
     'password_not_updated': 'Password not updated'
