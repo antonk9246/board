@@ -6,14 +6,14 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  config.secret_key = Rails.application.secrets.devise_secret_key 
-  # config.secret_key = '313ee5085a507edc21296b2b123e9eaafdc00ef46835c37ad88d0a4c001fa3a2f4eb2c1b4548c8aa3b25270878f260dfe328ea4657230e816571851660b15b23'
+  config.secret_key = Rails.application.secrets.devise_secret_key
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'please-change-me-at-config-initializers-
+                          devise@example.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -246,7 +246,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  
+
   # config.sign_out_via = :delete
   config.sign_out_via = :get
 

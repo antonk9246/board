@@ -3,45 +3,7 @@
     h4.display-4= @ads_item.title
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
-    .card
-      = form_for @ads_item, url: {action: :update} do |f|
-        .form-group
-          - @ads_item.images.each do |image|
-            = image_tag(image.url.to_s, class: 'card-img-top img-fluid mx-auto d-block')
-        .card-body
-          .field
-            = t 'images'
-            = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"
-          .form-group.has-error
-              #helpBlock2.help-block
-                = error_message_on(f.object, :image)
-          .form-group
-            = t 'title'
-            = f.text_field :title, :class => 'form-control'
-            .form-group.has-error
-                #helpBlock2.help-block
-                  = error_message_on(f.object, :title)
-          .form-group
-            = t 'category'
-            br
-              = f.collection_select :category_id, Category.all, :id, locale
-              .form-group.has-error
-                #helpBlock2.help-block
-                  = error_message_on(f.object, :category)
-          .form-group
-            = t 'text'
-            = f.text_area :text, :class => 'form-control'
-            .form-group.has-error
-                #helpBlock2.help-block
-                  = error_message_on(f.object, :text)
-          button.btn.btn-primary type="f.submit" = t'buttons.submit'
-          .form-group
-          - if @ads_item.aasm_state == 'approved'
-            small.text-muted
-                | published by #{@ads_item.user.email} at #{@ads_item.approval_date.strftime("%d.%m.%Y %H:%M")}
-          - else
-            small.text-muted
-                | send by #{@ads_item.user.email} at #{@ads_item.updated_at.strftime("%d.%m.%Y %H:%M")}
+    = render :partial => "form", locals: {ads_item: @ads_item}, html: { multipart: true }
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb

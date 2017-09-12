@@ -18,6 +18,9 @@ gem 'slim-rails'
 gem "paperclip"
 gem 'pg_search'
 gem 'aasm'
+gem 'mongoid'
+gem 'bullet'
+
 
 gem 'pundit'
 gem 'pg'

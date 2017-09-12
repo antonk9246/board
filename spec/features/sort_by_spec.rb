@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'sort by', :controller => :index do
+feature 'sort by', controller: :index do
   scenario 'guest can sort ads' do
     visit root_path
     expect(page).to have_content('Sorted by date')

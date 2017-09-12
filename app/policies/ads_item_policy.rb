@@ -9,9 +9,9 @@ class AdsItemPolicy < ApplicationPolicy
 
     def resolve
       if user.try(:admin?)
-        scope.where(:aasm_state => [:approved, :new])
+        scope.where(aasm_state: %i[approved new])
       else
-        scope.where(:aasm_state => :approved)
+        scope.where(aasm_state: :approved)
       end
     end
   end
@@ -45,7 +45,8 @@ class AdsItemPolicy < ApplicationPolicy
   end
 
   def to_new?
-    true if user.present? && user == ads_item.user && ads_item.aasm_state == 'draft'
+    true if user.present? && user == ads_item.user &&
+            ads_item.aasm_state == 'draft'
   end
 
   def approve?
@@ -54,21 +55,22 @@ class AdsItemPolicy < ApplicationPolicy
 
   def decline?
     true if user.try(:admin?) && ads_item.aasm_state == 'new'
-  end 
+  end
 
   def return?
-    true if user.present? && user == ads_item.user && ads_item.aasm_state == 'new'
-  end 
+    true if user.present? && user == ads_item.user &&
+            ads_item.aasm_state == 'new'
+  end
 
   def permitted_attributes
-    if user.try(:admin?) 
-      [:title, :text, :category_id, :comment, { images: [] }, :approval_date, :user_id, :aasm_state]
+    if user.try(:admin?)
+      [:title, :text, :category_id, :comment, { images: [] },
+       :approval_date, :user_id, :aasm_state]
     elsif user.present?
       [:title, :text, :category_id, { images: [] }]
-    else
     end
   end
-  
+
   private
 
   def ads_item

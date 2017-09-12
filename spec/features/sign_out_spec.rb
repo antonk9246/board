@@ -1,4 +1,4 @@
- require 'rails_helper'
+require 'rails_helper'
 
 feature 'Sign out', :devise do
   scenario 'user can sign out' do

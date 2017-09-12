@@ -10,17 +10,17 @@ table.table
       th
         = sortable "category_id", "#{I18n.t'category'}"
   tbody
-    - @ads_items.each do |ads_item|
+    - @ads_items.each do |item|
       tr
         td
-          = link_to(ads_item) do
-            = ads_item.title
-        td
-          = ads_item.approval_date
-        td
-          = ads_item.user.email
-        td
-          - if locale == :ru
-            = ads_item.category.ru
-          -else
-            = ads_item.category.en
+          = link_to(item.title)
+        td 
+          = item.approval_date 
+        td 
+          = item.user.email 
+        td 
+          - if locale == :ru 
+            = item.category.ru 
+          -else 
+            = item.category.en
+

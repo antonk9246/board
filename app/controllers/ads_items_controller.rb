@@ -1,6 +1,6 @@
 class AdsItemsController < ApplicationController
   attr_reader :user
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :create]
+  before_action :authenticate_user!, only: %i[edit update destroy create]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -10,20 +10,26 @@ class AdsItemsController < ApplicationController
     elsif params[:sort] == 'author'
       ads = policy_scope(AdsItem).order("user_id #{sort_direction}")
     else
-      params[:sort] = 'date'
       ads = policy_scope(AdsItem).order(approval_date: :desc)
     end
-    @ads_items = ads.page params[:page]
+    @ads_items = ads.includes(:user, :category).page params[:page]
   end
 
   def search
     col = sort_column == 'user_id' ? 'users.email' : sort_column
-    if params[:filter] != nil && params[:filter] != ""
-      filtered = policy_scope(AdsItem).perform_search(params[:search]).joins(:user).filter(params[:filter])
-    else 
-      filtered = policy_scope(AdsItem).perform_search(params[:search]).joins(:user)
+    if !params[:filter].nil? && params[:filter] != ''
+      filtered = policy_scope(AdsItem).perform_search(params[:search])
+                                      .filter(params[:filter])
+    else
+      filtered = policy_scope(AdsItem).perform_search(params[:search])
     end
-    @ads_items = filtered.order(col + " " + sort_direction)
+    puts params[:sort]
+    puts params[:direction]
+    puts params[:search]
+    puts params[:filter]
+
+    @ads_items = filtered.includes(:user, :category)
+                         .reorder("#{col} #{sort_direction}")
     @categories = Category.all
   end
 
@@ -47,7 +53,8 @@ class AdsItemsController < ApplicationController
     @ads_item.user = current_user
     authorize @ads_item
     if @ads_item.save
-      redirect_back(fallback_location: root_path, notice: (t 'ad.created').to_s)
+      redirect_back(fallback_location: root_path,
+                    notice: (t 'ad.created').to_s)
     else
       render :new, notice: (t 'ad.not_created').to_s
     end
@@ -60,7 +67,8 @@ class AdsItemsController < ApplicationController
       @ads_item.aasm_state = :draft
       @ads_item.approval_date = nil
       @ads_item.save
-      redirect_back(fallback_location: root_path, notice: (t 'ad.updated').to_s)
+      redirect_back(fallback_location: root_path,
+                    notice: (t 'ad.updated').to_s)
     else
       render :edit
     end
@@ -70,7 +78,7 @@ class AdsItemsController < ApplicationController
     @ads_item = AdsItem.find(params[:id])
     authorize @ads_item
     @ads_item.destroy
-    redirect_back(fallback_location: root_path, notice: (t 'ad.destroyed').to_s)
+    redirect_to root_path, notice: (t 'ad.destroyed').to_s
   end
 
   def to_new
@@ -78,7 +86,8 @@ class AdsItemsController < ApplicationController
     authorize @ads_item
     @ads_item.aasm_state = :new
     @ads_item.save
-    redirect_back(fallback_location: root_path, notice: (t 'ad.published').to_s)
+    redirect_back(fallback_location: root_path,
+                  notice: (t 'ad.published').to_s)
   end
 
   def approve
@@ -87,7 +96,8 @@ class AdsItemsController < ApplicationController
     @ads_item.aasm_state = :approved
     @ads_item.approval_date = Time.zone.now
     @ads_item.save
-    redirect_back(fallback_location: root_path, notice: (t 'ad.approved').to_s)
+    redirect_back(fallback_location: root_path,
+                  notice: (t 'ad.approved').to_s)
    end
 
   def decline
@@ -96,7 +106,8 @@ class AdsItemsController < ApplicationController
     @ads_item.update(permitted_attributes(@ads_item))
     @ads_item.aasm_state = :refused
     @ads_item.save
-    redirect_back(fallback_location: root_path, notice: (t 'ad.decline').to_s)
+    redirect_back(fallback_location: root_path,
+                  notice: (t 'ad.decline').to_s)
   end
 
   def return
@@ -104,7 +115,8 @@ class AdsItemsController < ApplicationController
     authorize @ads_item
     @ads_item.aasm_state = :draft
     @ads_item.save
-    redirect_back(fallback_location: root_path, notice: (t 'ad.return_to_drafts').to_s)
+    redirect_back(fallback_location: root_path,
+                  notice: (t 'ad.return_to_drafts').to_s)
   end
 
   private
@@ -118,6 +130,9 @@ class AdsItemsController < ApplicationController
   end
 
   def ads_items_params
-    params.require(:ads_item).permit(:title, :text, :category_id, {images: []})
+    params.require(:ads_item).permit(:title,
+                                     :text,
+                                     :category_id,
+                                     images: [])
   end
 end

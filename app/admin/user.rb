@@ -5,7 +5,7 @@ ActiveAdmin.register User do
   filter :admin
   filter :created_at
 
-  index :as => :table do
+  index as: :table do
     column :id
     column :email
     column :admin
@@ -25,11 +25,11 @@ ActiveAdmin.register User do
   end
 
   controller do
- 
+
     def update
       if params[:user][:password].blank?
-        params[:user].delete("password")
-        params[:user].delete("password_confirmation")
+        params[:user].delete('password')
+        params[:user].delete('password_confirmation')
       end
       super
     end

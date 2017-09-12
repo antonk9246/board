@@ -1,6 +1,7 @@
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
-    = render :partial => "new_ad_form", object: @ads_item
+    h1= t 'new_ad'
+    = render :partial => "form", locals: {ads_item: @ads_item}, html: { multipart: true }
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb

@@ -90,6 +90,8 @@ en:
   find: "I want to find..."
 
   published_by: 'Published by'
+  send_by: 'Send by'
+  at: 'at'
 
   title: 'Title'
   enter_title: 'Enter title'

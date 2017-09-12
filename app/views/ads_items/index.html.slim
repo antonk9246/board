@@ -3,7 +3,8 @@
   .row.justify-content-center
     .col-sm-12.offset-sm-0.col-md-6
       #new-ad-form
-        = render :partial => "new_ad_form", object: @ads_item
+        h1= t 'new_ad'
+        = render :partial => "form", locals: {ads_item: @ads_item}, html: { multipart: true }
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
     h1.text-center=  t 'ads_board'
@@ -19,7 +20,10 @@
       = link_to "▲", url_for( :sort => params[:sort], :direction => 'asc'), type: "link", class: "nav-link"
       = link_to "▼", url_for( :sort => params[:sort], :direction => 'desc'), type: "link", class: "nav-link"
       h5
-        = I18n.t('sorted_by'".""#{params[:sort]}") 
+        - if params[:sort] == nil
+          = I18n.t('sorted_by.date')
+        - else
+          = I18n.t('sorted_by'".""#{params[:sort]}") 
     = render :partial => "ads_items", :collection => @ads_items, :as => :item
     ul.nav aria-label=("Page navigation example") 
       = paginate @ads_items

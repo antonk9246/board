@@ -1,13 +1,11 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   before_action :set_locale
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  
-  include Pundit
-
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  
-  def default_url_options(options={})
+
+  def default_url_options(_options = {})
     { locale: I18n.locale }
   end
 
@@ -21,7 +19,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-   I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   def user_not_authorized
@@ -31,8 +29,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :avatar])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :current_password, :avatar])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[email password avatar])
+    devise_parameter_sanitizer.permit(:account_update,
+                                      keys:
+                                      %i[email password current_password avatar])
+  end
 end

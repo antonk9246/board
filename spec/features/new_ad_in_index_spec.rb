@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Form for new ad in index', :controller => :index do
+feature 'Form for new ad in index', controller: :index do
   scenario 'guest can not see form for new ad in index path' do
     user = FactoryGirl.create(:user, id: nil)
     visit root_path

@@ -1,7 +1,7 @@
 ActiveAdmin.register Category do
-  actions :all, :except => [:show]
+  actions :all, except: [:show]
   permit_params :en, :ru
-  before_filter :skip_sidebar!, :only => :index
+  before_filter :skip_sidebar!, only: :index
 
   index as: :table do
     column :id
@@ -19,17 +19,20 @@ ActiveAdmin.register Category do
   end
   member_action :destroy do
     @category = Category.find(params[:id])
-    if AdsItem.where(:category_id => @category.id).count.zero?
+    if AdsItem.where(category_id: @category.id).count.zero?
       @category.destroy
-      redirect_to admin_categories_path(locale), notice: (t 'categories.delete').to_s
+      redirect_to admin_categories_path(locale),
+                  notice: (t 'categories.delete').to_s
     else
-      redirect_to admin_categories_path(locale), notice: (t 'categories.not_delete').to_s
+      redirect_to admin_categories_path(locale),
+                  notice: (t 'categories.not_delete').to_s
     end
   end
   member_action :update do
     @category = Category.find(params[:id])
     if @category.save
-      redirect_to admin_categories_path(locale), notice: (t 'categories.updated').to_s
+      redirect_to admin_categories_path(locale),
+                  notice: (t 'categories.updated').to_s
     else
       render :edit
     end
@@ -37,6 +40,6 @@ ActiveAdmin.register Category do
   form do |f|
     f.input :ru
     f.input :en
-   actions
+    actions
   end
 end

@@ -13,7 +13,8 @@ feature 'Sign up', :devise do
 
   scenario 'user can not sign up with short password' do
     signup('user@mail.ru', 'pass', 'pass')
-    expect(page).to have_content 'Password is too short (minimum is 6 characters)'
+    expect(page).to have_content 'Password is too short
+                              (minimum is 6 characters)'
   end
 
   scenario 'user can not sign up with short password' do
