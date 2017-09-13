@@ -14,7 +14,10 @@
           = f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control', :placeholder => "#{t 'new_password_confirmation'}"
           = f.submit t('buttons.change_password'), class: "btn btn-md btn-primary btn-block"
       = link_to "#{t('buttons.delete_profile')}", user_delete_user_url(locale), method: :delete, data: { confirm: "#{t('are_you_sure')}" }, :class => "btn btn-danger"
-    = render :partial => "ads_items", :collection => current_user.ads_items, :as => :item
+    - current_user.ads_items.each do |item|
+      .card
+        = render :partial => "card_image", locals: { item: item }
+        = render :partial => "card_body", locals: { item: item }
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb

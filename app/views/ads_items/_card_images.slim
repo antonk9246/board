@@ -1,0 +1,6 @@
+.card-body
+  - item.images.each do |image|
+    - if item.images.empty?
+      img.card-img-top.img-fluid alt=("Card image") src="http://zametki.by/wp-content/themes/easymag/images/no-image.png" 
+    - else
+      = image_tag(image.url.to_s, class: 'card-img img-fluid mx-auto d-block')

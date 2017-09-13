@@ -23,11 +23,6 @@ class AdsItemsController < ApplicationController
     else
       filtered = policy_scope(AdsItem).perform_search(params[:search])
     end
-    puts params[:sort]
-    puts params[:direction]
-    puts params[:search]
-    puts params[:filter]
-
     @ads_items = filtered.includes(:user, :category)
                          .reorder("#{col} #{sort_direction}")
     @categories = Category.all

@@ -21,10 +21,13 @@
       = link_to "▼", url_for( :sort => params[:sort], :direction => 'desc'), type: "link", class: "nav-link"
       h5
         - if params[:sort] == nil
-          = I18n.t('sorted_by.date')
         - else
-          = I18n.t('sorted_by'".""#{params[:sort]}") 
-    = render :partial => "ads_items", :collection => @ads_items, :as => :item
+          = I18n.t('sorted_by'".""#{params[:sort]}")
+    
+    - @ads_items.each do |item|
+      .card
+        = render :partial => "card_image", locals: { item: item }
+        = render :partial => "card_body", locals: { item: item }
     ul.nav aria-label=("Page navigation example") 
       = paginate @ads_items
     
