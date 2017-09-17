@@ -39,6 +39,9 @@ class AdsItem < ApplicationRecord
                            using: { tsearch: { any_word: true, prefix: true},
                                     dmetaphone: { sort_only: true} }
 
+  scope :approved_scope, -> { where(aasm_state: :approved) }
+  
+
   def self.perform_search(keyword)
     if keyword.present?
       AdsItem.search(keyword)

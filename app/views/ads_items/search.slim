@@ -11,10 +11,10 @@
           = radio_button_tag :filter, "#{n.id}", checked: true
           - if locale == :ru
             = label :filter, "#{n.ru}"
-            | (#{n.ads_items.where(:aasm_state => :approved).perform_search(params[:search]).length})
+            | (#{n.ads_items.approved_scope.perform_search(params[:search]).length})
           - else
             = label :filter, "#{n.en}"
-            | (#{n.ads_items.where(:aasm_state => :approved).perform_search(params[:search]).length})
+            | (#{n.ads_items.approved_scope.perform_search(params[:search]).length})
       p
         = submit_tag "#{t'buttons.filter'}", :class => "btn btn-primary"
   .col-sm-12.offset-sm-0.col-md-6

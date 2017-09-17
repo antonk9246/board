@@ -1,10 +1,8 @@
 = form_for(ads_item) do |f|
   .card
     .card-body
-      - if @ads_item == nil
-      - else
-        - @ads_item.images.each do |image|
-          = image_tag(image.url.to_s, class: 'card-img-top img-fluid mx-auto d-block')
+      - @ads_item.images.each do |image|
+        = image_tag(image.url.to_s, class: 'card-img-top img-fluid mx-auto d-block')
       .field
         = t 'images'
         = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"

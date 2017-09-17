@@ -9,9 +9,9 @@ class AdsItemPolicy < ApplicationPolicy
 
     def resolve
       if user.try(:admin?)
-        scope.where(aasm_state: %i[approved new])
+        scope.where(aasm_state: %i[approved new]).includes(:user, :category)
       else
-        scope.where(aasm_state: :approved)
+        scope.approved_scope.includes(:user, :category)
       end
     end
   end
@@ -30,6 +30,10 @@ class AdsItemPolicy < ApplicationPolicy
 
   def create?
     user.present?
+  end
+
+  def new?
+    create?
   end
 
   def update?
