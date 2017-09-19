@@ -1,4 +1,4 @@
-= form_for(ads_item) do |f|
+= form_for(@ads_item) do |f|
   .card
     .card-body
       - @ads_item.images.each do |image|
@@ -6,7 +6,7 @@
       .field
         = t 'images'
         = f.file_field :images, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png"
-      .form-group.has-error
+        .form-group.has-error
           #helpBlock2.help-block
             = error_message_on(f.object, :image)
       .form-group
@@ -28,15 +28,9 @@
               = error_message_on(f.object, :category)
       .form-group
         = t 'text'
-        - if @ads_item == nil
-          br
-            = f.text_area :text, :class => 'form-control'
-            .form-group.has-error
-              #helpBlock2.help-block
-                = error_message_on(f.object, :text)
-        - else
+        br
           = f.text_area :text, :class => 'form-control'
-        .form-group.has-error
+          .form-group.has-error
             #helpBlock2.help-block
               = error_message_on(f.object, :text)
       button.btn.btn-primary type="f.submit" = t'buttons.submit'

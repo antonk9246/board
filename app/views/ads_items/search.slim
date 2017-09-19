@@ -6,15 +6,15 @@
       = hidden_field_tag :search, params[:search]
       = radio_button_tag :filter, "", checked: true
       = label :filter, "#{t'select_all'}"
-      - @categories.each do |n|
+      - @num_categories.each do |key, value|
         p
-          = radio_button_tag :filter, "#{n.id}", checked: true
+          = radio_button_tag :filter, "#{key.id}", checked: true
           - if locale == :ru
-            = label :filter, "#{n.ru}"
-            | (#{n.ads_items.approved_scope.perform_search(params[:search]).length})
+            = label :filter, "#{key.ru}"
+            | (#{value})
           - else
-            = label :filter, "#{n.en}"
-            | (#{n.ads_items.approved_scope.perform_search(params[:search]).length})
+            = label :filter, "#{key.en}"
+            | (#{value})
       p
         = submit_tag "#{t'buttons.filter'}", :class => "btn btn-primary"
   .col-sm-12.offset-sm-0.col-md-6

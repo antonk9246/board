@@ -28,8 +28,13 @@ class AdsItemsController < ApplicationController
     else
       filtered = policy_scope(AdsItem).perform_search(params[:search])
     end
+    ads_items_ids = []
+    filtered.each do |x|
+      ads_items_ids << x.id
+    end
+    @num_categories = policy_scope(AdsItem).where('ads_items.id in (?)', ads_items_ids)
+                                    .group(:category).count
     @ads_items = filtered.reorder("#{col} #{sort_direction}")
-    @categories = Category.all
   end
 
   def show

@@ -3,7 +3,7 @@
     h4.display-4= @ads_item.title
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
-    = render :partial => "form", locals: {ads_item: @ads_item}, html: { multipart: true }
+    = render :partial => "form", html: { multipart: true }
 .row.justify-content-center
   .col-sm-12.offset-sm-0.col-md-6
     nav.breadcrumb

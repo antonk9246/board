@@ -40,13 +40,13 @@ class AdsItem < ApplicationRecord
                                     dmetaphone: { sort_only: true} }
 
   scope :approved_scope, -> { where(aasm_state: :approved) }
-  
+  scope :approved_new_scope, -> { where(aasm_state: [:approved, :new]) }
 
   def self.perform_search(keyword)
     if keyword.present?
-      AdsItem.search(keyword)
+      AdsItem.approved_new_scope.search(keyword)
     else
-      AdsItem.all
+      AdsItem.approved_new_scope.all
     end
   end
 
